@@ -14,6 +14,9 @@
     "@vitejs/plugin-react": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-force-graph-3d": "^1.29.1",
+    "three": "^0.184.0",
+    "three-spritetext": "^1.10.0",
     "typescript": "latest",
     "vite": "latest"
   },

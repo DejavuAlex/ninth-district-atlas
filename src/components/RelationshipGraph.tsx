@@ -1,6 +1,9 @@
+import { Suspense, lazy } from "react";
+import { GraphErrorBoundary } from "./GraphErrorBoundary";
 import { getRelationshipsForCharacter } from "../lib/novelFilters";
-import type { CSSProperties } from "react";
 import type { CharacterId, NovelDataset } from "../types/novel";
+
+const RelationshipGraph3D = lazy(() => import("./RelationshipGraph3D"));
 
 interface RelationshipGraphProps {
   dataset: NovelDataset;
@@ -22,65 +25,27 @@ const kindLabel: Record<string, string> = {
 export function RelationshipGraph({ dataset, selectedCharacterId, onSelectCharacter }: RelationshipGraphProps) {
   const selectedRelations = getRelationshipsForCharacter(dataset, selectedCharacterId);
   const selectedCharacter = dataset.characters.find((character) => character.id === selectedCharacterId) ?? dataset.characters[0];
-  const directCharacters = selectedRelations
-    .map((relationship) => {
-      const otherId = relationship.source === selectedCharacterId ? relationship.target : relationship.source;
-      const character = dataset.characters.find((item) => item.id === otherId);
-      return character ? { character, relationship } : null;
-    })
-    .filter((item): item is NonNullable<typeof item> => Boolean(item))
-    .slice(0, 8);
-
-  const count = directCharacters.length;
-  const nodes = directCharacters.map((item, index) => {
-    const angle = (Math.PI * 2 * index) / Math.max(count, 1) - Math.PI / 2;
-    const x = 50 + Math.cos(angle) * 38;
-    const y = 50 + Math.sin(angle) * 36;
-    return { ...item, x, y };
-  });
 
   return (
     <div className="graph-card">
       <div className="graph-header">
         <h3>人物关系图</h3>
-        <p>直连人物，关系标签更清楚。</p>
+        <p>直连人物，拖拽可旋转，滚轮缩放。</p>
       </div>
-      <div className="relationship-board" aria-label="人物关系图">
-        <svg className="relationship-links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          {nodes.map(({ relationship, x, y }) => (
-            <line
-              key={relationship.id}
-              className={`relationship-link kind-${relationship.kind}`}
-              x1="50"
-              y1="50"
-              x2={x}
-              y2={y}
+      <div className="graph-3d-shell" aria-label="三维人物关系图">
+        <GraphErrorBoundary fallback={<div className="graph-loading">三维关系图无法在当前环境加载，可参考下方关系列表。</div>}>
+          <Suspense fallback={<div className="graph-loading">正在加载三维关系图...</div>}>
+            <RelationshipGraph3D
+              dataset={dataset}
+              selectedCharacterId={selectedCharacterId}
+              onSelectCharacter={onSelectCharacter}
             />
-          ))}
-        </svg>
-        <div className="center-character-card">
-          <span>当前人物</span>
+          </Suspense>
+        </GraphErrorBoundary>
+        <div className="graph-focus-chip">
+          <span>聚焦</span>
           <strong>{selectedCharacter.name}</strong>
-          <small>{selectedCharacter.role}</small>
         </div>
-        {nodes.map(({ character, relationship, x, y }, index) => (
-          <div
-            key={relationship.id}
-            className="relationship-anchor"
-            style={{ left: `${x}%`, top: `${y}%` } as CSSProperties}
-          >
-            <button
-              type="button"
-              className={`relationship-node relation-${relationship.kind}`}
-              style={{ "--float-delay": `${index * 0.2}s` } as CSSProperties}
-              onClick={() => onSelectCharacter(character.id)}
-            >
-              <span className="node-tag">{relationship.label}</span>
-              <strong>{character.name}</strong>
-              <small>{kindLabel[relationship.kind]}</small>
-            </button>
-          </div>
-        ))}
       </div>
       <div className="legend-row">
         {Object.entries(kindLabel).map(([kind, label]) => (
