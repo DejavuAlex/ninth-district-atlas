@@ -137,18 +137,13 @@ export default function RelationshipGraph3D({ dataset, selectedCharacterId, onSe
         }}
         linkColor={(link: any) => {
           const incident = link.source?.id === selectedCharacterId || link.target?.id === selectedCharacterId;
-          return incident ? kindColor[link.kind] ?? "#e06d3f" : "rgba(230,177,92,0.18)";
+          return incident ? kindColor[link.kind] ?? "#e06d3f" : "rgba(230,177,92,0.16)";
         }}
         linkWidth={(link: any) => {
           const incident = link.source?.id === selectedCharacterId || link.target?.id === selectedCharacterId;
-          return incident ? 1.6 : 0.4;
+          return incident ? 1.4 : 0.3;
         }}
-        linkDirectionalParticles={(link: any) => {
-          const incident = link.source?.id === selectedCharacterId || link.target?.id === selectedCharacterId;
-          return incident ? 4 : 0;
-        }}
-        linkDirectionalParticleWidth={2}
-        linkDirectionalParticleColor={(link: any) => kindColor[link.kind] ?? "#e06d3f"}
+        linkOpacity={0.5}
         onNodeClick={(node: any) => onSelectCharacter(node.id)}
       />
     </div>
