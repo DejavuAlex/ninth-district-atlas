@@ -30,6 +30,7 @@ export interface LocationNode {
   y: number;
   summary: string;
   atmosphere: string;
+  mapPrompt: string;
   factionIds: FactionId[];
   eventIds: EventId[];
 }
@@ -50,6 +51,7 @@ export interface Character {
   role: string;
   profile: string;
   story: string;
+  imagePrompt: string;
   traits: string[];
   locationIds: LocationId[];
   relationshipIds: string[];

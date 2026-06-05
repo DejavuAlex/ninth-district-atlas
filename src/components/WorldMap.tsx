@@ -27,6 +27,14 @@ export function WorldMap({
     <div className="world-map-layout">
       <div className="map-panel" aria-label="第九特区设定地图">
         <div className="map-grid-lines" />
+        <div className="map-region region-north">北部军政带</div>
+        <div className="map-region region-core">九区城市带</div>
+        <div className="map-region region-border">边境战场带</div>
+        <div className="map-road road-a" />
+        <div className="map-road road-b" />
+        <div className="map-road road-c" />
+        <div className="map-boundary boundary-a" />
+        <div className="map-boundary boundary-b" />
         {dataset.locations.map((location) => {
           const isSelected = location.id === selectedLocation.id;
           const isActive = activeLocationIds.includes(location.id);
@@ -51,6 +59,13 @@ export function WorldMap({
         <h3>{selectedLocation.name}</h3>
         <p>{selectedLocation.summary}</p>
         <p className="atmosphere">{selectedLocation.atmosphere}</p>
+        <div className="asset-prompt-card">
+          <div className="asset-preview map-preview" aria-hidden="true">
+            <span>待替换地图场景图</span>
+          </div>
+          <h4>地图场景提示词</h4>
+          <p>{selectedLocation.mapPrompt}</p>
+        </div>
         <div className="chip-row">
           {selectedLocation.factionIds.map((id) => {
             const faction = dataset.factions.find((item) => item.id === id);

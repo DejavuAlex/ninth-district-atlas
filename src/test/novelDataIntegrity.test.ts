@@ -50,6 +50,8 @@ describe("《第九特区》结构化数据", () => {
       expect(character.name).toMatch(/[\u4e00-\u9fff]/);
       expect(character.profile.length).toBeGreaterThan(12);
       expect(character.story.length).toBeGreaterThan(20);
+      expect(character.imagePrompt.length).toBeGreaterThan(30);
+      expect(character.imagePrompt).toContain(character.name);
       expect(character.traits.length).toBeGreaterThan(0);
     }
 
@@ -58,6 +60,8 @@ describe("《第九特区》结构化数据", () => {
       expect(location.x).toBeLessThanOrEqual(100);
       expect(location.y).toBeGreaterThanOrEqual(0);
       expect(location.y).toBeLessThanOrEqual(100);
+      expect(location.mapPrompt.length).toBeGreaterThan(30);
+      expect(location.mapPrompt).toContain(location.name);
       const hasEvent = ninthDistrict.events.some((event) => event.locationId === location.id);
       const hasCharacter = ninthDistrict.characters.some((character) => character.locationIds.includes(location.id));
       expect(hasEvent || hasCharacter, location.name).toBe(true);

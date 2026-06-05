@@ -51,14 +51,20 @@ export function RelationshipGraph({ dataset, selectedCharacterId, onSelectCharac
           if (!source || !target) return null;
           const isActive = relationship.source === selectedCharacterId || relationship.target === selectedCharacterId;
           return (
-            <line
-              key={relationship.id}
-              className={`graph-line ${isActive ? "is-active" : ""} kind-${relationship.kind}`}
-              x1={source.x}
-              y1={source.y}
-              x2={target.x}
-              y2={target.y}
-            />
+            <g key={relationship.id}>
+              <line
+                className={`graph-line ${isActive ? "is-active" : ""} kind-${relationship.kind}`}
+                x1={source.x}
+                y1={source.y}
+                x2={target.x}
+                y2={target.y}
+              />
+              {isActive ? (
+                <text className="graph-relation-label" x={(source.x + target.x) / 2} y={(source.y + target.y) / 2}>
+                  {relationship.label}
+                </text>
+              ) : null}
+            </g>
           );
         })}
         {characters.map((character) => {
@@ -77,6 +83,7 @@ export function RelationshipGraph({ dataset, selectedCharacterId, onSelectCharac
                 if (event.key === "Enter" || event.key === " ") onSelectCharacter(character.id);
               }}
             >
+              <title>{character.name}，{character.role}</title>
               <circle r={isSelected ? 3.2 : 2.4} />
               <text y={isSelected ? -5 : -3.8}>{character.name}</text>
             </g>
@@ -89,6 +96,18 @@ export function RelationshipGraph({ dataset, selectedCharacterId, onSelectCharac
             {label}
           </span>
         ))}
+      </div>
+      <div className="relationship-summary">
+        {selectedRelations.slice(0, 8).map((relationship) => {
+          const otherId = relationship.source === selectedCharacterId ? relationship.target : relationship.source;
+          const other = dataset.characters.find((character) => character.id === otherId);
+          return (
+            <article key={relationship.id}>
+              <strong>{relationship.label}</strong>
+              <span>{other?.name}：{relationship.summary}</span>
+            </article>
+          );
+        })}
       </div>
     </div>
   );

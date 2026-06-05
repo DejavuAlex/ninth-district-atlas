@@ -50,6 +50,7 @@ for (const arc of ninthDistrict.arcs) {
 for (const character of ninthDistrict.characters) {
   assert(character.profile.length > 12, `人物 ${character.id} 简介过短`);
   assert(character.story.length > 20, `人物 ${character.id} 故事过短`);
+  assert(character.imagePrompt.length > 30, `人物 ${character.id} 缺少形象提示词`);
   assert(character.traits.length > 0, `人物 ${character.id} 缺少特质`);
   character.factionIds.forEach((id) => assert(factionIds.has(id), `人物 ${character.id} 的势力 ${id} 不存在`));
   character.locationIds.forEach((id) => assert(locationIds.has(id), `人物 ${character.id} 的地点 ${id} 不存在`));
@@ -59,6 +60,7 @@ for (const character of ninthDistrict.characters) {
 for (const location of ninthDistrict.locations) {
   assert(location.x >= 0 && location.x <= 100, `地点 ${location.id} 的 x 坐标越界`);
   assert(location.y >= 0 && location.y <= 100, `地点 ${location.id} 的 y 坐标越界`);
+  assert(location.mapPrompt.length > 30, `地点 ${location.id} 缺少地图提示词`);
   location.factionIds.forEach((id) => assert(factionIds.has(id), `地点 ${location.id} 的势力 ${id} 不存在`));
   location.eventIds.forEach((id) => assert(eventIds.has(id), `地点 ${location.id} 的事件 ${id} 不存在`));
 }

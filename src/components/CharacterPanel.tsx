@@ -66,6 +66,15 @@ export function CharacterPanel({ dataset, selectedCharacterId, selectedArcId, on
         <p className="panel-label">人物档案</p>
         <h3>{selectedCharacter.name}</h3>
         <p className="role-line">{selectedCharacter.role}</p>
+        <div className="portrait-prompt-layout">
+          <div className="asset-preview portrait-preview" aria-hidden="true">
+            <span>待替换人物形象图</span>
+          </div>
+          <div className="asset-prompt-card compact">
+            <h4>人物形象提示词</h4>
+            <p>{selectedCharacter.imagePrompt}</p>
+          </div>
+        </div>
         <p>{selectedCharacter.profile}</p>
         <p>{selectedCharacter.story}</p>
         <div className="chip-row">

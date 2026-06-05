@@ -1,4 +1,4 @@
-import type { Character, NovelDataset } from "../types/novel";
+import type { Character, LocationNode, NovelDataset } from "../types/novel";
 
 const range = (startOrder: number, endOrder: number, label: string) => ({
   startOrder,
@@ -42,12 +42,21 @@ const relationshipPairs: Array<[string, string]> = [
   ["rel-xiang-guyan", "ally:xiang-zehao:gu-yan"]
 ];
 
-const character = (item: Omit<Character, "relationshipIds">): Character => ({
+const buildMapPrompt = (location: Omit<LocationNode, "mapPrompt">) =>
+  `${location.name}，第九特区小说区域地图场景示意图，${location.summary}${location.atmosphere}，废土灾变后的写实电影感，俯视地图与场景融合，锈红尘土、暗金边界线、破败道路、区域分割清晰，无文字，无人物特写，16:9。`;
+
+const buildCharacterPrompt = (character: Omit<Character, "relationshipIds" | "imagePrompt">) =>
+  `${character.name}，第九特区人物形象设定图，身份是${character.role}，气质体现${character.traits.join("、")}，末世灾变后的写实电影感，粗粝服装，低饱和暗色调，半身像，背景带轻微废土城市氛围，无文字，竖版。`;
+
+const character = (item: Omit<Character, "relationshipIds" | "imagePrompt">): Omit<Character, "imagePrompt"> => ({
   ...item,
   relationshipIds: relationshipIdsFor(item.id, relationshipPairs)
 });
 
-export const ninthDistrict: NovelDataset = {
+const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
+  locations: Array<Omit<LocationNode, "mapPrompt">>;
+  characters: Array<Omit<Character, "imagePrompt">>;
+} = {
   id: "ninth-district",
   title: "第九特区",
   author: "伪戒",
@@ -215,4 +224,16 @@ export const ninthDistrict: NovelDataset = {
     character({ id: "he-dachuan", name: "何大川", aliases: [], factionIds: ["chuanfu"], firstSeen: range(1815, 1820, "第一八二零章"), role: "草莽军事力量", profile: "带有匪气的执行者，能把孟玺的想法落到行动里。", story: "何大川在川府后期与孟玺共同形成草莽和谋略结合的支线。", traits: ["粗粝", "敢打", "执行力强"], locationIds: ["chuanfu", "old-triangle"] }),
     character({ id: "zhou-xingli", name: "周兴礼", aliases: ["老周"], factionIds: ["feng-line"], firstSeen: range(2700, 2727, "第二七零七章至第二七二七章"), role: "终局高层对手", profile: "后期棋局中以高层政治手段落子的对手。", story: "周兴礼在最终阶段以政治手段影响战场，体现乱世高层博弈的冷酷。", traits: ["老辣", "冷静", "善落子"], locationIds: ["red-dan", "eight-zone"] })
   ]
+};
+
+export const ninthDistrict: NovelDataset = {
+  ...rawNinthDistrict,
+  locations: rawNinthDistrict.locations.map((location) => ({
+    ...location,
+    mapPrompt: buildMapPrompt(location)
+  })),
+  characters: rawNinthDistrict.characters.map((item) => ({
+    ...item,
+    imagePrompt: buildCharacterPrompt(item)
+  }))
 };
