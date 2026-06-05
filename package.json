@@ -7,7 +7,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "analyze:novel": "node scripts/extract-chapters.mjs",
-    "validate:data": "node scripts/validate-novel-data.mjs"
+    "validate:data": "tsx scripts/validate-novel-data.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "latest",
@@ -22,6 +22,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "jsdom": "latest",
+    "tsx": "latest",
     "vitest": "latest"
   }
 }
