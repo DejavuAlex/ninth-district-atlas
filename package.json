@@ -1,0 +1,27 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "analyze:novel": "node scripts/extract-chapters.mjs",
+    "validate:data": "node scripts/validate-novel-data.mjs"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "latest",
+    "@vitejs/plugin-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@playwright/test": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "jsdom": "latest",
+    "vitest": "latest"
+  }
+}
