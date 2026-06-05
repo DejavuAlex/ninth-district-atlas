@@ -46,7 +46,7 @@ const buildMapPrompt = (location: Omit<LocationNode, "mapPrompt">) =>
   `${location.name}区域街道风貌画面生成提示词：${location.summary}${location.atmosphere}。世界观设定为灾变之后、持续数十年的“冰封期”末世，气候极寒阴冷、资源匮乏、秩序半崩坏。画面重点表现该区域真实的街道风貌：高密度破败楼群、湿冷阴暗的街巷、积水残雪与泥泞地面、临时搭建的棚屋与集装箱、缠绕的电线、老旧霓虹与应急灯、监控杆与警戒线，远处是雾气笼罩的高楼轮廓。写实电影质感、低饱和冷色调、夜晚或阴天、地面潮湿反光，无文字、无人物特写、16:9。`;
 
 const buildCharacterPrompt = (character: Omit<Character, "relationshipIds" | "imagePrompt">) =>
-  `${character.name}，第九特区人物形象设定图，身份是${character.role}，气质体现${character.traits.join("、")}。世界观为灾变后的冰封末世，气候极寒、资源匮乏。写实电影质感的半身像，穿着耐寒粗粝的多层旧衣物、围巾或风衣，低饱和冷色调，背景是阴冷潮湿的破败城区虚化氛围，无文字、竖版。`;
+  `${character.name}，第九特区人物形象设定图，身份是${character.role}，气质体现${character.traits.join("、")}。世界观为灾变后的冰封末世，气候极寒、资源匮乏。采用小说角色立绘风格、半写实数字插画/概念美术，偏插画质感而非真人照片；穿着耐寒粗粝的多层旧衣物、围巾或风衣，低饱和冷色调，电影感侧光，半身像，背景是阴冷潮湿的破败城区虚化氛围，无文字、竖版。负面：真人摄影、照片写实、3D渲染真人脸、糖水色、Q版卡通。`;
 
 const character = (item: Omit<Character, "relationshipIds" | "imagePrompt">): Omit<Character, "imagePrompt"> => ({
   ...item,
