@@ -63,8 +63,8 @@ export function App() {
           <section id="map" className="section-block section-map">
             <div className="section-heading">
               <p className="section-kicker">设定地图</p>
-              <h2>从待规划区到巴尔城</h2>
-              <p>点击地图节点，查看地点氛围、区域分割、素材提示词和关键事件。</p>
+              <h2>第九特区全球地图</h2>
+              <p>冰封末世下的九大辖区与外围岛屿，点击地图上的地点查看介绍、场景图、关联势力与关键事件。</p>
             </div>
             <WorldMap
               dataset={ninthDistrict}
@@ -80,7 +80,7 @@ export function App() {
           <section id="characters" className="section-block section-characters">
             <div className="section-heading compact">
               <h2>人物不是名单，是乱世里的选择</h2>
-              <p>搜索、筛选、选中人物后，关系图、关系标签和形象提示词会同步更新。</p>
+              <p>搜索、筛选、选中人物后，左侧档案与右侧关系视图会同步更新。</p>
             </div>
             <div className="character-grid">
               <CharacterPanel

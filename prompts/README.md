@@ -1,0 +1,56 @@
+# 《第九特区》素材提示词
+
+本目录存放用于生成配图的详细提示词，前端页面不再直接展示提示词，只展示城市与人物的介绍。
+
+## 生成图片投放约定
+- 地点场景图：生成后命名为 `<地点id>.png`，放入 `public/scenes/`。
+- 人物形象图：生成后命名为 `<人物id>.png`，放入 `public/portraits/`。
+- 前端会按 id 自动加载对应图片，缺失时显示占位。
+
+## 地点提示词
+- 待规划区 → `prompts/locations/planning-zone.md`（图片：`public/scenes/planning-zone.png`）
+- 第九特区 → `prompts/locations/ninth-district.md`（图片：`public/scenes/ninth-district.png`）
+- 松江 → `prompts/locations/songjiang.md`（图片：`public/scenes/songjiang.png`）
+- 黑街 → `prompts/locations/black-street.md`（图片：`public/scenes/black-street.png`）
+- 土渣街 → `prompts/locations/tuzha-street.md`（图片：`public/scenes/tuzha-street.png`）
+- 江州 → `prompts/locations/jiangzhou.md`（图片：`public/scenes/jiangzhou.png`）
+- 奉北 → `prompts/locations/fengbei.md`（图片：`public/scenes/fengbei.png`）
+- 长吉 → `prompts/locations/changji.md`（图片：`public/scenes/changji.png`）
+- 南沪 → `prompts/locations/nanhu.md`（图片：`public/scenes/nanhu.png`）
+- 川府 → `prompts/locations/chuanfu.md`（图片：`public/scenes/chuanfu.png`）
+- 五区 → `prompts/locations/five-zone.md`（图片：`public/scenes/five-zone.png`）
+- 七区 → `prompts/locations/seven-zone.md`（图片：`public/scenes/seven-zone.png`）
+- 八区 → `prompts/locations/eight-zone.md`（图片：`public/scenes/eight-zone.png`）
+- 欧盟一区 → `prompts/locations/eu-first-zone.md`（图片：`public/scenes/eu-first-zone.png`）
+- 老三角 → `prompts/locations/old-triangle.md`（图片：`public/scenes/old-triangle.png`）
+- 巴尔城 → `prompts/locations/bar-city.md`（图片：`public/scenes/bar-city.png`）
+- 耶门 → `prompts/locations/yemen.md`（图片：`public/scenes/yemen.png`）
+- 红丹战场 → `prompts/locations/red-dan.md`（图片：`public/scenes/red-dan.png`）
+
+## 人物提示词
+- 秦禹 → `prompts/characters/qin-yu.md`（图片：`public/portraits/qin-yu.png`）
+- 齐麟 → `prompts/characters/qi-lin.md`（图片：`public/portraits/qi-lin.png`）
+- 老猫 → `prompts/characters/lao-mao.md`（图片：`public/portraits/lao-mao.png`）
+- 马老二 → `prompts/characters/ma-lao-er.md`（图片：`public/portraits/ma-lao-er.png`）
+- 马老爷子 → `prompts/characters/ma-lao-ye.md`（图片：`public/portraits/ma-lao-ye.png`）
+- 袁克 → `prompts/characters/yuan-ke.md`（图片：`public/portraits/yuan-ke.png`）
+- 李富贵 → `prompts/characters/li-fugui.md`（图片：`public/portraits/li-fugui.png`）
+- 林念蕾 → `prompts/characters/lin-nianlei.md`（图片：`public/portraits/lin-nianlei.png`）
+- 吴迪 → `prompts/characters/wu-di.md`（图片：`public/portraits/wu-di.png`）
+- 顾言 → `prompts/characters/gu-yan.md`（图片：`public/portraits/gu-yan.png`）
+- 可可 → `prompts/characters/ke-ke.md`（图片：`public/portraits/ke-ke.png`）
+- 林成栋 → `prompts/characters/lin-chengdong.md`（图片：`public/portraits/lin-chengdong.png`）
+- 展楠 → `prompts/characters/zhan-nan.md`（图片：`public/portraits/zhan-nan.png`）
+- 付小豪 → `prompts/characters/fu-xiaohao.md`（图片：`public/portraits/fu-xiaohao.png`）
+- 历战 → `prompts/characters/li-zhan.md`（图片：`public/portraits/li-zhan.png`）
+- 大牙 → `prompts/characters/da-ya.md`（图片：`public/portraits/da-ya.png`）
+- 吴天胤 → `prompts/characters/wu-tianyin.md`（图片：`public/portraits/wu-tianyin.png`）
+- 冯玉年 → `prompts/characters/feng-yunian.md`（图片：`public/portraits/feng-yunian.png`）
+- 冯济 → `prompts/characters/feng-ji.md`（图片：`public/portraits/feng-ji.png`）
+- 项择昊 → `prompts/characters/xiang-zehao.md`（图片：`public/portraits/xiang-zehao.png`）
+- 孟玺 → `prompts/characters/meng-xi.md`（图片：`public/portraits/meng-xi.png`）
+- 李伯康 → `prompts/characters/li-bokang.md`（图片：`public/portraits/li-bokang.png`）
+- 许岩 → `prompts/characters/xu-yan.md`（图片：`public/portraits/xu-yan.png`）
+- 柯桦 → `prompts/characters/ke-hua.md`（图片：`public/portraits/ke-hua.png`）
+- 何大川 → `prompts/characters/he-dachuan.md`（图片：`public/portraits/he-dachuan.png`）
+- 周兴礼 → `prompts/characters/zhou-xingli.md`（图片：`public/portraits/zhou-xingli.png`）

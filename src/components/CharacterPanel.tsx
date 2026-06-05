@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { AssetImage } from "./AssetImage";
 import { getRelationshipsForCharacter, searchNovel } from "../lib/novelFilters";
 import type { ArcId, CharacterId, FactionId, NovelDataset } from "../types/novel";
 
@@ -66,22 +67,23 @@ export function CharacterPanel({ dataset, selectedCharacterId, selectedArcId, on
         <p className="panel-label">人物档案</p>
         <h3>{selectedCharacter.name}</h3>
         <p className="role-line">{selectedCharacter.role}</p>
-        <div className="portrait-prompt-layout">
-          <div className="asset-preview portrait-preview" aria-hidden="true">
-            <span>待替换人物形象图</span>
-          </div>
-          <div className="asset-prompt-card compact">
-            <h4>人物形象提示词</h4>
-            <p>{selectedCharacter.imagePrompt}</p>
+        <div className="portrait-layout">
+          <AssetImage
+            src={`/portraits/${selectedCharacter.id}.png`}
+            alt={`${selectedCharacter.name}形象`}
+            placeholder="形象图待生成"
+            variant="portrait"
+          />
+          <div className="portrait-text">
+            <p>{selectedCharacter.profile}</p>
+            <div className="chip-row">
+              {selectedCharacter.traits.map((trait) => (
+                <span key={trait}>{trait}</span>
+              ))}
+            </div>
           </div>
         </div>
-        <p>{selectedCharacter.profile}</p>
         <p>{selectedCharacter.story}</p>
-        <div className="chip-row">
-          {selectedCharacter.traits.map((trait) => (
-            <span key={trait}>{trait}</span>
-          ))}
-        </div>
         <dl className="profile-meta">
           <div>
             <dt>首次出现</dt>

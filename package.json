@@ -7,7 +7,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "analyze:novel": "node scripts/extract-chapters.mjs",
-    "validate:data": "tsx scripts/validate-novel-data.mjs"
+    "validate:data": "tsx scripts/validate-novel-data.mjs",
+    "export:prompts": "tsx scripts/export-prompts.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "latest",
