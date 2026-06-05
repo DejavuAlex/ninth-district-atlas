@@ -31,8 +31,17 @@ export interface LocationNode {
   summary: string;
   atmosphere: string;
   mapPrompt: string;
+  sceneImage?: string;
   factionIds: FactionId[];
   eventIds: EventId[];
+}
+
+export interface NovelTheme {
+  id: string;
+  title: string;
+  insight: string;
+  detail: string;
+  anchor: string;
 }
 
 export interface Faction {
@@ -89,4 +98,5 @@ export interface NovelDataset {
   characters: Character[];
   relationships: Relationship[];
   events: StoryEvent[];
+  themes: NovelTheme[];
 }

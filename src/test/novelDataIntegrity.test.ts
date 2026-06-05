@@ -43,6 +43,14 @@ describe("《第九特区》结构化数据", () => {
       arc.featuredLocations.forEach((id) => expect(locationIds.has(id), arc.id).toBe(true));
       arc.featuredCharacters.forEach((id) => expect(characterIds.has(id), arc.id).toBe(true));
     }
+
+    const arcIds = new Set(ninthDistrict.arcs.map((arc) => arc.id));
+    expect(ninthDistrict.themes.length).toBeGreaterThanOrEqual(6);
+    for (const theme of ninthDistrict.themes) {
+      expect(theme.insight.length, theme.id).toBeGreaterThan(8);
+      expect(theme.detail.length, theme.id).toBeGreaterThan(40);
+      expect(arcIds.has(theme.anchor), theme.id).toBe(true);
+    }
   });
 
   it("人物、地点和文案满足中文展示约束", () => {

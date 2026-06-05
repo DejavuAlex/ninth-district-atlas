@@ -4,18 +4,20 @@ import { Hero } from "./components/Hero";
 import { Layout } from "./components/Layout";
 import { RelationshipGraph } from "./components/RelationshipGraph";
 import { SourceCoverage } from "./components/SourceCoverage";
+import { Themes } from "./components/Themes";
 import { Timeline } from "./components/Timeline";
 import { WorldMap } from "./components/WorldMap";
 import { ninthDistrict } from "./data/ninthDistrict";
 import { filterByArc } from "./lib/novelFilters";
 import type { ArcId, CharacterId, LocationId } from "./types/novel";
 
-type PageId = "home" | "map" | "characters" | "timeline" | "sources";
+type PageId = "home" | "map" | "characters" | "timeline" | "themes" | "sources";
 
 const pathToPage = (path: string): PageId => {
   if (path.startsWith("/map")) return "map";
   if (path.startsWith("/characters")) return "characters";
   if (path.startsWith("/timeline")) return "timeline";
+  if (path.startsWith("/themes")) return "themes";
   if (path.startsWith("/sources")) return "sources";
   return "home";
 };
@@ -25,6 +27,7 @@ const pageToPath: Record<PageId, string> = {
   map: "/map",
   characters: "/characters",
   timeline: "/timeline",
+  themes: "/themes",
   sources: "/sources"
 };
 
@@ -102,6 +105,17 @@ export function App() {
               onSelectArc={setSelectedArcId}
               onSelectLocation={setSelectedLocationId}
               onSelectCharacter={setSelectedCharacterId}
+            />
+          </section>
+        ) : null}
+        {page === "themes" ? (
+          <section id="themes" className="section-block">
+            <Themes
+              dataset={ninthDistrict}
+              onOpenArc={(arcId) => {
+                setSelectedArcId(arcId);
+                navigate("timeline");
+              }}
             />
           </section>
         ) : null}

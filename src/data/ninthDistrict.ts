@@ -43,10 +43,10 @@ const relationshipPairs: Array<[string, string]> = [
 ];
 
 const buildMapPrompt = (location: Omit<LocationNode, "mapPrompt">) =>
-  `${location.name}区域街道风貌画面生成提示词：${location.summary}${location.atmosphere}，重点表现街道材质、建筑密度、道路破损、生活痕迹和势力控制感，灾变后写实电影镜头，低饱和冷暖对比，远景能看到街区轮廓，中景有破败道路、临时设施、旧招牌和警戒线，无文字，无人物特写，16:9。`;
+  `${location.name}区域街道风貌画面生成提示词：${location.summary}${location.atmosphere}。世界观设定为灾变之后、持续数十年的“冰封期”末世，气候极寒阴冷、资源匮乏、秩序半崩坏。画面重点表现该区域真实的街道风貌：高密度破败楼群、湿冷阴暗的街巷、积水残雪与泥泞地面、临时搭建的棚屋与集装箱、缠绕的电线、老旧霓虹与应急灯、监控杆与警戒线，远处是雾气笼罩的高楼轮廓。写实电影质感、低饱和冷色调、夜晚或阴天、地面潮湿反光，无文字、无人物特写、16:9。`;
 
 const buildCharacterPrompt = (character: Omit<Character, "relationshipIds" | "imagePrompt">) =>
-  `${character.name}，第九特区人物形象设定图，身份是${character.role}，气质体现${character.traits.join("、")}，末世灾变后的写实电影感，粗粝服装，低饱和暗色调，半身像，背景带轻微废土城市氛围，无文字，竖版。`;
+  `${character.name}，第九特区人物形象设定图，身份是${character.role}，气质体现${character.traits.join("、")}。世界观为灾变后的冰封末世，气候极寒、资源匮乏。写实电影质感的半身像，穿着耐寒粗粝的多层旧衣物、围巾或风衣，低饱和冷色调，背景是阴冷潮湿的破败城区虚化氛围，无文字、竖版。`;
 
 const character = (item: Omit<Character, "relationshipIds" | "imagePrompt">): Omit<Character, "imagePrompt"> => ({
   ...item,
@@ -77,24 +77,24 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "military-intel", name: "军情系统", summary: "后期暗战、潜入、营救和心理战的关键力量。", color: "#a27c61" }
   ],
   locations: [
-    { id: "planning-zone", name: "待规划区", kind: "wasteland", x: 10, y: 72, summary: "秦禹出身和故事起点所在的无政府边缘地带。", atmosphere: "贫瘠、粗粝、没有稳定规则。", factionIds: ["planned-zone"], eventIds: ["event-prologue", "event-yuan-ke-end"] },
-    { id: "ninth-district", name: "第九特区", kind: "district", x: 31, y: 52, summary: "灾变后重建秩序的区域，也是身份、粮食和权力的入口。", atmosphere: "秩序表面稳定，底层竞争残酷。", factionIds: ["songjiang-police", "wu-line"], eventIds: ["event-qin-enters", "event-public-order"] },
-    { id: "songjiang", name: "松江", kind: "city", x: 38, y: 48, summary: "秦禹早期扎根的核心城市，警务、黑街和政治利益在此交织。", atmosphere: "城市秩序和地下秩序并行。", factionIds: ["songjiang-police", "black-street"], eventIds: ["event-police-team", "event-songjiang-return", "event-songjiang-takeover"] },
-    { id: "black-street", name: "黑街", kind: "street", x: 34, y: 60, summary: "秦禹、老猫和马家频繁活动的灰色地带。", atmosphere: "饭局、码牌、枪声和人情并存。", factionIds: ["black-street", "ma-family"], eventIds: ["event-black-street", "event-ma-alliance"] },
-    { id: "tuzha-street", name: "土渣街", kind: "street", x: 25, y: 65, summary: "早期冲突集中爆发的街区，秦禹从这里切入地下规则。", atmosphere: "低矮、拥挤、一步错就会被吞掉。", factionIds: ["black-street"], eventIds: ["event-tuzha-street", "event-three-parties"] },
-    { id: "jiangzhou", name: "江州", kind: "city", x: 54, y: 68, summary: "早期江湖交易和后期乱局都反复牵动的重要城市。", atmosphere: "商路、家族和江湖人情交错。", factionIds: ["ma-family", "black-street"], eventIds: ["event-jiangzhou", "event-jiangzhou-chaos"] },
-    { id: "fengbei", name: "奉北", kind: "city", x: 48, y: 34, summary: "权力圈层和警务政治的重要节点，秦禹多次被卷入。", atmosphere: "表面规矩森严，背后棋局密集。", factionIds: ["wu-line", "feng-line"], eventIds: ["event-fengbei", "event-pharma"] },
-    { id: "changji", name: "长吉", kind: "city", x: 58, y: 28, summary: "从江湖斗争走向军事行动的关键城市之一。", atmosphere: "道路、驻防和突袭成为新的语言。", factionIds: ["gu-line", "chuanfu"], eventIds: ["event-changji", "event-sword-changji"] },
-    { id: "nanhu", name: "南沪", kind: "city", x: 70, y: 46, summary: "南方巨头聚集的政治舞台，智囊和派系交锋频繁。", atmosphere: "会所、会议和暗线共同推动局势。", factionIds: ["chen-line", "military-intel"], eventIds: ["event-nanhu", "event-nanhu-fire"] },
-    { id: "chuanfu", name: "川府", kind: "frontier", x: 45, y: 78, summary: "秦禹后期立足、扩军和建立川府系的核心地盘。", atmosphere: "粮仓、生活镇和军队让秩序重新落地。", factionIds: ["chuanfu"], eventIds: ["event-chuanfu-entry", "event-chuanfu-war", "event-salt-island"] },
-    { id: "five-zone", name: "五区", kind: "district", x: 76, y: 68, summary: "妖魔鬼怪齐聚的外部区域，牵动边境和外交压力。", atmosphere: "利益更复杂，合作和背叛更快切换。", factionIds: ["eu-zone", "chen-line"], eventIds: ["event-five-zone"] },
-    { id: "seven-zone", name: "七区", kind: "district", x: 78, y: 30, summary: "后期奔袭和驻防团冲突的重要区域。", atmosphere: "边境紧绷，局部冲突随时升级。", factionIds: ["military-intel"], eventIds: ["event-seven-zone-raid"] },
-    { id: "eight-zone", name: "八区", kind: "district", x: 62, y: 20, summary: "后期战局介入者，影响九区和川府的政治平衡。", atmosphere: "高层会议和军事压力共同落子。", factionIds: ["gu-line", "feng-line"], eventIds: ["event-eight-zone"] },
-    { id: "eu-first-zone", name: "欧盟一区", kind: "frontier", x: 90, y: 42, summary: "外部势力代表区域，推动故事进入更大尺度的冲突。", atmosphere: "规则不同，谈判和军事威慑并行。", factionIds: ["eu-zone"], eventIds: ["event-eu-zone"] },
-    { id: "old-triangle", name: "老三角", kind: "frontier", x: 52, y: 90, summary: "后期目光聚集的边境地带，军情和战场压力交织。", atmosphere: "潮湿、混乱、到处是临时阵线。", factionIds: ["military-intel", "chuanfu"], eventIds: ["event-old-triangle"] },
-    { id: "bar-city", name: "巴尔城", kind: "battlefield", x: 86, y: 58, summary: "北伐阶段的重要攻坚目标，城市攻防成为大结局前的焦点。", atmosphere: "炮火、围城和心理战压到极限。", factionIds: ["eu-zone", "chuanfu"], eventIds: ["event-bar-city"] },
-    { id: "yemen", name: "耶门", kind: "frontier", x: 92, y: 75, summary: "结尾阶段外部谈判和再赴战场的落点之一。", atmosphere: "远离故土，却仍被华区战局牵动。", factionIds: ["military-intel", "eu-zone"], eventIds: ["event-yemen"] },
-    { id: "red-dan", name: "红丹战场", kind: "battlefield", x: 82, y: 82, summary: "最终决战附近的象征性战场，承接北伐后的最后冲锋。", atmosphere: "疲惫、牺牲和最后的国仇家恨集中爆发。", factionIds: ["chuanfu", "military-intel"], eventIds: ["event-final-charge"] }
+    { id: "planning-zone", name: "待规划区", kind: "wasteland", x: 95, y: 46, summary: "秦禹出身和故事起点所在的无政府边缘地带。", atmosphere: "贫瘠、粗粝、没有稳定规则。", factionIds: ["planned-zone"], eventIds: ["event-prologue", "event-yuan-ke-end"] },
+    { id: "ninth-district", name: "第九特区", kind: "district", x: 88, y: 30, summary: "灾变后重建秩序的区域，也是身份、粮食和权力的入口。", atmosphere: "秩序表面稳定，底层竞争残酷。", factionIds: ["songjiang-police", "wu-line"], eventIds: ["event-qin-enters", "event-public-order"] },
+    { id: "songjiang", name: "松江", kind: "city", x: 91, y: 33, summary: "秦禹早期扎根的核心城市，警务、黑街和政治利益在此交织。", atmosphere: "城市秩序和地下秩序并行。", sceneImage: "/scenes/songjiang.png", factionIds: ["songjiang-police", "black-street"], eventIds: ["event-police-team", "event-songjiang-return", "event-songjiang-takeover"] },
+    { id: "black-street", name: "黑街", kind: "street", x: 94, y: 38, summary: "秦禹、老猫和马家频繁活动的灰色地带。", atmosphere: "饭局、码牌、枪声和人情并存。", factionIds: ["black-street", "ma-family"], eventIds: ["event-black-street", "event-ma-alliance"] },
+    { id: "tuzha-street", name: "土渣街", kind: "street", x: 86, y: 40, summary: "早期冲突集中爆发的街区，秦禹从这里切入地下规则。", atmosphere: "低矮、拥挤、一步错就会被吞掉。", factionIds: ["black-street"], eventIds: ["event-tuzha-street", "event-three-parties"] },
+    { id: "jiangzhou", name: "江州", kind: "city", x: 80, y: 47, summary: "早期江湖交易和后期乱局都反复牵动的重要城市。", atmosphere: "商路、家族和江湖人情交错。", factionIds: ["ma-family", "black-street"], eventIds: ["event-jiangzhou", "event-jiangzhou-chaos"] },
+    { id: "fengbei", name: "奉北", kind: "city", x: 84, y: 24, summary: "权力圈层和警务政治的重要节点，秦禹多次被卷入。", atmosphere: "表面规矩森严，背后棋局密集。", factionIds: ["wu-line", "feng-line"], eventIds: ["event-fengbei", "event-pharma"] },
+    { id: "changji", name: "长吉", kind: "city", x: 78, y: 22, summary: "从江湖斗争走向军事行动的关键城市之一。", atmosphere: "道路、驻防和突袭成为新的语言。", factionIds: ["gu-line", "chuanfu"], eventIds: ["event-changji", "event-sword-changji"] },
+    { id: "nanhu", name: "南沪", kind: "city", x: 74, y: 50, summary: "南方巨头聚集的政治舞台，智囊和派系交锋频繁。", atmosphere: "会所、会议和暗线共同推动局势。", factionIds: ["chen-line", "military-intel"], eventIds: ["event-nanhu", "event-nanhu-fire"] },
+    { id: "chuanfu", name: "川府", kind: "frontier", x: 77, y: 42, summary: "秦禹后期立足、扩军和建立川府系的核心地盘。", atmosphere: "粮仓、生活镇和军队让秩序重新落地。", factionIds: ["chuanfu"], eventIds: ["event-chuanfu-entry", "event-chuanfu-war", "event-salt-island"] },
+    { id: "five-zone", name: "五区", kind: "district", x: 66, y: 60, summary: "妖魔鬼怪齐聚的外部区域，牵动边境和外交压力。", atmosphere: "利益更复杂，合作和背叛更快切换。", factionIds: ["eu-zone", "chen-line"], eventIds: ["event-five-zone"] },
+    { id: "seven-zone", name: "七区", kind: "district", x: 88, y: 56, summary: "后期奔袭和驻防团冲突的重要区域。", atmosphere: "边境紧绷，局部冲突随时升级。", factionIds: ["military-intel"], eventIds: ["event-seven-zone-raid"] },
+    { id: "eight-zone", name: "八区", kind: "district", x: 70, y: 33, summary: "后期战局介入者，影响九区和川府的政治平衡。", atmosphere: "高层会议和军事压力共同落子。", factionIds: ["gu-line", "feng-line"], eventIds: ["event-eight-zone"] },
+    { id: "eu-first-zone", name: "欧盟一区", kind: "frontier", x: 16, y: 42, summary: "外部势力代表区域，推动故事进入更大尺度的冲突。", atmosphere: "规则不同，谈判和军事威慑并行。", factionIds: ["eu-zone"], eventIds: ["event-eu-zone"] },
+    { id: "old-triangle", name: "老三角", kind: "frontier", x: 73, y: 67, summary: "后期目光聚集的边境地带，军情和战场压力交织。", atmosphere: "潮湿、混乱、到处是临时阵线。", factionIds: ["military-intel", "chuanfu"], eventIds: ["event-old-triangle"] },
+    { id: "bar-city", name: "巴尔城", kind: "battlefield", x: 58, y: 56, summary: "北伐阶段的重要攻坚目标，城市攻防成为大结局前的焦点。", atmosphere: "炮火、围城和心理战压到极限。", factionIds: ["eu-zone", "chuanfu"], eventIds: ["event-bar-city"] },
+    { id: "yemen", name: "耶门", kind: "frontier", x: 50, y: 82, summary: "结尾阶段外部谈判和再赴战场的落点之一。", atmosphere: "远离故土，却仍被华区战局牵动。", factionIds: ["military-intel", "eu-zone"], eventIds: ["event-yemen"] },
+    { id: "red-dan", name: "红丹战场", kind: "battlefield", x: 66, y: 76, summary: "最终决战附近的象征性战场，承接北伐后的最后冲锋。", atmosphere: "疲惫、牺牲和最后的国仇家恨集中爆发。", factionIds: ["chuanfu", "military-intel"], eventIds: ["event-final-charge"] }
   ],
   arcs: [
     { id: "arc-survival-entry", title: "从待规划区进入九区", chapterRange: range(1, 80, "序章至第七十九章"), summary: "秦禹买身份进入第九特区，从底层生存者变成警务体系中的新面孔。", keyEvents: ["event-prologue", "event-qin-enters", "event-police-team"], featuredLocations: ["planning-zone", "ninth-district", "songjiang"], featuredCharacters: ["qin-yu", "qi-lin", "lao-mao"] },
@@ -223,6 +223,50 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     character({ id: "ke-hua", name: "柯桦", aliases: [], factionIds: ["military-intel", "eu-zone"], firstSeen: range(2647, 2654, "第二六五四章"), role: "终局外部推手", profile: "在北伐前后提供提点并参与抢人等关键动作。", story: "柯桦推动最终阶段的外围变化，让战局在细节上出现转折。", traits: ["敏锐", "果断"], locationIds: ["bar-city", "eu-first-zone"] }),
     character({ id: "he-dachuan", name: "何大川", aliases: [], factionIds: ["chuanfu"], firstSeen: range(1815, 1820, "第一八二零章"), role: "草莽军事力量", profile: "带有匪气的执行者，能把孟玺的想法落到行动里。", story: "何大川在川府后期与孟玺共同形成草莽和谋略结合的支线。", traits: ["粗粝", "敢打", "执行力强"], locationIds: ["chuanfu", "old-triangle"] }),
     character({ id: "zhou-xingli", name: "周兴礼", aliases: ["老周"], factionIds: ["feng-line"], firstSeen: range(2700, 2727, "第二七零七章至第二七二七章"), role: "终局高层对手", profile: "后期棋局中以高层政治手段落子的对手。", story: "周兴礼在最终阶段以政治手段影响战场，体现乱世高层博弈的冷酷。", traits: ["老辣", "冷静", "善落子"], locationIds: ["red-dan", "eight-zone"] })
+  ],
+  themes: [
+    {
+      id: "theme-order",
+      title: "秩序是废墟里长出来的",
+      insight: "灾变没收了文明，却没有取消人对秩序的渴望。",
+      detail: "从待规划区的丛林法则到第九特区的身份与配给，秩序不是天降的恩赐，而是被一群普通人用交易、规则和暴力一点点重新立起来的。它脆弱、肮脏、充满妥协，却是乱世里唯一能让人喘口气的东西。它提醒我们：稳定从来不是理所当然，而是有人在替你扛着。",
+      anchor: "arc-survival-entry"
+    },
+    {
+      id: "theme-choice",
+      title: "人是被选择塑造的",
+      insight: "时代给的是处境，命运由一次次选择写成。",
+      detail: "秦禹没有主角光环，他只是比别人更早想清楚：要什么、肯付什么代价。同样的乱世，有人沦为人口贩子，有人成了护着兄弟的刀。小说反复把人推到岔路口，告诉你环境会限制选项，但按下哪一个，始终是你自己的手。",
+      anchor: "arc-black-street"
+    },
+    {
+      id: "theme-bottom",
+      title: "底层不是背景板",
+      insight: "每一个微不足道的人，都有自己要拼命守住的东西。",
+      detail: "卖身求活的女人、断后惨死的阿宏、被亲情逼到极端的吴天胤，他们不是推动情节的工具，而是这个世界真实的重量。作者让我们看见：当资源稀缺到极限，尊严会变得昂贵，但仍有人愿意为它付账。读懂他们，才读懂这部书的悲悯。",
+      anchor: "arc-wu-tianyin"
+    },
+    {
+      id: "theme-power",
+      title: "权力是有利息的借款",
+      insight: "每一份向上爬的力量，都在背面记着要还的账。",
+      detail: "从黑街码牌到川府十万军，秦禹的每一次壮大都伴随责任、敌人和无法回头的代价。权力让他能保护更多人，也让他离最初那个只想带兄弟吃口饱饭的少年越来越远。小说没有美化权力，而是冷静地算清它的利息：你掌控得越多，能自由选择的就越少。",
+      anchor: "arc-chuanfu-rising"
+    },
+    {
+      id: "theme-brotherhood",
+      title: "义气是乱世的硬通货",
+      insight: "信任比金钱更稀缺，也比金钱更值钱。",
+      detail: "齐麟、老猫、马老二，这些名字撑起了秦禹冰冷算计之外的体温。在一个人人自保的世界里，愿意替你守夜、替你断后的人，才是真正的资产。但小说也不天真：义气会被利益考验，会被背叛刺穿，正因如此，那些始终没散的关系才格外动人。",
+      anchor: "arc-trade-routes"
+    },
+    {
+      id: "theme-spring",
+      title: "向着春暖花开走",
+      insight: "所有的厮杀，最终都是为了有人能好好活着。",
+      detail: "故事以血与火铺路，却以春暖花开收束。打了近四十年的仗，赢来的不是更大的权力，而是让普通人重新过上能种花、能等天亮的日子。它留给读者的启发或许是：宏大的胜利只有落回一个个具体的人身上，才算真正有意义。",
+      anchor: "arc-spring"
+    }
   ]
 };
 

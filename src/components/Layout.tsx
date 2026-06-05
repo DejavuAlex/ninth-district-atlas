@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
 
-type PageId = "home" | "map" | "characters" | "timeline" | "sources";
+type PageId = "home" | "map" | "characters" | "timeline" | "themes" | "sources";
 
 const links: Array<{ page: PageId; label: string; href: string }> = [
   { page: "map", label: "设定地图", href: "/map" },
   { page: "characters", label: "人物关系", href: "/characters" },
   { page: "timeline", label: "故事时间线", href: "/timeline" },
+  { page: "themes", label: "小说立意", href: "/themes" },
   { page: "sources", label: "资料索引", href: "/sources" }
 ];
 
