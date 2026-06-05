@@ -26,6 +26,7 @@ export function WorldMap({
   return (
     <div className="world-map-layout">
       <div className="map-panel" aria-label="第九特区设定地图">
+        <div className="map-scene">
         <svg className="illustrated-map" viewBox="0 0 1000 680" aria-hidden="true">
           <defs>
             <filter id="paperNoise">
@@ -93,10 +94,12 @@ export function WorldMap({
               aria-label={`查看${location.name}`}
               onClick={() => onSelectLocation(location.id)}
             >
-              <span>{location.name}</span>
+              <span className="marker-pin" aria-hidden="true" />
+              <span className="marker-label">{location.name}</span>
             </button>
           );
         })}
+        </div>
       </div>
       <aside className="detail-panel">
         <p className="panel-label">当前地点</p>

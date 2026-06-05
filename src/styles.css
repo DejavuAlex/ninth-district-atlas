@@ -84,17 +84,20 @@ input:focus-visible,
 
 .page-transition {
   min-height: calc(100dvh - 72px);
-  animation: pageEnter 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: pageEnter 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center top;
 }
 
 @keyframes pageEnter {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.99);
+    transform: translateY(24px) scale(0.98);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+    filter: blur(0);
   }
 }
 
@@ -183,9 +186,10 @@ input:focus-visible,
 .hero-section h1 {
   max-width: 880px;
   margin: 0;
-  font-size: clamp(3.2rem, 8vw, 7rem);
+  font-size: clamp(2.8rem, 7vw, 6.5rem);
   line-height: 1.05;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.03em;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 
 .hero-copy {
@@ -209,15 +213,16 @@ input:focus-visible,
 .filter-row button {
   border: 1px solid var(--line);
   border-radius: var(--radius-pill);
-  padding: 12px 20px;
+  padding: 12px 24px;
   color: var(--text);
   background:
-    linear-gradient(180deg, rgba(255, 245, 220, 0.06), rgba(255, 245, 220, 0.02)),
-    rgba(246, 234, 210, 0.04);
-  box-shadow: inset 0 1px 0 rgba(255, 245, 220, 0.08);
-  font-weight: 750;
+    linear-gradient(180deg, rgba(255, 245, 220, 0.08), rgba(255, 245, 220, 0.03)),
+    rgba(246, 234, 210, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 245, 220, 0.12), 0 4px 12px rgba(0,0,0,0.1);
+  font-weight: 600;
   letter-spacing: 0.03em;
   transition: transform 220ms ease, border-color 220ms ease, background 220ms ease, box-shadow 220ms ease;
+  backdrop-filter: blur(8px);
 }
 
 .button.primary {
@@ -364,10 +369,35 @@ input:focus-visible,
   position: relative;
   min-height: 620px;
   overflow: hidden;
+  perspective: 1400px;
   background:
     radial-gradient(circle at 18% 72%, rgba(230, 177, 92, 0.16), transparent 16%),
     linear-gradient(145deg, #e7ddc2 0%, #b7c9c4 48%, #243d57 100%);
   box-shadow: inset 0 0 0 1px rgba(255, 248, 220, 0.22), 0 24px 80px rgba(0, 0, 0, 0.22);
+}
+
+.map-scene {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: rotateX(16deg) rotateZ(-1deg) scale(1.02);
+  transform-origin: center 58%;
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  animation: mapDrift 16s ease-in-out infinite;
+}
+
+.map-panel:hover .map-scene {
+  transform: rotateX(9deg) rotateZ(0deg) scale(1.05);
+  animation-play-state: paused;
+}
+
+@keyframes mapDrift {
+  0%, 100% {
+    transform: rotateX(16deg) rotateZ(-1deg) scale(1.02);
+  }
+  50% {
+    transform: rotateX(14deg) rotateZ(1deg) scale(1.03);
+  }
 }
 
 .illustrated-map {
@@ -546,39 +576,67 @@ input:focus-visible,
 .map-marker {
   position: absolute;
   z-index: 2;
-  transform: translate(-50%, -50%);
-  border: 2px solid rgba(28, 22, 17, 0.72);
+  transform: translate(-50%, -100%) translateZ(34px);
+  transform-style: preserve-3d;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.map-marker:hover {
+  transform: translate(-50%, -100%) translateZ(58px);
+}
+
+.marker-pin {
+  width: 16px;
+  height: 16px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: rgba(250, 241, 210, 0.95);
+  border: 2px solid rgba(28, 22, 17, 0.78);
+  box-shadow: 0 10px 12px -4px rgba(20, 10, 5, 0.5);
+}
+
+.marker-label {
+  transform: rotateX(-16deg);
+  padding: 4px 10px;
   border-radius: var(--radius-pill);
-  padding: 8px 12px;
   color: #211812;
-  background: rgba(250, 241, 210, 0.88);
-  box-shadow: 0 8px 14px rgba(20, 10, 5, 0.24);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  background: rgba(250, 241, 210, 0.92);
+  border: 1px solid rgba(28, 22, 17, 0.42);
+  box-shadow: 0 4px 10px rgba(20, 10, 5, 0.28);
 }
 
-.map-marker::before {
-  content: "";
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin-right: 7px;
-  border-radius: 50%;
-  background: var(--faint);
-}
-
-.map-marker.is-active,
-.map-marker.is-character-location {
-  color: #15100c;
-  border-color: #7d4d25;
+.map-marker.is-active .marker-pin,
+.map-marker.is-character-location .marker-pin {
+  background: #e6b15c;
+  border-color: #5a3416;
 }
 
 .map-marker.is-selected {
-  color: #fff7ea;
-  border-color: #2a1710;
-  background: #8d3f25;
+  z-index: 3;
+  transform: translate(-50%, -100%) translateZ(72px);
 }
 
-.map-marker.is-selected::before {
-  background: var(--accent-strong);
+.map-marker.is-selected .marker-pin {
+  background: #c45532;
+  border-color: #2a1710;
+  width: 20px;
+  height: 20px;
+}
+
+.map-marker.is-selected .marker-label {
+  color: #fff7ea;
+  background: #8d3f25;
+  border-color: #2a1710;
 }
 
 .detail-panel,
@@ -804,23 +862,46 @@ input:focus-visible,
 
 .relationship-board {
   position: relative;
-  min-height: 470px;
+  min-height: 540px;
   margin-top: 12px;
   border: 1px solid rgba(230, 177, 92, 0.18);
   border-radius: 22px;
   background:
-    radial-gradient(circle at 50% 48%, rgba(196, 85, 50, 0.18), transparent 22%),
-    radial-gradient(circle at 18% 20%, rgba(230, 177, 92, 0.09), transparent 20%),
-    rgba(8, 6, 4, 0.22);
+    radial-gradient(circle at 50% 50%, rgba(196, 85, 50, 0.16), transparent 30%),
+    radial-gradient(circle at 18% 20%, rgba(230, 177, 92, 0.08), transparent 24%),
+    rgba(8, 6, 4, 0.26);
   overflow: hidden;
 }
 
 .relationship-board::before {
   content: "";
   position: absolute;
-  inset: 16%;
-  border: 1px dashed rgba(230, 177, 92, 0.24);
+  inset: 14%;
+  border: 1px dashed rgba(230, 177, 92, 0.2);
   border-radius: 50%;
+}
+
+.relationship-links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.relationship-link {
+  stroke: rgba(230, 177, 92, 0.32);
+  stroke-width: 0.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.relationship-link.kind-enemy,
+.relationship-link.kind-rival {
+  stroke: rgba(196, 85, 50, 0.5);
+}
+
+.relationship-link.kind-romance,
+.relationship-link.kind-family {
+  stroke: rgba(224, 109, 63, 0.45);
 }
 
 .center-character-card {
@@ -828,81 +909,79 @@ input:focus-visible,
   left: 50%;
   top: 50%;
   z-index: 2;
-  width: 180px;
-  min-height: 150px;
+  width: 168px;
+  min-height: 132px;
   display: grid;
   place-items: center;
   gap: 6px;
   padding: 18px;
   border: 1px solid rgba(230, 177, 92, 0.42);
-  border-radius: 28px;
+  border-radius: 24px;
   color: #fff7ea;
   background:
     radial-gradient(circle at 24% 0%, rgba(255, 231, 178, 0.16), transparent 38%),
-    linear-gradient(145deg, rgba(141, 63, 37, 0.92), rgba(43, 25, 18, 0.96));
-  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.3);
+    linear-gradient(145deg, rgba(141, 63, 37, 0.94), rgba(43, 25, 18, 0.96));
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.34);
   transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .center-character-card span,
 .center-character-card small {
   color: rgba(255, 247, 234, 0.72);
+  font-size: 0.82rem;
 }
 
 .center-character-card strong {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
+  line-height: 1.1;
 }
 
-.direct-relationship-cloud {
+.relationship-anchor {
   position: absolute;
-  inset: 18px;
+  z-index: 3;
+  transform: translate(-50%, -50%);
 }
 
 .relationship-node {
-  position: absolute;
-  width: min(210px, 42%);
-  min-height: 104px;
-  border: 1px solid rgba(230, 177, 92, 0.22);
-  border-radius: 18px;
-  padding: 12px;
-  text-align: left;
+  width: 132px;
+  min-height: 84px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 4px;
+  padding: 12px 10px;
+  border: 1px solid rgba(230, 177, 92, 0.24);
+  border-radius: 16px;
+  text-align: center;
   color: var(--text);
-  background: rgba(17, 12, 10, 0.72);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.22);
+  background: rgba(20, 14, 11, 0.82);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), border-color 220ms ease;
   animation: nodeFloat 5.6s ease-in-out infinite;
   animation-delay: var(--float-delay);
 }
 
-.relationship-node:nth-child(1) { left: 7%; top: 6%; }
-.relationship-node:nth-child(2) { right: 7%; top: 8%; }
-.relationship-node:nth-child(3) { left: 4%; top: 38%; }
-.relationship-node:nth-child(4) { right: 4%; top: 38%; }
-.relationship-node:nth-child(5) { left: 10%; bottom: 6%; }
-.relationship-node:nth-child(6) { right: 10%; bottom: 6%; }
-.relationship-node:nth-child(7) { left: 31%; top: 4%; }
-.relationship-node:nth-child(8) { left: 31%; bottom: 4%; }
-.relationship-node:nth-child(n + 9) { display: none; }
+.relationship-node:hover {
+  border-color: var(--gold);
+  transform: translateY(-4px) scale(1.06);
+}
 
-.relationship-node span {
-  display: inline-block;
-  margin-bottom: 6px;
-  border: 1px solid rgba(230, 177, 92, 0.22);
+.relationship-node .node-tag {
+  border: 1px solid rgba(230, 177, 92, 0.3);
   border-radius: var(--radius-pill);
-  padding: 3px 8px;
+  padding: 2px 9px;
   color: var(--gold);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
 }
 
 .relationship-node strong {
-  display: block;
-  font-size: 1.08rem;
+  font-size: 1.02rem;
 }
 
 .relationship-node small {
-  display: block;
-  margin-top: 6px;
   color: var(--muted);
-  line-height: 1.45;
+  font-size: 0.78rem;
 }
 
 @keyframes nodeFloat {
@@ -1038,6 +1117,29 @@ input:focus-visible,
 
   .map-panel {
     min-height: 520px;
+    perspective: none;
+  }
+
+  .map-scene {
+    transform: none;
+    animation: none;
+  }
+
+  .map-panel:hover .map-scene {
+    transform: none;
+  }
+
+  .map-marker {
+    transform: translate(-50%, -100%);
+  }
+
+  .map-marker:hover,
+  .map-marker.is-selected {
+    transform: translate(-50%, -100%);
+  }
+
+  .marker-label {
+    transform: none;
   }
 
   .event-grid,
@@ -1068,12 +1170,9 @@ input:focus-visible,
     padding: 64px 18px;
   }
 
-  .map-marker {
-    padding: 7px;
-  }
-
-  .map-marker span {
-    display: none;
+  .marker-label {
+    font-size: 0.74rem;
+    padding: 3px 8px;
   }
 
   .graph-card svg {
@@ -1084,6 +1183,11 @@ input:focus-visible,
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .map-scene {
+    transform: rotateX(12deg) scale(1.01);
+    animation: none;
   }
 
   *,
