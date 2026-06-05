@@ -43,7 +43,7 @@ const relationshipPairs: Array<[string, string]> = [
 ];
 
 const buildMapPrompt = (location: Omit<LocationNode, "mapPrompt">) =>
-  `${location.name}，第九特区小说区域地图场景示意图，${location.summary}${location.atmosphere}，废土灾变后的写实电影感，俯视地图与场景融合，锈红尘土、暗金边界线、破败道路、区域分割清晰，无文字，无人物特写，16:9。`;
+  `${location.name}区域街道风貌画面生成提示词：${location.summary}${location.atmosphere}，重点表现街道材质、建筑密度、道路破损、生活痕迹和势力控制感，灾变后写实电影镜头，低饱和冷暖对比，远景能看到街区轮廓，中景有破败道路、临时设施、旧招牌和警戒线，无文字，无人物特写，16:9。`;
 
 const buildCharacterPrompt = (character: Omit<Character, "relationshipIds" | "imagePrompt">) =>
   `${character.name}，第九特区人物形象设定图，身份是${character.role}，气质体现${character.traits.join("、")}，末世灾变后的写实电影感，粗粝服装，低饱和暗色调，半身像，背景带轻微废土城市氛围，无文字，竖版。`;

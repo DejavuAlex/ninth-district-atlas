@@ -1,4 +1,5 @@
 import { getRelationshipsForCharacter } from "../lib/novelFilters";
+import type { CSSProperties } from "react";
 import type { CharacterId, NovelDataset } from "../types/novel";
 
 interface RelationshipGraphProps {
@@ -20,76 +21,44 @@ const kindLabel: Record<string, string> = {
 
 export function RelationshipGraph({ dataset, selectedCharacterId, onSelectCharacter }: RelationshipGraphProps) {
   const selectedRelations = getRelationshipsForCharacter(dataset, selectedCharacterId);
-  const highlightedIds = new Set(selectedRelations.flatMap((relationship) => [relationship.source, relationship.target]));
-  const center = { x: 50, y: 50 };
-  const characters = dataset.characters.slice(0, 26);
-  const positions = new Map(
-    characters.map((character, index) => {
-      if (character.id === selectedCharacterId) return [character.id, center];
-      const angle = (Math.PI * 2 * index) / characters.length - Math.PI / 2;
-      const radius = index % 2 === 0 ? 38 : 30;
-      return [
-        character.id,
-        {
-          x: 50 + Math.cos(angle) * radius,
-          y: 50 + Math.sin(angle) * radius
-        }
-      ];
+  const selectedCharacter = dataset.characters.find((character) => character.id === selectedCharacterId) ?? dataset.characters[0];
+  const directCharacters = selectedRelations
+    .map((relationship) => {
+      const otherId = relationship.source === selectedCharacterId ? relationship.target : relationship.source;
+      const character = dataset.characters.find((item) => item.id === otherId);
+      return character ? { character, relationship } : null;
     })
-  );
+    .filter((item): item is NonNullable<typeof item> => Boolean(item))
+    .slice(0, 10);
 
   return (
     <div className="graph-card">
       <div className="graph-header">
         <h3>人物关系图</h3>
-        <p>选中人物后，只突出直接关系。</p>
+        <p>直连人物，关系标签更清楚。</p>
       </div>
-      <svg viewBox="0 0 100 100" role="img" aria-label="人物关系图">
-        {dataset.relationships.map((relationship) => {
-          const source = positions.get(relationship.source);
-          const target = positions.get(relationship.target);
-          if (!source || !target) return null;
-          const isActive = relationship.source === selectedCharacterId || relationship.target === selectedCharacterId;
-          return (
-            <g key={relationship.id}>
-              <line
-                className={`graph-line ${isActive ? "is-active" : ""} kind-${relationship.kind}`}
-                x1={source.x}
-                y1={source.y}
-                x2={target.x}
-                y2={target.y}
-              />
-              {isActive ? (
-                <text className="graph-relation-label" x={(source.x + target.x) / 2} y={(source.y + target.y) / 2}>
-                  {relationship.label}
-                </text>
-              ) : null}
-            </g>
-          );
-        })}
-        {characters.map((character) => {
-          const point = positions.get(character.id) ?? center;
-          const isSelected = character.id === selectedCharacterId;
-          const isActive = highlightedIds.has(character.id);
-          return (
-            <g
-              key={character.id}
-              role="button"
-              tabIndex={0}
-              className={`graph-node ${isSelected ? "is-selected" : ""} ${isActive ? "is-active" : ""}`}
-              transform={`translate(${point.x} ${point.y})`}
+      <div className="relationship-board" aria-label="人物关系图">
+        <div className="center-character-card">
+          <span>当前人物</span>
+          <strong>{selectedCharacter.name}</strong>
+          <small>{selectedCharacter.role}</small>
+        </div>
+        <div className="direct-relationship-cloud">
+          {directCharacters.map(({ character, relationship }, index) => (
+            <button
+              key={relationship.id}
+              type="button"
+              className={`relationship-node relation-${relationship.kind}`}
+              style={{ "--float-delay": `${index * 0.18}s` } as CSSProperties}
               onClick={() => onSelectCharacter(character.id)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") onSelectCharacter(character.id);
-              }}
             >
-              <title>{character.name}，{character.role}</title>
-              <circle r={isSelected ? 3.2 : 2.4} />
-              <text y={isSelected ? -5 : -3.8}>{character.name}</text>
-            </g>
-          );
-        })}
-      </svg>
+              <span>{relationship.label}</span>
+              <strong>{character.name}</strong>
+              <small>{kindLabel[relationship.kind]}：{relationship.summary}</small>
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="legend-row">
         {Object.entries(kindLabel).map(([kind, label]) => (
           <span key={kind} className={`legend kind-${kind}`}>
@@ -98,7 +67,7 @@ export function RelationshipGraph({ dataset, selectedCharacterId, onSelectCharac
         ))}
       </div>
       <div className="relationship-summary">
-        {selectedRelations.slice(0, 8).map((relationship) => {
+        {selectedRelations.slice(0, 6).map((relationship) => {
           const otherId = relationship.source === selectedCharacterId ? relationship.target : relationship.source;
           const other = dataset.characters.find((character) => character.id === otherId);
           return (

@@ -13,6 +13,7 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "川府" })).toBeVisible();
   await expect(page.locator(".detail-panel > p").filter({ hasText: "秦禹后期立足、扩军和建立川府系的核心地盘。" })).toBeVisible();
   await expect(page.getByText("地图场景提示词")).toBeVisible();
+  await expect(page.getByText(/街道风貌/)).toBeVisible();
 
   await page.getByRole("link", { name: "人物关系" }).click();
   await expect(page).toHaveURL(/\/characters$/);
@@ -20,6 +21,7 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
   await page.getByRole("button", { name: /秦禹/ }).first().click();
   await expect(page.locator(".profile-card").getByRole("heading", { name: "秦禹" })).toBeVisible();
   await expect(page.getByText("人物形象提示词")).toBeVisible();
+  await expect(page.getByText("直连人物")).toBeVisible();
   await expect(page.locator(".relationship-summary").getByText("生死兄弟").first()).toBeVisible();
 
   await page.getByRole("link", { name: "故事时间线" }).click();

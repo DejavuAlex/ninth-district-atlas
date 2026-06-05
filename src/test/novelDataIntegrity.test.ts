@@ -62,6 +62,8 @@ describe("《第九特区》结构化数据", () => {
       expect(location.y).toBeLessThanOrEqual(100);
       expect(location.mapPrompt.length).toBeGreaterThan(30);
       expect(location.mapPrompt).toContain(location.name);
+      expect(location.mapPrompt).toContain("街道风貌");
+      expect(location.mapPrompt).not.toContain("俯视地图");
       const hasEvent = ninthDistrict.events.some((event) => event.locationId === location.id);
       const hasCharacter = ninthDistrict.characters.some((character) => character.locationIds.includes(location.id));
       expect(hasEvent || hasCharacter, location.name).toBe(true);
