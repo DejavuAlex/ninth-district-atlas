@@ -60,9 +60,16 @@ export function parseChaptersFromText(text) {
 async function main() {
   const text = await readFile(sourcePath, "utf8");
   const chapters = parseChaptersFromText(text);
+  const publicChapterIndex = chapters.map(({ id, order, line, heading, title }) => ({
+    id,
+    order,
+    line,
+    heading,
+    title
+  }));
 
   await mkdir(dirname(outputPath), { recursive: true });
-  await writeFile(outputPath, `${JSON.stringify(chapters, null, 2)}\n`, "utf8");
+  await writeFile(outputPath, `${JSON.stringify(publicChapterIndex, null, 2)}\n`, "utf8");
 
   console.log(`源文件：${sourcePath}`);
   console.log(`输出：${outputPath}`);
