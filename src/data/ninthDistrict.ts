@@ -374,6 +374,17 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "hl-feng-death", title: "无名的志愿兵·冯玉年战死北风口", phase: "war", chapterRange: range(2667, 2700, "北伐·北风口战役"), locationId: "beifengkou", characterIds: ["qin-yu", "feng-yunian"], hook: "战死老兵的兜里分文没有，没人认得他曾是风光的冯署长。", description: "当年刚正不阿的‘冯喷子’、九区警务署长冯玉年，已是满头白发的老人。冯系勾结欧盟出卖地区利益、被徒弟秦禹一方围剿崩盘，他夹在恩义与家族之间无力回天。北风口被自由党攻打时，他不怨不附，拿着一杆捡来的步枪当了一名无名志愿兵，战斗到最后一刻。死后无人识得这个老兵，就是当年权倾一方的冯署长。", significance: "全书最催泪的悲剧，把‘大势之下，个人意志何其渺小’写到骨子里，也是秦禹身上最深的一道暗伤。" },
     { id: "hl-final-charge", title: "一直在冲锋路上的上将", phase: "war", chapterRange: range(2736, 2743, "第二七四三章"), locationId: "red-dan", characterIds: ["qin-yu", "xiang-zehao"], hook: "硝烟散尽，他仍走在冲锋的路上。", description: "北伐之后的最后冲锋与战后余波，将所有牺牲与坚持收束于一处。从待规划区买命求生的青年，到一直走在冲锋路上的上将，秦禹用一整部书的厮杀，换来了三大区的安宁。", significance: "故事的终章，让宏大的战争重新回到‘人的选择’，完成全书立意的最终闭环。" }
   ],
+  journey: [
+    { locationId: "planning-zone", title: "待规划区·起点", caption: "从无人区的流民开始挣命，买命求生、丛林法则中活下来。" },
+    { locationId: "ninth-district", title: "踏入第九特区", caption: "用一颗钻石的‘礼节’入了李司的眼，挤进九区警务系统。" },
+    { locationId: "songjiang", title: "扎根松江", caption: "在警务与黑街之间求生，街面的拳头与人情成了第一课。" },
+    { locationId: "black-street", title: "黑街立足", caption: "结盟马家、火并对手，在黑街这片灰色地带站稳脚跟。" },
+    { locationId: "jiangzhou", title: "江州周旋", caption: "江湖买卖与家族博弈交错，人脉与货源一步步铺开。" },
+    { locationId: "fengbei", title: "奉北棋局", caption: "从松江街面走进奉北会客厅，第一次踏入上层权力圈。" },
+    { locationId: "nanhu", title: "南沪博弈", caption: "南方巨头与智囊交锋，江湖买卖升级为政治博弈。" },
+    { locationId: "changji", title: "马踏长吉", caption: "突袭小队一击易手，故事从江湖斗争转向军事行动。" },
+    { locationId: "chuanfu", title: "落地川府", caption: "从远山生活镇到百万亩粮仓，建起根据地、扩军成势。" }
+  ],
   themes: [
     {
       id: "theme-order",

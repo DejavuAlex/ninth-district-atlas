@@ -117,6 +117,12 @@ export interface StoryHighlight {
   characterIds: CharacterId[];
 }
 
+export interface JourneyStop {
+  locationId: LocationId;
+  title: string;
+  caption: string;
+}
+
 export interface NovelDataset {
   id: NovelId;
   title: string;
@@ -129,5 +135,6 @@ export interface NovelDataset {
   relationships: Relationship[];
   events: StoryEvent[];
   highlights: StoryHighlight[];
+  journey: JourneyStop[];
   themes: NovelTheme[];
 }

@@ -13,6 +13,10 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "川府" })).toBeVisible();
   await expect(page.locator(".detail-panel").getByText("紧邻八区、九区的独立特区", { exact: false })).toBeVisible();
 
+  await page.getByRole("button", { name: /播放秦禹的崛起之路/ }).click();
+  await expect(page.locator(".route-caption")).toBeVisible();
+  await expect(page.locator(".map-route .route-line")).toBeVisible();
+
   await page.getByRole("link", { name: "人物关系" }).click();
   await expect(page).toHaveURL(/\/characters$/);
   await page.getByLabel("搜索人物、别名或身份").fill("秦禹");

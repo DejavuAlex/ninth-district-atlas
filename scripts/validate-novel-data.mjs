@@ -65,6 +65,13 @@ for (const location of ninthDistrict.locations) {
   location.eventIds.forEach((id) => assert(eventIds.has(id), `地点 ${location.id} 的事件 ${id} 不存在`));
 }
 
+assert(ninthDistrict.journey.length >= 5, "崛起之路节点数量不足");
+for (const stop of ninthDistrict.journey) {
+  assert(locationIds.has(stop.locationId), `崛起之路节点 ${stop.locationId} 的地点不存在`);
+  assert(stop.title.length > 1, `崛起之路节点 ${stop.locationId} 缺少标题`);
+  assert(stop.caption.length > 8, `崛起之路节点 ${stop.locationId} 描述过短`);
+}
+
 const sortedArcs = [...ninthDistrict.arcs].sort((a, b) => a.chapterRange.startOrder - b.chapterRange.startOrder);
 assert(sortedArcs[0].chapterRange.startOrder === 1, "剧情阶段未从第一段开始");
 assert(sortedArcs.at(-1).chapterRange.endOrder === chapters.length, "剧情阶段未覆盖到最后章节");
