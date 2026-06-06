@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { List, X } from "@phosphor-icons/react";
 import type { ReactNode } from "react";
 
 type PageId = "home" | "map" | "characters" | "timeline" | "themes" | "sources";
@@ -19,6 +21,13 @@ export function Layout({
   currentPage: PageId;
   onNavigate: (page: PageId) => void;
 }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const go = (page: PageId) => {
+    setMenuOpen(false);
+    onNavigate(page);
+  };
+
   return (
     <div className="app-shell">
       <header className="site-nav" aria-label="主导航">
@@ -28,12 +37,21 @@ export function Layout({
           aria-label="返回首页"
           onClick={(event) => {
             event.preventDefault();
-            onNavigate("home");
+            go("home");
           }}
         >
           第九特区
         </a>
-        <nav className="nav-links">
+        <button
+          type="button"
+          className="nav-toggle"
+          aria-label={menuOpen ? "关闭菜单" : "打开菜单"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          {menuOpen ? <X size={22} weight="bold" /> : <List size={22} weight="bold" />}
+        </button>
+        <nav className={`nav-links ${menuOpen ? "is-open" : ""}`}>
           {links.map((link) => (
             <a
               key={link.page}
@@ -41,7 +59,7 @@ export function Layout({
               href={link.href}
               onClick={(event) => {
                 event.preventDefault();
-                onNavigate(link.page);
+                go(link.page);
               }}
             >
               {link.label}

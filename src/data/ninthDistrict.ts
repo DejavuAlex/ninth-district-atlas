@@ -176,11 +176,11 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "military-intel", name: "军情系统", summary: "后期暗战、潜入、营救和心理战的关键力量。", color: "#a27c61" }
   ],
   locations: [
-    { id: "planning-zone", name: "待规划区", kind: "wasteland", x: 96.2, y: 43.4, summary: "秦禹出身和故事起点所在的无政府边缘地带。", atmosphere: "贫瘠、粗粝、没有稳定规则。", factionIds: ["planned-zone"], eventIds: ["event-prologue", "event-yuan-ke-end"] },
-    { id: "ninth-district", name: "第九特区", kind: "district", x: 87.5, y: 26.3, summary: "灾变后重建秩序的区域，也是身份、粮食和权力的入口。", atmosphere: "秩序表面稳定，底层竞争残酷。", factionIds: ["songjiang-police", "wu-line"], eventIds: ["event-qin-enters", "event-public-order"] },
-    { id: "songjiang", name: "松江", kind: "city", x: 91.9, y: 30.3, summary: "秦禹早期扎根的核心城市，警务、黑街和政治利益在此交织。", atmosphere: "城市秩序和地下秩序并行。", sceneImage: "/scenes/songjiang.png", factionIds: ["songjiang-police", "black-street"], eventIds: ["event-police-team", "event-songjiang-return", "event-songjiang-takeover"] },
-    { id: "black-street", name: "黑街", kind: "street", x: 96.2, y: 34.2, summary: "秦禹、老猫和马家频繁活动的灰色地带。", atmosphere: "饭局、码牌、枪声和人情并存。", factionIds: ["black-street", "ma-family"], eventIds: ["event-black-street", "event-ma-alliance"] },
-    { id: "tuzha-street", name: "土渣街", kind: "street", x: 88.7, y: 39.5, summary: "早期冲突集中爆发的街区，秦禹从这里切入地下规则。", atmosphere: "低矮、拥挤、一步错就会被吞掉。", factionIds: ["black-street"], eventIds: ["event-tuzha-street", "event-three-parties"] },
+    { id: "planning-zone", name: "待规划区", kind: "wasteland", x: 93, y: 46, summary: "秦禹出身和故事起点所在的无政府边缘地带。", atmosphere: "贫瘠、粗粝、没有稳定规则。", factionIds: ["planned-zone"], eventIds: ["event-prologue", "event-yuan-ke-end"] },
+    { id: "ninth-district", name: "第九特区", kind: "district", x: 86, y: 27, summary: "灾变后重建秩序的区域，也是身份、粮食和权力的入口。", atmosphere: "秩序表面稳定，底层竞争残酷。", factionIds: ["songjiang-police", "wu-line"], eventIds: ["event-qin-enters", "event-public-order"] },
+    { id: "songjiang", name: "松江", kind: "city", x: 90, y: 31, summary: "秦禹早期扎根的核心城市，警务、黑街和政治利益在此交织。", atmosphere: "城市秩序和地下秩序并行。", sceneImage: "/scenes/songjiang.png", factionIds: ["songjiang-police", "black-street"], eventIds: ["event-police-team", "event-songjiang-return", "event-songjiang-takeover"] },
+    { id: "black-street", name: "黑街", kind: "street", x: 92.5, y: 36, summary: "秦禹、老猫和马家频繁活动的灰色地带。", atmosphere: "饭局、码牌、枪声和人情并存。", factionIds: ["black-street", "ma-family"], eventIds: ["event-black-street", "event-ma-alliance"] },
+    { id: "tuzha-street", name: "土渣街", kind: "street", x: 87, y: 41, summary: "早期冲突集中爆发的街区，秦禹从这里切入地下规则。", atmosphere: "低矮、拥挤、一步错就会被吞掉。", factionIds: ["black-street"], eventIds: ["event-tuzha-street", "event-three-parties"] },
     { id: "jiangzhou", name: "江州", kind: "city", x: 70.0, y: 68.4, summary: "早期江湖交易和后期乱局都反复牵动的重要城市。", atmosphere: "商路、家族和江湖人情交错。", factionIds: ["ma-family", "black-street"], eventIds: ["event-jiangzhou", "event-jiangzhou-chaos"] },
     { id: "fengbei", name: "奉北", kind: "city", x: 66.2, y: 30.3, summary: "权力圈层和警务政治的重要节点，秦禹多次被卷入。", atmosphere: "表面规矩森严，背后棋局密集。", factionIds: ["wu-line", "feng-line"], eventIds: ["event-fengbei", "event-pharma"] },
     { id: "changji", name: "长吉", kind: "city", x: 76.9, y: 27.6, summary: "从江湖斗争走向军事行动的关键城市之一。", atmosphere: "道路、驻防和突袭成为新的语言。", factionIds: ["gu-line", "chuanfu"], eventIds: ["event-changji", "event-sword-changji"] },

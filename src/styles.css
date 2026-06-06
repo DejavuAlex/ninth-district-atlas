@@ -124,7 +124,7 @@ input:focus-visible,
 .site-nav {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 40;
   height: 72px;
   display: flex;
   align-items: center;
@@ -132,8 +132,19 @@ input:focus-visible,
   gap: 24px;
   padding: 0 clamp(20px, 5vw, 72px);
   border-bottom: 1px solid var(--line);
-  background: rgba(15, 11, 9, 0.82);
+  background: rgba(10, 16, 24, 0.86);
   backdrop-filter: blur(18px);
+}
+
+.nav-toggle {
+  display: none;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--text);
+  background: rgba(206, 226, 240, 0.06);
 }
 
 .brand-mark {
@@ -1093,21 +1104,11 @@ input:focus-visible,
 }
 
 @media (max-width: 900px) {
-  .site-nav {
-    overflow-x: auto;
-    justify-content: flex-start;
-  }
-
   .hero-section,
   .world-map-layout,
   .character-grid,
-  .timeline-layout,
   .source-card {
     grid-template-columns: 1fr;
-  }
-
-  .hero-map-card {
-    min-height: 360px;
   }
 
   .map-panel {
@@ -1126,23 +1127,51 @@ input:focus-visible,
   .event-grid,
   .character-list,
   .profile-meta,
-  .relationship-summary,
-  .portrait-prompt-layout {
+  .relationship-summary {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
   .site-nav {
     height: 64px;
     padding: 0 16px;
+    justify-content: space-between;
+    overflow: visible;
+  }
+
+  .nav-toggle {
+    display: grid;
   }
 
   .nav-links {
-    gap: 16px;
-    font-size: 0.92rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 12px 16px 16px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(10, 16, 24, 0.96);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    display: none;
   }
 
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    padding: 12px 14px;
+    font-size: 1rem;
+    border-color: rgba(206, 226, 240, 0.1);
+  }
+}
+
+@media (max-width: 640px) {
   .hero-section {
     padding: 86px 18px 42px;
   }
@@ -1151,9 +1180,19 @@ input:focus-visible,
     padding: 64px 18px;
   }
 
+  .marker-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 9px;
+  }
+
   .marker-label {
-    font-size: 0.74rem;
-    padding: 3px 8px;
+    font-size: 0.66rem;
+    padding: 2px 6px;
+  }
+
+  .map-panel {
+    min-height: 460px;
   }
 
   .graph-card svg {
