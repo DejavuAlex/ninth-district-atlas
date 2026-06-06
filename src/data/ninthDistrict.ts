@@ -55,7 +55,7 @@ const appearances: Record<string, string> = {
   "wu-tianyin":
     "偏瘦、眼神阴郁孤狠的男人，面带疲惫与决绝；身披破旧风衣，被亲情与时代逼到极端，神态孤独而狠厉。",
   "feng-yunian":
-    "沉稳持重的中年人，穿着整洁笔挺的深色呢大衣；面相端正、眉宇间带着官场历练的威严，眼神沉静温和却不失锐利，神态像一位讲规矩、有担当、值得托付的体面长者。",
+    "满头白发、身形清瘦却脊背挺直的老人，面容沟壑纵横、眼神刚正不阿；身着洗得发白的旧军大衣，手握一杆捡来的自动步枪，独立在北风口的风雪战场上，神态决绝而坦荡，是位至死不肯低头、无名而悲壮的老兵。",
   "feng-ji":
     "衣着体面的中年政客，面相精明却带犹疑；眼神在利益间摇摆算计，神态谨慎，透着进退两难的处境感。",
   "xiang-zehao":
@@ -146,7 +146,7 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "wu-line", name: "吴系", summary: "围绕吴迪等人形成的政治资源，与秦禹多次互相借力。", color: "#6e8f6a" },
     { id: "gu-line", name: "顾系", summary: "以顾言和顾总督相关资源为核心的军政力量。", color: "#7b78a8" },
     { id: "chuanfu", name: "川府系", summary: "秦禹后期立足的核心地盘，逐渐从地方力量扩展成军事集团。", color: "#b4663c" },
-    { id: "feng-line", name: "冯系", summary: "冯玉年、冯济相关势力，贯穿权谋和战局转换。", color: "#7d5b45" },
+    { id: "feng-line", name: "冯系", summary: "冯玉年、冯济等冯家势力，贯穿权谋与战局转换；后期联合卢家、贺家勾结欧盟攻打北风口、出卖地区利益，最终被秦禹一方围剿崩盘。", color: "#7d5b45" },
     { id: "chen-line", name: "陈系", summary: "南沪和外部政治博弈中的重要一方，与川府阶段产生多次交集。", color: "#476e73" },
     { id: "eu-zone", name: "欧盟一区力量", summary: "后期外部战局的重要压力来源，推动战争从区域冲突走向国际化。", color: "#576f9e" },
     { id: "military-intel", name: "军情系统", summary: "后期暗战、潜入、营救和心理战的关键力量。", color: "#a27c61" }
@@ -259,7 +259,7 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "rel-qin-lizhan", source: "qin-yu", target: "li-zhan", kind: "ally", label: "战场利刃", summary: "历战在军事和营救行动中承担硬突破角色。", arcIds: ["arc-border-rescue", "arc-spring"] },
     { id: "rel-qin-daya", source: "qin-yu", target: "da-ya", kind: "ally", label: "军事骨干", summary: "大牙的军事才能在川府阶段被不断运作和放大。", arcIds: ["arc-chuanfu-rising", "arc-final-war"] },
     { id: "rel-qin-wutianyin", source: "qin-yu", target: "wu-tianyin", kind: "ally", label: "乱世同路", summary: "吴天胤的经历极端而沉重，他和秦禹共享对底层残酷的理解。", arcIds: ["arc-wu-tianyin", "arc-trade-routes"] },
-    { id: "rel-qin-fengyunian", source: "qin-yu", target: "feng-yunian", kind: "political", label: "奉北关系", summary: "冯玉年让秦禹进入奉北局面，双方关系包含扶持、试探和利益。", arcIds: ["arc-fengbei-crime"] },
+    { id: "rel-qin-fengyunian", source: "qin-yu", target: "feng-yunian", kind: "mentor", label: "引路恩师", summary: "冯玉年是秦禹的引路人，教会他责任与担当；后期冯系勾结欧盟出卖地区利益，被秦禹一方围剿崩盘，恩义与立场在二人之间撕扯到最后。冯玉年至死不怨，化身无名志愿兵战死北风口。", arcIds: ["arc-fengbei-crime", "arc-final-war"] },
     { id: "rel-qin-fengji", source: "qin-yu", target: "feng-ji", kind: "rival", label: "权力对手", summary: "冯济在后期局势中代表另一套利益选择，与秦禹多次对位。", arcIds: ["arc-nine-eight-politics", "arc-final-war"] },
     { id: "rel-qin-xiang", source: "qin-yu", target: "xiang-zehao", kind: "ally", label: "川府同盟", summary: "项择昊在川府和后期战局中承担重要军事政治角色。", arcIds: ["arc-chuanfu-rising", "arc-spring"] },
     { id: "rel-qin-meng", source: "qin-yu", target: "meng-xi", kind: "mentor", label: "识才用才", summary: "秦禹重用孟玺，把其狠辣思路转化为川府系的战术优势。", arcIds: ["arc-military-expansion", "arc-foreign-chaos"] },
@@ -311,7 +311,7 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     character({ id: "li-zhan", name: "历战", aliases: [], factionIds: ["chuanfu", "military-intel"], firstSeen: range(555, 555, "第五五五章"), role: "战场尖刀", profile: "能打硬仗、敢接高危任务的军事骨干。", story: "历战从中期行动到最终战场不断承担高风险任务，是秦禹阵营的锋刃。", traits: ["勇猛", "直接", "抗压"], locationIds: ["seven-zone", "old-triangle", "red-dan", "beifengkou"] }),
     character({ id: "da-ya", name: "大牙", aliases: [], factionIds: ["chuanfu"], firstSeen: range(257, 258, "第二五七章"), role: "军事指挥和骨干", profile: "从早期来电到后期军事才能被运作，是川府战场线重要人物。", story: "大牙在川府扩军和北伐阶段不断被推到前台，承担从战术到指挥的职责。", traits: ["能打", "会带兵", "忠诚"], locationIds: ["chuanfu", "bar-city", "red-dan"] }),
     character({ id: "wu-tianyin", name: "吴天胤", aliases: ["胤哥"], factionIds: ["planned-zone", "black-street"], firstSeen: range(481, 481, "第四八一章"), role: "极端乱世人物", profile: "被时代和亲情逼到极端的人物。", story: "吴天胤的线展示底层人在失去退路后的爆发，也让秦禹重新审视规则。", traits: ["狠", "孤独", "重情"], locationIds: ["songjiang", "jiangzhou"] }),
-    character({ id: "feng-yunian", name: "冯玉年", aliases: ["老冯"], factionIds: ["feng-line"], firstSeen: range(383, 383, "第三八三章"), role: "奉北线人物", profile: "身处奉北权力圈，懂规则、讲分寸，后期愈发显出正派与担当。", story: "冯玉年让秦禹更深入接触奉北上层，前期是政治保护伞，后期立场渐趋正派，成为秦禹一方值得信任的助力。", traits: ["老练", "稳重", "正派"], locationIds: ["fengbei"] }),
+    character({ id: "feng-yunian", name: "冯玉年", aliases: ["老冯", "冯喷子", "冯署长"], factionIds: ["feng-line"], firstSeen: range(383, 383, "第三八三章"), role: "九区警务署长 · 秦禹的引路人", profile: "二战区冯家子弟，曾是九区主城区警务署长，外号‘冯喷子’：刚正不阿、疾恶如仇，是秦禹起步时的引路人，最终以无名志愿兵身份战死北风口。", story: "冯玉年受家族蒙荫年少居要职，却以刚直敢言、总在会上炮轰不公闻名，因此得了‘冯喷子’的外号。秦禹起步时全靠他帮衬，从只想自保的待规划区青年成长为有责任感的人，正是他一手教出来的。二十余年后，他已是满头白发的老人，而冯系却联合卢家、贺家勾结欧盟攻打北风口、出卖地区利益。他坚决反对，却夹在徒弟秦禹与养育自己的家族之间，拼命周旋仍无力回天。冯系最终被秦禹一方围剿、彻底崩盘，族人死的死、流离的流离。他不怨秦禹，也不依附任何人；北风口被俄六区自由党攻打时，他拿着捡来的步枪当了一名志愿兵，没有官职、没有家族光环，战斗到了最后一刻。死后兜里分文没有，没人认出这个战死的老兵，就是当年风光一时的冯署长。", traits: ["刚正不阿", "疾恶如仇", "重情重义", "悲剧宿命"], locationIds: ["ninth-district", "fengbei", "beifengkou"] }),
     character({ id: "feng-ji", name: "冯济", aliases: [], factionIds: ["feng-line"], firstSeen: range(2070, 2074, "第二零七四章"), role: "后期政治对手", profile: "在后期局势中不断寻找自身处境和利益出口。", story: "冯济的选择多次影响八区、九区和最终战局，是秦禹后期必须处理的对手。", traits: ["精明", "摇摆", "重利益"], locationIds: ["eight-zone", "nanhu"] }),
     character({ id: "xiang-zehao", name: "项择昊", aliases: [], factionIds: ["chuanfu", "gu-line"], firstSeen: range(1560, 1565, "第一五六五章"), role: "川府军事政治人物", profile: "在川府和最终战局中承担重要军事角色。", story: "项择昊从面见秦禹到最终请战，体现川府系内部的担当和战场选择。", traits: ["坚定", "有担当"], locationIds: ["chuanfu", "red-dan", "yemen"] }),
     character({ id: "meng-xi", name: "孟玺", aliases: [], factionIds: ["chuanfu"], firstSeen: range(1815, 1820, "第一八二零章"), role: "川府谋士", profile: "心黑手狠，善于把复杂局面拆成可执行的狠招。", story: "孟玺进入秦禹视野后，多次进谏和布局，帮助川府系在后期战争中占据主动。", traits: ["狠辣", "聪明", "敢赌"], locationIds: ["chuanfu", "old-triangle", "jiangzhou"] }),
