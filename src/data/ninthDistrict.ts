@@ -6,41 +6,9 @@ const range = (startOrder: number, endOrder: number, label: string) => ({
   label
 });
 
-const relationshipIdsFor = (characterId: string, pairs: Array<[string, string]>) =>
-  pairs.filter(([, id]) => id.includes(`:${characterId}:`) || id.endsWith(`:${characterId}`)).map(([id]) => id);
-
-const relationshipPairs: Array<[string, string]> = [
-  ["rel-qin-qi", "brotherhood:qin-yu:qi-lin"],
-  ["rel-qin-cat", "brotherhood:qin-yu:lao-mao"],
-  ["rel-qin-ma2", "ally:qin-yu:ma-lao-er"],
-  ["rel-qin-yuan", "enemy:qin-yu:yuan-ke"],
-  ["rel-qin-lin", "romance:qin-yu:lin-nianlei"],
-  ["rel-qin-wudi", "political:qin-yu:wu-di"],
-  ["rel-qin-guyan", "ally:qin-yu:gu-yan"],
-  ["rel-qin-keke", "ally:qin-yu:ke-ke"],
-  ["rel-qin-dong", "ally:qin-yu:lin-chengdong"],
-  ["rel-qin-zhan", "ally:qin-yu:zhan-nan"],
-  ["rel-qin-fu", "ally:qin-yu:fu-xiaohao"],
-  ["rel-qin-lizhan", "ally:qin-yu:li-zhan"],
-  ["rel-qin-daya", "ally:qin-yu:da-ya"],
-  ["rel-qin-wutianyin", "ally:qin-yu:wu-tianyin"],
-  ["rel-qin-fengyunian", "political:qin-yu:feng-yunian"],
-  ["rel-qin-fengji", "rival:qin-yu:feng-ji"],
-  ["rel-qin-xiang", "ally:qin-yu:xiang-zehao"],
-  ["rel-qin-meng", "mentor:qin-yu:meng-xi"],
-  ["rel-qin-libokang", "enemy:qin-yu:li-bokang"],
-  ["rel-qin-xuyan", "ally:qin-yu:xu-yan"],
-  ["rel-qin-kehua", "political:qin-yu:ke-hua"],
-  ["rel-qin-he", "ally:qin-yu:he-dachuan"],
-  ["rel-qin-zhou", "enemy:qin-yu:zhou-xingli"],
-  ["rel-ma2-malaoye", "family:ma-lao-er:ma-lao-ye"],
-  ["rel-ma2-cat", "ally:ma-lao-er:lao-mao"],
-  ["rel-wudi-guyan", "political:wu-di:gu-yan"],
-  ["rel-daya-lizhan", "brotherhood:da-ya:li-zhan"],
-  ["rel-meng-he", "ally:meng-xi:he-dachuan"],
-  ["rel-libokang-fengji", "political:li-bokang:feng-ji"],
-  ["rel-xiang-guyan", "ally:xiang-zehao:gu-yan"]
-];
+type CharacterInput = Omit<Character, "imagePrompt" | "appearance" | "relationshipIds" | "tier"> & {
+  tier?: "main" | "supporting";
+};
 
 const buildMapPrompt = (location: Omit<LocationNode, "mapPrompt" | "scene">, scene: string) =>
   `${location.name}区域街道风貌画面生成提示词：${location.summary}${location.atmosphere} 区域特征：${scene} 世界观为灾变后的冰封极寒末世（资源紧张、气候严寒、常年积雪），但各区域的秩序与风貌差异明显，不必一律破败：有的繁华体面、有的肃整有序、有的才真正混乱荒废。请按该区域的特征刻画其独特街区轮廓与空间层次。写实电影质感、低饱和冷色调、阴天或夜晚、地面常见积雪或潮湿反光，无文字、无人物特写、16:9。`;
@@ -106,11 +74,9 @@ const appearances: Record<string, string> = {
     "年长威严的高层人物，挺括的军政大衣；面相沉静老辣、眼神深不可测，神态从容落子，气场压人。"
 };
 
-const character = (
-  item: Omit<Character, "relationshipIds" | "imagePrompt" | "appearance">
-): Omit<Character, "imagePrompt" | "appearance"> => ({
+const character = (item: CharacterInput): Omit<Character, "imagePrompt" | "appearance" | "relationshipIds"> => ({
   ...item,
-  relationshipIds: relationshipIdsFor(item.id, relationshipPairs)
+  tier: item.tier ?? "main"
 });
 
 const locationScenes: Record<string, string> = {
@@ -154,7 +120,7 @@ const locationScenes: Record<string, string> = {
 
 const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
   locations: Array<Omit<LocationNode, "mapPrompt" | "scene">>;
-  characters: Array<Omit<Character, "imagePrompt" | "appearance">>;
+  characters: Array<Omit<Character, "imagePrompt" | "appearance" | "relationshipIds">>;
 } = {
   id: "ninth-district",
   title: "第九特区",
@@ -293,7 +259,24 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "rel-daya-lizhan", source: "da-ya", target: "li-zhan", kind: "brotherhood", label: "战场配合", summary: "大牙和历战在军事行动中互为锋刃，承担高风险任务。", arcIds: ["arc-border-rescue", "arc-final-war"] },
     { id: "rel-meng-he", source: "meng-xi", target: "he-dachuan", kind: "ally", label: "匪首与谋士", summary: "孟玺和何大川一谋一动，把草莽力量纳入川府战局。", arcIds: ["arc-military-expansion"] },
     { id: "rel-libokang-fengji", source: "li-bokang", target: "feng-ji", kind: "political", label: "后期合谋", summary: "李伯康和冯济在后期战局中互相利用，给秦禹制造连续压力。", arcIds: ["arc-final-war"] },
-    { id: "rel-xiang-guyan", source: "xiang-zehao", target: "gu-yan", kind: "ally", label: "军政协同", summary: "项择昊和顾言共同支撑秦禹后期在军政层面的协同。", arcIds: ["arc-chuanfu-rising", "arc-spring"] }
+    { id: "rel-xiang-guyan", source: "xiang-zehao", target: "gu-yan", kind: "ally", label: "军政协同", summary: "项择昊和顾言共同支撑秦禹后期在军政层面的协同。", arcIds: ["arc-chuanfu-rising", "arc-spring"] },
+    { id: "rel-wty-zhenzhen", source: "wu-tianyin", target: "zhen-zhen", kind: "subordinate", label: "身边人", summary: "珍珍是最了解吴天胤的人，在他走向极端时始终在其身边。", arcIds: ["arc-wu-tianyin"] },
+    { id: "rel-wty-ahong", source: "wu-tianyin", target: "a-hong", kind: "comrade", label: "断后兄弟", summary: "逃亡中阿宏惨死断后，换来吴天胤二人逃出生天。", arcIds: ["arc-trade-routes"] },
+    { id: "rel-qin-ahong", source: "qin-yu", target: "a-hong", kind: "comrade", label: "交易线伙伴", summary: "阿宏曾在秦禹的货路与逃亡线上拼命，是被乱世吞掉的小人物。", arcIds: ["arc-trade-routes"] },
+    { id: "rel-cat-along", source: "lao-mao", target: "a-long", kind: "friend", label: "松江旧识", summary: "阿龙曾一度火遍松江，是老猫熟络的街面人物。", arcIds: ["arc-survival-entry", "arc-black-street"] },
+    { id: "rel-ma2-niqiu", source: "ma-lao-er", target: "lao-niqiu", kind: "ally", label: "黑街老滑头", summary: "老泥鳅在黑街游刃有余，与马老二同属地下江湖的老人。", arcIds: ["arc-black-street"] },
+    { id: "rel-qin-leizi", source: "qin-yu", target: "lei-zi", kind: "subordinate", label: "凶悍打手团", summary: "雷子团队凶残能打，是秦禹一方可调用的暴力执行力量。", arcIds: ["arc-fengbei-crime", "arc-trade-routes"] },
+    { id: "rel-qin-yujinnian", source: "qin-yu", target: "yu-jinnian", kind: "ally", label: "川府名士", summary: "于瑾年在川府声望极高，是秦禹立足地方时的重要助力。", arcIds: ["arc-chuanfu-rising"] },
+    { id: "rel-qin-qiuwu", source: "qin-yu", target: "qiu-wu", kind: "friend", label: "南沪恩义", summary: "仇伍多次劝说与施恩，是秦禹在南沪线上的旧识与人情。", arcIds: ["arc-trade-routes", "arc-nanhu-changji"] },
+    { id: "rel-qin-wangzongxiao", source: "qin-yu", target: "wang-zongxiao", kind: "rival", label: "王家博弈", summary: "龙城王家家主王宗孝与秦禹由对立到妥协，最终散财求活。", arcIds: ["arc-nanhu-changji", "arc-spring"] },
+    { id: "rel-qin-yelin", source: "qin-yu", target: "ye-lin", kind: "subordinate", label: "接手故人资本", summary: "叶琳后期替秦禹接手并盘活故人资本，是经营层面的执行者。", arcIds: ["arc-final-war", "arc-spring"] },
+    { id: "rel-qin-fuzhen", source: "qin-yu", target: "fu-zhen", kind: "subordinate", label: "军中骨干", summary: "付震在后期决策、负伤与升官，是秦禹军政班底的中坚。", arcIds: ["arc-foreign-chaos", "arc-final-war"] },
+    { id: "rel-meng-fuzhen", source: "meng-xi", target: "fu-zhen", kind: "comrade", label: "并肩共事", summary: "付震与孟玺在后期军务中多有配合。", arcIds: ["arc-foreign-chaos"] },
+    { id: "rel-qin-jiangxiaolong", source: "qin-yu", target: "jiang-xiaolong", kind: "friend", label: "四区的朋友", summary: "远在四区的江小龙在关键时刻出手相助。", arcIds: ["arc-foreign-chaos"] },
+    { id: "rel-qin-linyaozong", source: "qin-yu", target: "lin-yaozong", kind: "family", label: "翁婿", summary: "林耀宗（林总督）是秦禹的岳父，后期屡次示意他接过总督之位。", arcIds: ["arc-nine-eight-politics", "arc-spring"] },
+    { id: "rel-lin-father", source: "lin-yaozong", target: "lin-nianlei", kind: "family", label: "父女", summary: "林念蕾出身林家，是连接秦禹与林耀宗的亲情纽带。", arcIds: ["arc-spring"] },
+    { id: "rel-qin-luxiaofeng", source: "qin-yu", target: "lu-xiaofeng", kind: "rival", label: "港口角力", summary: "陆晓峰在港口博弈中提条件、谈利益，与秦禹一方暗中较量。", arcIds: ["arc-trade-routes"] },
+    { id: "rel-qin-laojin", source: "qin-yu", target: "lao-jin", kind: "enemy", label: "远山地头蛇", summary: "老金原本逍遥，因挡了秦禹川府布局而迎来最惨的一天。", arcIds: ["arc-chuanfu-rising"] }
   ],
   characters: [
     character({ id: "qin-yu", name: "秦禹", aliases: ["秦老黑", "禹少"], factionIds: ["songjiang-police", "black-street", "chuanfu"], firstSeen: range(1, 2, "序章至第一章"), role: "主角，川府系核心", profile: "从待规划区走出的青年，凭狠劲、判断力和组织能力不断向上。", story: "他先在松江警务和黑街之间求生，随后经营交易线、进入奉北和南沪棋局，最终在川府建立自己的军事政治力量。", traits: ["冷静", "能忍", "重情义", "善于借势"], locationIds: ["planning-zone", "ninth-district", "songjiang", "chuanfu", "nanhu", "bar-city"] }),
@@ -321,7 +304,21 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     character({ id: "xu-yan", name: "许岩", aliases: ["老许"], factionIds: ["military-intel"], firstSeen: range(2646, 2653, "第二六四六章至第二六五三章"), role: "军情线人物", profile: "后期军情和暗线行动中的重要支点。", story: "许岩在最终阶段承担情报和行动压力，他的出现让暗战代价更具体。", traits: ["沉稳", "隐忍", "可靠"], locationIds: ["old-triangle", "red-dan"] }),
     character({ id: "ke-hua", name: "柯桦", aliases: [], factionIds: ["military-intel", "eu-zone"], firstSeen: range(2647, 2654, "第二六五四章"), role: "终局外部推手", profile: "在北伐前后提供提点并参与抢人等关键动作。", story: "柯桦推动最终阶段的外围变化，让战局在细节上出现转折。", traits: ["敏锐", "果断"], locationIds: ["bar-city", "eu-first-zone"] }),
     character({ id: "he-dachuan", name: "何大川", aliases: [], factionIds: ["chuanfu"], firstSeen: range(1815, 1820, "第一八二零章"), role: "草莽军事力量", profile: "带有匪气的执行者，能把孟玺的想法落到行动里。", story: "何大川在川府后期与孟玺共同形成草莽和谋略结合的支线。", traits: ["粗粝", "敢打", "执行力强"], locationIds: ["chuanfu", "old-triangle"] }),
-    character({ id: "zhou-xingli", name: "周兴礼", aliases: ["老周"], factionIds: ["feng-line"], firstSeen: range(2700, 2727, "第二七零七章至第二七二七章"), role: "终局高层对手", profile: "后期棋局中以高层政治手段落子的对手。", story: "周兴礼在最终阶段以政治手段影响战场，体现乱世高层博弈的冷酷。", traits: ["老辣", "冷静", "善落子"], locationIds: ["red-dan", "eight-zone"] })
+    character({ id: "zhou-xingli", name: "周兴礼", aliases: ["老周"], factionIds: ["feng-line"], firstSeen: range(2700, 2727, "第二七零七章至第二七二七章"), role: "终局高层对手", profile: "后期棋局中以高层政治手段落子的对手。", story: "周兴礼在最终阶段以政治手段影响战场，体现乱世高层博弈的冷酷。", traits: ["老辣", "冷静", "善落子"], locationIds: ["red-dan", "eight-zone"] }),
+    character({ id: "zhen-zhen", name: "珍珍", aliases: [], tier: "supporting", factionIds: ["planned-zone", "black-street"], firstSeen: range(553, 553, "第五五三章"), role: "吴天胤身边人", profile: "最了解吴天胤的女人，在他被亲情与时代逼到绝路时始终守在身边。", story: "珍珍见证了吴天胤被亲情与时代逼到绝路的全过程，是这条悲剧线的温度。", traits: ["痴情", "隐忍"], locationIds: ["songjiang"] }),
+    character({ id: "a-hong", name: "阿宏", aliases: [], tier: "supporting", factionIds: ["planned-zone", "black-street"], firstSeen: range(721, 721, "第七二一章"), role: "交易线断后者", profile: "性子仗义的底层硬汉，在一次逃亡中主动为同伴断后，最终惨死。", story: "阿宏之死是乱世吞噬底层的缩影，也让秦禹与吴天胤的线更显沉重。", traits: ["仗义", "硬气"], locationIds: ["songjiang", "jiangzhou"] }),
+    character({ id: "a-long", name: "阿龙", aliases: [], tier: "supporting", factionIds: ["black-street"], firstSeen: range(20, 20, "第二十章"), role: "松江街面人物", profile: "靠胆子和狠劲一度火遍松江街面的地下人物，张扬好斗。", story: "阿龙代表松江早期街面的浮沉，是黑街生态的一个注脚。", traits: ["张扬", "好斗"], locationIds: ["songjiang", "black-street"] }),
+    character({ id: "lao-niqiu", name: "老泥鳅", aliases: [], tier: "supporting", factionIds: ["black-street"], firstSeen: range(25, 25, "第二十五章"), role: "黑街老滑头", profile: "在黑街混迹多年、油滑世故、滑不留手的老牌地下人物。", story: "老泥鳅靠经验和油滑在地下江湖周旋，是黑街规则的活样本。", traits: ["油滑", "精明"], locationIds: ["black-street", "tuzha-street"] }),
+    character({ id: "lei-zi", name: "雷子", aliases: [], tier: "supporting", factionIds: ["black-street"], firstSeen: range(19, 19, "第十九章"), role: "凶悍打手团首", profile: "手底下带着一支凶残能打的雷子团队，专干脏活硬仗的打手头目。", story: "雷子团队是秦禹一方可调动的暴力执行力量，干脏活、打硬仗。", traits: ["凶悍", "能打"], locationIds: ["songjiang", "tuzha-street"] }),
+    character({ id: "yu-jinnian", name: "于瑾年", aliases: [], tier: "supporting", factionIds: ["chuanfu"], firstSeen: range(68, 68, "第六十八章"), role: "川府名士", profile: "在川府声望极高、几乎无人不知的地方名士，通达人情。", story: "于瑾年的声望成为秦禹立足川府、聚拢人心的重要助力。", traits: ["有声望", "通达"], locationIds: ["chuanfu"] }),
+    character({ id: "qiu-wu", name: "仇伍", aliases: [], tier: "supporting", factionIds: ["chen-line"], firstSeen: range(709, 709, "第七零九章"), role: "南沪智囊", profile: "善于审时度势、讲恩义又会劝说的南沪幕后智囊人物。", story: "仇伍多次以劝说与恩情影响秦禹的南沪线，是人情棋局里的关键一子。", traits: ["善谋", "重恩义"], locationIds: ["nanhu"] }),
+    character({ id: "wang-zongxiao", name: "王宗孝", aliases: [], tier: "supporting", factionIds: ["chen-line"], firstSeen: range(1041, 1041, "第一零四一章"), role: "龙城王家家主", profile: "和蔼可亲的表象下精于盘算的龙城王家掌门，能屈能伸。", story: "王家与秦禹由对立到妥协，最终散尽家财、低头求活躲过一劫。", traits: ["精算", "能屈能伸"], locationIds: ["planning-zone"] }),
+    character({ id: "ye-lin", name: "叶琳", aliases: [], tier: "supporting", factionIds: ["chuanfu"], firstSeen: range(237, 237, "第二三七章"), role: "资本经营者", profile: "精干务实的经营者，后期替秦禹接手并盘活故人资本等产业。", story: "叶琳从早期登场到后期接手故人资本，承担经营与盘活的角色。", traits: ["精干", "务实"], locationIds: ["nanhu", "chuanfu"] }),
+    character({ id: "fu-zhen", name: "付震", aliases: [], tier: "supporting", factionIds: ["chuanfu", "military-intel"], firstSeen: range(2295, 2295, "第二二九五章"), role: "军中骨干", profile: "肯拼敢扛、在后期负责决策与执行的军政班底中坚力量。", story: "付震在后期决策、负伤、升官，是秦禹军政班底里成长起来的中坚。", traits: ["果断", "肯拼"], locationIds: ["old-triangle", "red-dan"] }),
+    character({ id: "jiang-xiaolong", name: "江小龙", aliases: [], tier: "supporting", factionIds: ["military-intel"], firstSeen: range(2147, 2147, "第二一四七章"), role: "四区外援", profile: "远在四区、为人仗义，在秦禹受困海外时关键时刻出手相助的朋友。", story: "江小龙在秦禹海外受困时出手相助，是异地战线上的一份助力。", traits: ["仗义", "果敢"], locationIds: ["old-triangle"] }),
+    character({ id: "lin-yaozong", name: "林耀宗", aliases: ["林总督"], tier: "supporting", factionIds: ["chuanfu", "gu-line"], firstSeen: range(1438, 1438, "第一四三八章"), role: "总督，秦禹岳父", profile: "稳坐高位、施政有方的总督级人物，也是秦禹的岳父。", story: "林耀宗后期屡次示意秦禹接过总督之位，是连接权力顶层与亲情的人物。", traits: ["稳健", "有格局"], locationIds: ["chuanfu", "ninth-district"] }),
+    character({ id: "lu-xiaofeng", name: "陆晓峰", aliases: [], tier: "supporting", factionIds: ["chen-line"], firstSeen: range(871, 871, "第八七一章"), role: "港口博弈一方", profile: "心思缜密又重利、善于在港口博弈中提条件谈价码的利益方。", story: "陆晓峰在港口博弈中与各方周旋，是商路暗战里的一枚棋子。", traits: ["谨慎", "重利"], locationIds: ["jiangzhou"] }),
+    character({ id: "lao-jin", name: "老金", aliases: [], tier: "supporting", factionIds: ["chuanfu"], firstSeen: range(1325, 1325, "第一三二五章"), role: "远山地头蛇", profile: "原本在远山过着逍遥日子、欺软怕硬的地方地头蛇人物。", story: "老金因挡了秦禹川府布局而迎来最惨的一天，是地方势力被收编的缩影。", traits: ["市侩", "倒霉"], locationIds: ["chuanfu"] })
   ],
   themes: [
     {
@@ -381,9 +378,13 @@ export const ninthDistrict: NovelDataset = {
   }),
   characters: rawNinthDistrict.characters.map((item) => {
     const appearance = appearances[item.id] ?? item.profile;
+    const relationshipIds = rawNinthDistrict.relationships
+      .filter((relationship) => relationship.source === item.id || relationship.target === item.id)
+      .map((relationship) => relationship.id);
     return {
       ...item,
       appearance,
+      relationshipIds,
       imagePrompt: buildCharacterPrompt(item, appearance)
     };
   })

@@ -1563,3 +1563,26 @@ input:focus-visible,
     gap: 12px;
   }
 }
+
+/* Character tier indicators */
+.tier-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-left: 6px;
+  border-radius: 50%;
+  background: var(--steel);
+  vertical-align: middle;
+}
+
+.supporting-intro {
+  margin: 16px 0;
+  padding: 16px;
+  border: 1px dashed rgba(206, 226, 240, 0.2);
+  border-radius: 16px;
+  background: rgba(12, 18, 26, 0.4);
+}
+
+.supporting-intro p {
+  margin: 0 0 12px;
+}

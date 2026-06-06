@@ -57,23 +57,37 @@ export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter
             className={character.id === selectedCharacter.id ? "is-selected" : ""}
             onClick={() => onSelectCharacter(character.id)}
           >
-            <strong>{character.name}</strong>
+            <strong>
+              {character.name}
+              {character.tier === "supporting" ? <i className="tier-dot" aria-label="次要人物" /> : null}
+            </strong>
             <span>{character.role}</span>
           </button>
         ))}
       </div>
       <article className="profile-card">
-        <p className="panel-label">人物档案</p>
+        <p className="panel-label">人物档案 · {selectedCharacter.tier === "main" ? "主要人物" : "次要人物"}</p>
         <h3>{selectedCharacter.name}</h3>
         <p className="role-line">{selectedCharacter.role}</p>
-        <div className="portrait-layout">
-          <AssetImage
-            src={`/portraits/${selectedCharacter.id}.png`}
-            alt={`${selectedCharacter.name}形象`}
-            placeholder="形象图待生成"
-            variant="portrait"
-          />
-          <div className="portrait-text">
+        {selectedCharacter.tier === "main" ? (
+          <div className="portrait-layout">
+            <AssetImage
+              src={`/portraits/${selectedCharacter.id}.png`}
+              alt={`${selectedCharacter.name}形象`}
+              placeholder="形象图待生成"
+              variant="portrait"
+            />
+            <div className="portrait-text">
+              <p>{selectedCharacter.profile}</p>
+              <div className="chip-row">
+                {selectedCharacter.traits.map((trait) => (
+                  <span key={trait}>{trait}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="supporting-intro">
             <p>{selectedCharacter.profile}</p>
             <div className="chip-row">
               {selectedCharacter.traits.map((trait) => (
@@ -81,7 +95,7 @@ export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter
               ))}
             </div>
           </div>
-        </div>
+        )}
         <p>{selectedCharacter.story}</p>
         <dl className="profile-meta">
           <div>

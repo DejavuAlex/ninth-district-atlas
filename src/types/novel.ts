@@ -64,15 +64,29 @@ export interface Character {
   appearance: string;
   imagePrompt: string;
   traits: string[];
+  tier: "main" | "supporting";
   locationIds: LocationId[];
   relationshipIds: string[];
 }
+
+export type RelationshipKind =
+  | "brotherhood"
+  | "family"
+  | "romance"
+  | "ally"
+  | "rival"
+  | "mentor"
+  | "enemy"
+  | "political"
+  | "subordinate"
+  | "comrade"
+  | "friend";
 
 export interface Relationship {
   id: string;
   source: CharacterId;
   target: CharacterId;
-  kind: "brotherhood" | "family" | "romance" | "ally" | "rival" | "mentor" | "enemy" | "political";
+  kind: RelationshipKind;
   label: string;
   summary: string;
   arcIds: ArcId[];

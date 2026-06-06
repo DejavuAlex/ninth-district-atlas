@@ -19,7 +19,10 @@ const kindLabel: Record<string, string> = {
   rival: "对手",
   mentor: "识才",
   enemy: "敌人",
-  political: "政治"
+  political: "政治",
+  subordinate: "部属",
+  comrade: "战友",
+  friend: "旧识"
 };
 
 const kindColor: Record<string, string> = {
@@ -30,7 +33,10 @@ const kindColor: Record<string, string> = {
   rival: "#d8a24a",
   mentor: "#7d9bd6",
   enemy: "#d6452f",
-  political: "#b38bd0"
+  political: "#b38bd0",
+  subordinate: "#5f9ea0",
+  comrade: "#8fae5b",
+  friend: "#c9a36a"
 };
 
 const modes: Array<{ id: Mode; label: string }> = [
