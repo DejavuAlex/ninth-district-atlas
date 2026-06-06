@@ -21,6 +21,15 @@ export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter
     return base.filter((character) => factionId === "all" || character.factionIds.includes(factionId));
   }, [dataset.characters, factionId, query, searchResult.characters]);
 
+  const mainCharacters = useMemo(
+    () => visibleCharacters.filter((character) => character.tier !== "supporting"),
+    [visibleCharacters]
+  );
+  const supportingCharacters = useMemo(
+    () => visibleCharacters.filter((character) => character.tier === "supporting"),
+    [visibleCharacters]
+  );
+
   const relationships = getRelationshipsForCharacter(dataset, selectedCharacter.id);
 
   return (
@@ -49,21 +58,40 @@ export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter
           </button>
         ))}
       </div>
-      <div className="character-list" aria-label="人物列表">
-        {visibleCharacters.map((character) => (
-          <button
-            key={character.id}
-            type="button"
-            className={character.id === selectedCharacter.id ? "is-selected" : ""}
-            onClick={() => onSelectCharacter(character.id)}
-          >
-            <strong>
-              {character.name}
-              {character.tier === "supporting" ? <i className="tier-dot" aria-label="次要人物" /> : null}
-            </strong>
-            <span>{character.role}</span>
-          </button>
-        ))}
+      <div className="character-groups" aria-label="人物列表">
+        {[
+          { key: "main", title: "主要人物", hint: "有专属立绘", list: mainCharacters },
+          { key: "supporting", title: "次要人物", hint: "仅文字介绍", list: supportingCharacters }
+        ].map((group) =>
+          group.list.length === 0 ? null : (
+            <section key={group.key} className="character-group">
+              <p className={`list-section-head is-${group.key}`}>
+                <span className="lsh-title">{group.title}</span>
+                <span className="lsh-count">{group.list.length}</span>
+                <small>{group.hint}</small>
+              </p>
+              <div className={`character-list ${group.key === "supporting" ? "is-supporting-grid" : ""}`}>
+                {group.list.map((character) => {
+                  const classes = [
+                    character.id === selectedCharacter.id ? "is-selected" : "",
+                    character.tier === "supporting" ? "is-supporting" : "is-main"
+                  ].filter(Boolean).join(" ");
+                  return (
+                    <button key={character.id} type="button" className={classes} onClick={() => onSelectCharacter(character.id)}>
+                      <strong>
+                        {character.name}
+                        <span className={`tier-badge ${character.tier === "supporting" ? "is-supporting" : "is-main"}`}>
+                          {character.tier === "supporting" ? "次要" : "主要"}
+                        </span>
+                      </strong>
+                      <span>{character.role}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          )
+        )}
       </div>
       <article className="profile-card">
         <p className="panel-label">人物档案 · {selectedCharacter.tier === "main" ? "主要人物" : "次要人物"}</p>

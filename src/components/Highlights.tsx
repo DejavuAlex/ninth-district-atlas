@@ -63,8 +63,7 @@ function VideoSlot({ id, poster }: { id: string; poster: string }) {
       ) : null}
       <div className="hl-video-badge">
         <FilmSlate size={24} weight="duotone" />
-        <span>短视频位 · 待上传</span>
-        <code>public/videos/{id}.mp4</code>
+        <span>短视频 · 敬请期待</span>
       </div>
     </div>
   );
@@ -90,10 +89,9 @@ export function Highlights({
     <div className="highlights">
       <div className="section-heading">
         <p className="section-kicker">重点情节</p>
-        <h2>那些花了笔墨的名场面</h2>
+        <h2>大势之下，众生的挣扎与抉择</h2>
         <p>
-          从地区争斗到派系博弈，再到战争的残酷，挑出小说里最重要、最有分量的高光时刻。每个情节都预留了短视频位，
-          把成片放进 <code>public/videos/</code> 即可自动嵌入。
+          从街巷厮杀到派系博弈，再到战争的血与火，每一段都是时代洪流碾过普通人时，他们如何挣扎、坚守与抉择的缩影，后续也将陆续配上短视频。
         </p>
       </div>
 

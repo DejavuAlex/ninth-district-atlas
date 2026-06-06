@@ -26,7 +26,7 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
 
   await page.getByRole("link", { name: "重点情节" }).click();
   await expect(page).toHaveURL(/\/highlights$/);
-  await expect(page.getByRole("heading", { name: "那些花了笔墨的名场面" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "大势之下，众生的挣扎与抉择" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "马踏长吉" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "无名的志愿兵·冯玉年战死北风口" })).toBeVisible();
 
