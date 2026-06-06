@@ -11,7 +11,7 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
 
   await page.getByRole("button", { name: "查看川府" }).click();
   await expect(page.getByRole("heading", { name: "川府" })).toBeVisible();
-  await expect(page.locator(".detail-panel").getByText("秦禹后期立足、扩军和建立川府系的核心地盘。")).toBeVisible();
+  await expect(page.locator(".detail-panel").getByText("紧邻八区、九区的独立特区", { exact: false })).toBeVisible();
 
   await page.getByRole("link", { name: "人物关系" }).click();
   await expect(page).toHaveURL(/\/characters$/);
