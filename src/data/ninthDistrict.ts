@@ -71,7 +71,19 @@ const appearances: Record<string, string> = {
   "he-dachuan":
     "粗豪壮实、满脸匪气与胡茬的草莽汉子；穿杂凑的旧军装，眼神凶悍直接、神态粗粝，是把谋士想法砸成行动的那种猛人。",
   "zhou-xingli":
-    "年长威严的高层人物，挺括的军政大衣；面相沉静老辣、眼神深不可测，神态从容落子，气场压人。"
+    "年长威严的高层人物，挺括的军政大衣；面相沉静老辣、眼神深不可测，神态从容落子，气场压人。",
+  "xiao-qi":
+    "退伍军人气质的精悍男人，寸头、面相冷硬沉默，眼神锐利如猎手；身着低调的深色夹克或战术外套、随身带着狙击枪，神态镇定克制，是那种话不多却枪法致命的老兵。",
+  "lao-li":
+    "留着八字胡、精明老练的中年警务长官，面相沉稳、眼神里全是阅历与算计；身着挺括的深色警务制服或大衣，神态从容不迫，是那种笑眯眯却谁都算计不过的老狐狸。",
+  "ye-zixiao":
+    "梳着利落马尾、气场阴冷的黑道枭雄，面相棱角分明、眼神狠厉而从容；身着黑色皮夹克或风衣，舔唇浅笑间透着杀伐果断，是那种步伐不疾不徐却令人胆寒的狠角色。",
+  "liuzi-shu":
+    "面带刀疤却气质沉稳的江湖老者，相貌粗硬、眼神温厚内敛；身着朴实的深色外套，背微躬、声音浑厚，是那种看着凶、相处却极稳重可靠的马家老臣。",
+  "xiao-bai":
+    "土渣街混出来的年轻狠角，剃着扎眼的寸头、面相桀骜不驯，眼神里全是街头的狠劲；身着街头风的皮夹克或运动服，姿态张扬挑衅，是那种一言不合就动刀、谁都不放在眼里的悍勇小兄弟。",
+  "ye-lin":
+    "气质出众、眉目清明的成熟女性，妆容利落、神态从容自信；身着剪裁考究的旗袍或职业风衣，举手投足都是风月场与商场历练出的分寸感，是那种笑意得体却让人不敢小看的当家老板娘。"
 };
 
 const character = (item: CharacterInput): Omit<Character, "imagePrompt" | "appearance" | "relationshipIds"> => ({
@@ -283,7 +295,12 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "rel-qin-leizi", source: "qin-yu", target: "lei-zi", kind: "subordinate", label: "凶悍打手团", summary: "雷子团队凶残能打，是秦禹一方可调用的暴力执行力量。", arcIds: ["arc-fengbei-crime", "arc-trade-routes"] },
     { id: "rel-qin-qiuwu", source: "qin-yu", target: "qiu-wu", kind: "friend", label: "南沪恩义", summary: "仇伍多次劝说与施恩，是秦禹在南沪线上的旧识与人情。", arcIds: ["arc-trade-routes", "arc-nanhu-changji"] },
     { id: "rel-qin-wangzongxiao", source: "qin-yu", target: "wang-zongxiao", kind: "rival", label: "王家博弈", summary: "龙城王家家主王宗孝与秦禹由对立到妥协，最终散财求活。", arcIds: ["arc-nanhu-changji", "arc-spring"] },
-    { id: "rel-qin-yelin", source: "qin-yu", target: "ye-lin", kind: "subordinate", label: "接手故人资本", summary: "叶琳后期替秦禹接手并盘活故人资本，是经营层面的执行者。", arcIds: ["arc-final-war", "arc-spring"] },
+    { id: "rel-qin-yelin", source: "qin-yu", target: "ye-lin", kind: "subordinate", label: "接手故人资本", summary: "叶琳从喜乐宫老板娘走到台前，替秦禹接手并盘活故人留下的资本与产业，是经营层面的核心执行者。", arcIds: ["arc-final-war", "arc-spring"] },
+    { id: "rel-qin-xiaoqi", source: "qin-yu", target: "xiao-qi", kind: "comrade", label: "最早的悍将", summary: "小祁是退伍狙击手，从待规划区起就是秦禹最早、最敢拼命的暴力班底，多次在生死关头持枪接应。", arcIds: ["arc-survival-entry", "arc-final-war"] },
+    { id: "rel-qin-laoli", source: "qin-yu", target: "lao-li", kind: "mentor", label: "官面靠山", summary: "警务司长老李看中秦禹的质感，是他挤进特区警务系统、早期立足九区的引路人与官面靠山。", arcIds: ["arc-survival-entry", "arc-black-street"] },
+    { id: "rel-qin-yezixiao", source: "qin-yu", target: "ye-zixiao", kind: "comrade", label: "枭雄悍将", summary: "没身份的黑道枭雄枭哥杀伐果断，一路与秦禹绑在一起，从街面火并打到甲板死守与北伐战场。", arcIds: ["arc-black-street", "arc-final-war"] },
+    { id: "rel-maer-liuzishu", source: "ma-lao-er", target: "liuzi-shu", kind: "ally", label: "马家老臣", summary: "刘子叔跟着马家近十年、看着马老二长大，是稳住马家这条线的定海针。", arcIds: ["arc-black-street"] },
+    { id: "rel-maer-xiaobai", source: "ma-lao-er", target: "xiao-bai", kind: "subordinate", label: "麾下悍刀", summary: "土渣街出身的小白狂悖难驯、敢打敢杀，是马老二手下最锋利也最难管的年轻打手，唯独服马老二。", arcIds: ["arc-black-street"] },
     { id: "rel-qin-fuzhen", source: "qin-yu", target: "fu-zhen", kind: "subordinate", label: "军中骨干", summary: "付震在后期决策、负伤与升官，是秦禹军政班底的中坚。", arcIds: ["arc-foreign-chaos", "arc-final-war"] },
     { id: "rel-meng-fuzhen", source: "meng-xi", target: "fu-zhen", kind: "comrade", label: "并肩共事", summary: "付震与孟玺在后期军务中多有配合。", arcIds: ["arc-foreign-chaos"] },
     { id: "rel-qin-jiangxiaolong", source: "qin-yu", target: "jiang-xiaolong", kind: "friend", label: "四区的朋友", summary: "远在四区的江小龙在关键时刻出手相助。", arcIds: ["arc-foreign-chaos"] },
@@ -326,7 +343,12 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     character({ id: "lei-zi", name: "雷子", aliases: [], tier: "supporting", factionIds: ["black-street"], firstSeen: range(19, 19, "第十九章"), role: "凶悍打手团首", profile: "手底下带着一支凶残能打的雷子团队，专干脏活硬仗的打手头目。", story: "雷子团队是秦禹一方可调动的暴力执行力量，干脏活、打硬仗。", traits: ["凶悍", "能打"], locationIds: ["songjiang", "tuzha-street"] }),
     character({ id: "qiu-wu", name: "仇伍", aliases: [], tier: "supporting", factionIds: ["chen-line"], firstSeen: range(709, 709, "第七零九章"), role: "南沪智囊", profile: "善于审时度势、讲恩义又会劝说的南沪幕后智囊人物。", story: "仇伍多次以劝说与恩情影响秦禹的南沪线，是人情棋局里的关键一子。", traits: ["善谋", "重恩义"], locationIds: ["nanhu"] }),
     character({ id: "wang-zongxiao", name: "王宗孝", aliases: [], tier: "supporting", factionIds: ["chen-line"], firstSeen: range(1041, 1041, "第一零四一章"), role: "龙城王家家主", profile: "和蔼可亲的表象下精于盘算的龙城王家掌门，能屈能伸。", story: "王家与秦禹由对立到妥协，最终散尽家财、低头求活躲过一劫。", traits: ["精算", "能屈能伸"], locationIds: ["planning-zone"] }),
-    character({ id: "ye-lin", name: "叶琳", aliases: [], tier: "supporting", factionIds: ["chuanfu"], firstSeen: range(237, 237, "第二三七章"), role: "资本经营者", profile: "精干务实的经营者，后期替秦禹接手并盘活故人资本等产业。", story: "叶琳从早期登场到后期接手故人资本，承担经营与盘活的角色。", traits: ["精干", "务实"], locationIds: ["nanhu", "chuanfu"] }),
+    character({ id: "ye-lin", name: "叶琳", aliases: [], factionIds: ["black-street", "chuanfu"], firstSeen: range(237, 237, "第二三七章"), role: "喜乐宫老板娘 · 故人资本掌舵者", profile: "气质出众、深谙路面规矩的喜乐宫女老板，传言是韩三千的旧人；后为秦禹接手并盘活故人资本，成为经营核心。", story: "叶琳是喜乐宫的当家老板娘，眉目清明、气质出众，外界传言她是韩三千的旧人。她懂规矩、有分寸，初见秦禹便言明‘路面的规矩不会差，以后慢慢接触’。此后她从风月场的老板娘一步步走到台前，替秦禹接手并盘活故人留下的资本与产业，是把刀光剑影换算成账面实力的关键经营者。", traits: ["有气质", "懂规矩", "精于经营", "外柔内韧"], locationIds: ["songjiang", "nanhu", "chuanfu"] }),
+    character({ id: "xiao-qi", name: "小祁", aliases: [], factionIds: ["planned-zone", "chuanfu", "military-intel"], firstSeen: range(1, 9, "第一章前后"), role: "退伍狙击手 · 秦禹最早的悍将", profile: "服役出身、枪法冷硬的狙击手，从待规划区跟着秦禹一路杀出来，是其最早也最可靠的暴力班底。", story: "小祁当过兵、办事老练，从待规划区时期就跟在秦禹身边，是最早的核心打手。秦禹在松江遇袭重伤时，他带队驾车持狙强行接应、果断扫尾；此后多年枪不离手，从街面火并打到边境战场，直到后川府时代才半退休，偶尔在军情部门客串讲师。他话不多，关键时刻却永远顶在最前。", traits: ["冷静", "枪法精准", "忠诚", "敢拼命"], locationIds: ["planning-zone", "songjiang", "old-triangle", "red-dan"] }),
+    character({ id: "lao-li", name: "老李", aliases: ["李司", "李司长"], factionIds: ["songjiang-police"], firstSeen: range(1, 1, "第一章"), role: "特区警务司长 · 秦禹的官面靠山", profile: "留着八字胡、比猴还精的警务司长，是秦禹挤进特区警务系统的引路人和官面靠山。", story: "老李是特区警务系统的李司长，岁数不小、人精似的，连袁克几番拉拢都被他装傻挡回。秦禹靠一颗钻石的‘礼节’和一身质感入了他的眼，从此在警司里有了罩着自己的人，气不顺时连袁克都敢骂。老李看人极准、进退有度，是秦禹早期立足九区不可或缺的那只老狐狸。", traits: ["老练", "精明", "看人极准", "进退有度"], locationIds: ["ninth-district", "songjiang"] }),
+    character({ id: "ye-zixiao", name: "叶子枭", aliases: ["枭哥"], factionIds: ["black-street", "chuanfu", "military-intel"], firstSeen: range(58, 58, "第五十八章"), role: "黑道枭雄 · 秦禹的悍将", profile: "梳着马尾、没有身份的黑道枭雄，杀伐果断、步伐从容，是秦禹阵营里最凶悍的一把利刃。", story: "叶子枭外号枭哥，是个没身份的狠人，一句‘有人就干掉他’道尽他的杀伐果断。他原打算在松江干完事就留下经营生意，却一路与秦禹绑在一起，从街面火并打到死守甲板、北伐战场。到后川府时代，他和小祁等老炮一样逐渐老去、半退休，偶尔在军情部门客串讲师，是贯穿全书的暴力核心之一。", traits: ["杀伐果断", "从容狠辣", "重义", "悍勇"], locationIds: ["songjiang", "black-street", "old-triangle", "red-dan"] }),
+    character({ id: "liuzi-shu", name: "刘子叔", aliases: [], factionIds: ["ma-family", "black-street"], firstSeen: range(76, 76, "第七十六章"), role: "马家老臣", profile: "跟着马家老马近十年、看着马老二长大的忠诚老臣，脸上有疤却沉稳浑厚、不摆江湖架子。", story: "刘子叔是马家的老人，跟着马老二的父亲老马将近十年，可以说是看着马老二长大的。他脸上有一道显眼的疤、看着凶，说话却声音浑厚、谦和稳重，从不摆江湖前辈的架子。马家行事时他常在旁稳住局面、出言相劝，是黑街马家这条线上最让人放心的定海针。", traits: ["沉稳", "忠诚", "老成", "顾全大局"], locationIds: ["black-street", "jiangzhou"] }),
+    character({ id: "xiao-bai", name: "小白", aliases: ["土渣街大娃"], factionIds: ["ma-family", "black-street"], firstSeen: range(607, 607, "第六零七章"), role: "马家悍勇打手", profile: "土渣街出身、自称‘大娃’的马家新锐打手，狂悖难驯、敢打敢杀，只服马老二。", story: "小白是土渣街混出来的狠角色，曾在喜乐宫一刀砍翻文永刚，是马老二手下新晋的悍勇小兄弟。他性子狂得没边，连刘子叔有时都驾驭不了，唯独马老二一开口骂，他立马不敢吭声。仗着一身狠劲在黑街横冲直撞，是马家年轻一代里最锋利也最难管的一把刀。", traits: ["狂悖", "悍勇", "敢打敢杀", "认主"], locationIds: ["tuzha-street", "black-street"] }),
     character({ id: "fu-zhen", name: "付震", aliases: [], tier: "supporting", factionIds: ["chuanfu", "military-intel"], firstSeen: range(2295, 2295, "第二二九五章"), role: "军中骨干", profile: "肯拼敢扛、在后期负责决策与执行的军政班底中坚力量。", story: "付震在后期决策、负伤、升官，是秦禹军政班底里成长起来的中坚。", traits: ["果断", "肯拼"], locationIds: ["old-triangle", "red-dan"] }),
     character({ id: "jiang-xiaolong", name: "江小龙", aliases: [], tier: "supporting", factionIds: ["military-intel"], firstSeen: range(2147, 2147, "第二一四七章"), role: "四区外援", profile: "远在四区、为人仗义，在秦禹受困海外时关键时刻出手相助的朋友。", story: "江小龙在秦禹海外受困时出手相助，是异地战线上的一份助力。", traits: ["仗义", "果敢"], locationIds: ["old-triangle"] }),
     character({ id: "lin-yaozong", name: "林耀宗", aliases: ["林总督"], tier: "supporting", factionIds: ["chuanfu", "gu-line"], firstSeen: range(1438, 1438, "第一四三八章"), role: "总督，秦禹岳父", profile: "稳坐高位、施政有方的总督级人物，也是秦禹的岳父。", story: "林耀宗后期屡次示意秦禹接过总督之位，是连接权力顶层与亲情的人物。", traits: ["稳健", "有格局"], locationIds: ["chuanfu", "ninth-district"] }),

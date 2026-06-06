@@ -59,6 +59,12 @@
 - 柯桦 → `prompts/characters/ke-hua.md`（图片：`public/portraits/ke-hua.png`）
 - 何大川 → `prompts/characters/he-dachuan.md`（图片：`public/portraits/he-dachuan.png`）
 - 周兴礼 → `prompts/characters/zhou-xingli.md`（图片：`public/portraits/zhou-xingli.png`）
+- 叶琳 → `prompts/characters/ye-lin.md`（图片：`public/portraits/ye-lin.png`）
+- 小祁 → `prompts/characters/xiao-qi.md`（图片：`public/portraits/xiao-qi.png`）
+- 老李 → `prompts/characters/lao-li.md`（图片：`public/portraits/lao-li.png`）
+- 叶子枭 → `prompts/characters/ye-zixiao.md`（图片：`public/portraits/ye-zixiao.png`）
+- 刘子叔 → `prompts/characters/liuzi-shu.md`（图片：`public/portraits/liuzi-shu.png`）
+- 小白 → `prompts/characters/xiao-bai.md`（图片：`public/portraits/xiao-bai.png`）
 
 ## 次要人物（不出图、无提示词）
-李富贵、珍珍、阿宏、阿龙、老泥鳅、雷子、仇伍、王宗孝、叶琳、付震、江小龙、林耀宗、陆晓峰、老金
+李富贵、珍珍、阿宏、阿龙、老泥鳅、雷子、仇伍、王宗孝、付震、江小龙、林耀宗、陆晓峰、老金
