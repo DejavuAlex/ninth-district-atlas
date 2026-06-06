@@ -26,6 +26,11 @@
 - 巴尔城 → `prompts/locations/bar-city.md`（图片：`public/scenes/bar-city.png`）
 - 耶门 → `prompts/locations/yemen.md`（图片：`public/scenes/yemen.png`）
 - 红丹战场 → `prompts/locations/red-dan.md`（图片：`public/scenes/red-dan.png`）
+- 六区·北境堡垒 → `prompts/locations/liu-zone.md`（图片：`public/scenes/liu-zone.png`）
+- 北风口·莆汾哨站 → `prompts/locations/beifengkou.md`（图片：`public/scenes/beifengkou.png`）
+- 藏源·垒山要塞 → `prompts/locations/zangyuan.md`（图片：`public/scenes/zangyuan.png`）
+- 盐岛·盐业站 → `prompts/locations/yandao.md`（图片：`public/scenes/yandao.png`）
+- 夏岛 → `prompts/locations/xiadao.md`（图片：`public/scenes/xiadao.png`）
 
 ## 人物提示词
 - 秦禹 → `prompts/characters/qin-yu.md`（图片：`public/portraits/qin-yu.png`）

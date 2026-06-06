@@ -81,41 +81,51 @@ const character = (item: CharacterInput): Omit<Character, "imagePrompt" | "appea
 
 const locationScenes: Record<string, string> = {
   "planning-zone":
-    "无政府的边缘废土：残破公路、锈蚀残骸与零散棚户散落在冰封荒原上，几乎没有秩序，混乱、危险、荒凉，是最典型的灾后废墟。",
+    "无政府的边缘废土，秦禹与吴天胤等人挣命的起点：残破公路、锈蚀残骸、人口贩子与零散棚户散落在冰封荒原上；这里几乎没有秩序，买卖人命、丛林法则横行，是最典型、最荒凉的灾后废墟。",
   "ninth-district":
-    "相对成型、有秩序的特区辖区：高大壁垒、检查站与配给点环绕，街道冷硬却运转有序，灯光与岗哨规整，比区外废土体面得多。",
+    "九区·东城，相对成型、有秩序的特区门户：高大壁垒、检查站与配给点环绕，凭身份和粮票才能立足；街道冷硬却运转有序、岗哨规整，比区外废土体面太多，是无数人挤破头想进来的‘里面’。",
   "songjiang":
-    "高密度的特区核心都市：老旧高楼与立交天桥层叠、招牌与霓虹密集、地面湿滑反光，街面繁忙而压抑，明面秩序与地下暗流并存。",
+    "一区·松江，秦禹扎根的特区核心都市：老旧高楼与立交天桥层叠、招牌与霓虹密集、地面终年湿滑反光；警务、黑街与政治利益在同一条街上交织，明面秩序之下是码牌、交易与枪声的地下暗流。",
   "black-street":
-    "松江的灰色地带：密集的旧街、饭馆、码牌赌档与窄巷交错，半明半暗，人情、交易与暴力混杂，市井气浓。",
+    "松江的黑街灰色地带，秦禹、老猫与马家厮混之处：密集的旧街、饭馆、码牌赌档与窄巷半明半暗交错，饭局上谈生意、桌底下见血，人情、义气与暴力在这里混作一团，市井气最浓。",
   "tuzha-street":
-    "低矮拥挤的棚户旧街：铁皮、集装箱与临时摊档紧贴，巷子狭窄泥泞，贫困拥挤、龙蛇混杂，是最底层的生存场。",
+    "土渣街，松江最底层的棚户旧街：铁皮、集装箱与临时摊档紧贴，巷子狭窄泥泞、一步错就会被吞掉；贫困拥挤、龙蛇混杂，是秦禹切入地下规则、踩着三哥往上爬的起步之地。",
   "jiangzhou":
-    "以商路与家族为底色的城市：老字号、码头与会馆林立，市井繁华，街上有生意往来与江湖规矩，并不破败，反而热闹。",
+    "江州，以商路与家族为底色的繁华城市：老字号、码头与会馆林立，李家等家族与江湖规矩盘根错节；街上车马熙攘、生意往来不断，并不破败，反而是难得热闹体面的商埠。",
   "fengbei":
-    "权力圈层所在地：街面规整、官味厚重，办公楼、会所与岗哨密布，秩序森严、气氛压抑，暗藏棋局。",
+    "奉北，权力圈层云集之地：街面规整、官味厚重，办公楼、会所与岗哨密布；表面规矩森严，背地里却是圈子、人情与棋局密织，秦禹屡屡被卷入其中的上层博弈场。",
   "changji":
-    "军事色彩渐重的城市：检查站、驻防营地与运输线交错，街区紧绷肃杀，从江湖城镇转向战时前沿。",
+    "四区·川北一线的长吉，军事色彩渐重的城市：检查站、驻防营地与运输线交错，‘马踏长吉’的硝烟未远；街区紧绷肃杀，是故事从江湖斗争转入成建制战争的拐点。",
   "nanhu":
-    "南方财阀与政治的舞台：相对体面气派，会所、写字楼与霓虹光鲜，街景现代繁华，光鲜表面下暗流涌动。",
+    "二区·南沪，南方财阀与政治的光鲜舞台：会所、写字楼与霓虹气派现代，巨头、智囊与派系在此云集；街景繁华体面，光鲜表面下却是智谋暗战与炮火随时引爆的暗流。",
   "chuanfu":
-    "秦禹的后方根据地：百万亩粮仓、生活镇与军营，秩序重新落地，街镇相对安稳、有炊烟与人气，与区外废土截然不同。",
+    "川府·川府城，秦禹真正立足的后方根据地：百万亩粮仓、生活镇与连片军营，秩序在这里重新落地；街镇相对安稳、有炊烟与人气，是与区外废土截然不同的‘家底’所在。",
   "five-zone":
-    "妖魔鬼怪齐聚的外部区域：势力混杂、街面鱼龙混杂，灰色繁忙，边境与外交压力下既有生意也有暗战。",
+    "五区·川南基地，妖魔鬼怪齐聚的外部区域：势力混杂、街面鱼龙混杂，灰色而繁忙；在边境与外交压力下，这里既做着各路生意，也潜伏着随时翻脸的暗战。",
   "seven-zone":
-    "边境驻防色彩浓重的区域：驻防团、工事与铁丝网环绕，街区紧绷，随时可能爆发冲突。",
+    "七区·南境城，边境驻防色彩浓重的区域：驻防团、工事与铁丝网层层环绕，奔袭与拉锯不断；街区终年紧绷，冲突随时可能在街口骤然升级。",
   "eight-zone":
-    "带高层会议与军政气息的辖区：街面相对规整肃整，权力机构与军事压力交汇，秩序中透着张力。",
+    "八区·边境线，军政气息浓厚的辖区：街面相对规整肃整，高层会议与军事压力在此交汇；秩序之中暗藏张力，是牵动九区与川府政治平衡的关键落子之处。",
   "eu-first-zone":
-    "外部势力代表区域：规则不同、相对现代有序，建筑与街道整洁陌生，军事威慑与谈判并存，冷硬疏离。",
+    "海外·欧盟一区，外部强权的代表区域：规则不同、相对现代有序，建筑与街道整洁而陌生；欧系装甲与谈判威慑并存，冷硬疏离，是把战争推向更大尺度的外部压力源。",
   "old-triangle":
-    "潮湿混乱的边境三角地带：临时阵线、铁丝网与营地交错，泥泞紧张，是各方势力犬牙交错的灰色战区。",
+    "老三角·贸星枢纽，潮湿混乱的边境三角地带：临时阵线、铁丝网与营地犬牙交错，泥泞而紧张；各方势力在此短兵相接，是后期军情与战场反复绞杀的灰色战区。",
   "bar-city":
-    "北伐攻坚的城市战场：断壁残垣、弹坑与焦痕，街道被炮火犁过，围城与巷战的硝烟尚未散去。",
+    "巴尔城，北伐攻坚的城市战场：断壁残垣、弹坑与焦痕遍布，街道被炮火犁过；从诡异对峙到兵围城破，围城与巷战的硝烟是大结局前最惨烈的一幕。",
   "yemen":
-    "远离故土的海外落点：异域街景与私人武装据点，陌生、戒备、临时，带着外乡的疏离感。",
+    "耶门，远离故土的海外落点：异域街景与私人武装据点交错，陌生、戒备而临时；人在他乡，却仍被华区终局战事牢牢牵动，带着浓重的外乡疏离感。",
   "red-dan":
-    "最终决战的象征性战场：焦土、残骸与未熄的火光，满目疮痍，是最后冲锋与牺牲的惨烈之地。"
+    "红丹战场，最终决战的象征性焦土：残骸与未熄的火光中满目疮痍；这里是北伐之后最后冲锋与牺牲的惨烈之地，国仇家恨在此集中爆发。",
+  "liu-zone":
+    "六区·北境堡垒，扼守北线的军事重镇：高墙、哨塔与连营依雪原而立，寒气逼人；这里肃整而戒备森严，是抵御外敌、控扼北方通道的边境堡垒。",
+  "beifengkou":
+    "北风口·莆汾哨站，反复拉锯的前沿火线：‘北风口炮声阵阵’，前沿小队在凛冽寒风中往来出没；哨站简陋、炮火不断，是直面外敌、出生入死的一线阵地。",
+  "zangyuan":
+    "藏源·垒山要塞，依山而建的物资枢纽：壁垒森严、扼守内陆通道，囤积着粮秣与军械；它是后方屯粮聚兵、支撑前线的命脉所在。",
+  "yandao":
+    "盐岛·盐业站，盛产盐与资源的海岛据点：盐场、码头与守军沿海岸铺开，海风咸冷；‘川军插旗、鲸吞盐岛’后，这里成为川府系重要的资源与财源。",
+  "xiadao":
+    "夏岛，全图最东端的远海孤岛：孤悬海外、人迹稀少，远离主战场；它是世界版图的边缘落点，苍茫海雾中透着被遗忘的荒寂。"
 };
 
 const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
@@ -147,11 +157,11 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "songjiang", name: "松江", kind: "city", x: 21.5, y: 28, summary: "秦禹早期扎根的核心城市，警务、黑街和政治利益在此交织。", atmosphere: "城市秩序和地下秩序并行。", sceneImage: "/scenes/songjiang.png", factionIds: ["songjiang-police", "black-street"], eventIds: ["event-police-team", "event-songjiang-return", "event-songjiang-takeover"] },
     { id: "black-street", name: "黑街", kind: "street", x: 25, y: 33, summary: "秦禹、老猫和马家频繁活动的灰色地带。", atmosphere: "饭局、码牌、枪声和人情并存。", factionIds: ["black-street", "ma-family"], eventIds: ["event-black-street", "event-ma-alliance"] },
     { id: "tuzha-street", name: "土渣街", kind: "street", x: 17, y: 33, summary: "早期冲突集中爆发的街区，秦禹从这里切入地下规则。", atmosphere: "低矮、拥挤、一步错就会被吞掉。", factionIds: ["black-street"], eventIds: ["event-tuzha-street", "event-three-parties"] },
-    { id: "jiangzhou", name: "江州", kind: "city", x: 53, y: 80, summary: "早期江湖交易和后期乱局都反复牵动的重要城市。", atmosphere: "商路、家族和江湖人情交错。", factionIds: ["ma-family", "black-street"], eventIds: ["event-jiangzhou", "event-jiangzhou-chaos"] },
+    { id: "jiangzhou", name: "江州", kind: "city", x: 33, y: 50, summary: "早期江湖交易和后期乱局都反复牵动的重要城市。", atmosphere: "商路、家族和江湖人情交错。", factionIds: ["ma-family", "black-street"], eventIds: ["event-jiangzhou", "event-jiangzhou-chaos"] },
     { id: "fengbei", name: "奉北", kind: "city", x: 22, y: 68, summary: "权力圈层和警务政治的重要节点，秦禹多次被卷入。", atmosphere: "表面规矩森严，背后棋局密集。", factionIds: ["wu-line", "feng-line"], eventIds: ["event-fengbei", "event-pharma"] },
     { id: "changji", name: "长吉", kind: "city", x: 40, y: 46, summary: "从江湖斗争走向军事行动的关键城市之一。", atmosphere: "道路、驻防和突袭成为新的语言。", factionIds: ["gu-line", "chuanfu"], eventIds: ["event-changji", "event-sword-changji"] },
     { id: "nanhu", name: "南沪", kind: "city", x: 44, y: 20, summary: "南方巨头聚集的政治舞台，智囊和派系交锋频繁。", atmosphere: "会所、会议和暗线共同推动局势。", factionIds: ["chen-line", "military-intel"], eventIds: ["event-nanhu", "event-nanhu-fire"] },
-    { id: "chuanfu", name: "川府", kind: "frontier", x: 57, y: 63, summary: "秦禹后期立足、扩军和建立川府系的核心地盘。", atmosphere: "粮仓、生活镇和军队让秩序重新落地。", factionIds: ["chuanfu"], eventIds: ["event-chuanfu-entry", "event-chuanfu-war", "event-salt-island"] },
+    { id: "chuanfu", name: "川府", kind: "frontier", x: 57, y: 63, summary: "秦禹后期立足、扩军和建立川府系的核心地盘。", atmosphere: "粮仓、生活镇和军队让秩序重新落地。", factionIds: ["chuanfu"], eventIds: ["event-chuanfu-entry", "event-chuanfu-war"] },
     { id: "five-zone", name: "五区", kind: "district", x: 47, y: 68, summary: "妖魔鬼怪齐聚的外部区域，牵动边境和外交压力。", atmosphere: "利益更复杂，合作和背叛更快切换。", factionIds: ["eu-zone", "chen-line"], eventIds: ["event-five-zone"] },
     { id: "seven-zone", name: "七区", kind: "district", x: 90, y: 64, summary: "后期奔袭和驻防团冲突的重要区域。", atmosphere: "边境紧绷，局部冲突随时升级。", factionIds: ["military-intel"], eventIds: ["event-seven-zone-raid"] },
     { id: "eight-zone", name: "八区", kind: "district", x: 37, y: 61, summary: "后期战局介入者，影响九区和川府的政治平衡。", atmosphere: "高层会议和军事压力共同落子。", factionIds: ["gu-line", "feng-line"], eventIds: ["event-eight-zone"] },
@@ -159,7 +169,12 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "old-triangle", name: "老三角", kind: "frontier", x: 64, y: 81, summary: "后期目光聚集的边境地带，军情和战场压力交织。", atmosphere: "潮湿、混乱、到处是临时阵线。", factionIds: ["military-intel", "chuanfu"], eventIds: ["event-old-triangle"] },
     { id: "bar-city", name: "巴尔城", kind: "battlefield", x: 88, y: 80, summary: "北伐阶段的重要攻坚目标，城市攻防成为大结局前的焦点。", atmosphere: "炮火、围城和心理战压到极限。", factionIds: ["eu-zone", "chuanfu"], eventIds: ["event-bar-city"] },
     { id: "yemen", name: "耶门", kind: "frontier", x: 78, y: 91, summary: "结尾阶段外部谈判和再赴战场的落点之一。", atmosphere: "远离故土，却仍被华区战局牵动。", factionIds: ["military-intel", "eu-zone"], eventIds: ["event-yemen"] },
-    { id: "red-dan", name: "红丹战场", kind: "battlefield", x: 70, y: 89, summary: "最终决战附近的象征性战场，承接北伐后的最后冲锋。", atmosphere: "疲惫、牺牲和最后的国仇家恨集中爆发。", factionIds: ["chuanfu", "military-intel"], eventIds: ["event-final-charge"] }
+    { id: "red-dan", name: "红丹战场", kind: "battlefield", x: 70, y: 89, summary: "最终决战附近的象征性战场，承接北伐后的最后冲锋。", atmosphere: "疲惫、牺牲和最后的国仇家恨集中爆发。", factionIds: ["chuanfu", "military-intel"], eventIds: ["event-final-charge"] },
+    { id: "liu-zone", name: "六区·北境堡垒", kind: "frontier", x: 73, y: 21, summary: "北方边境的堡垒辖区，是抵御外敌与控扼北线的军事重镇。", atmosphere: "高墙、哨塔与驻军，肃整而戒备森严。", factionIds: ["gu-line", "military-intel"], eventIds: [] },
+    { id: "beifengkou", name: "北风口·莆汾哨站", kind: "battlefield", x: 65, y: 65, summary: "北风口一带的前沿哨站，炮声阵阵、小队往来，是反复拉锯的火线。", atmosphere: "寒风呼啸、炮火不断，前沿小队在此出生入死。", factionIds: ["chuanfu", "military-intel"], eventIds: [] },
+    { id: "zangyuan", name: "藏源·垒山要塞", kind: "frontier", x: 53, y: 81, summary: "依山而建的要塞与物资枢纽，扼守内陆通道，是后方的屯粮聚兵之地。", atmosphere: "依山而立、壁垒森严，囤积着粮秣与军械。", factionIds: ["chuanfu"], eventIds: [] },
+    { id: "yandao", name: "盐岛·盐业站", kind: "frontier", x: 72, y: 88, summary: "盛产盐与资源的海岛据点，后期被川军一举插旗、鲸吞收编。", atmosphere: "盐场、码头与守军，海风咸冷、资源是这里的命脉。", factionIds: ["chuanfu", "chen-line"], eventIds: ["event-salt-island"] },
+    { id: "xiadao", name: "夏岛", kind: "frontier", x: 95, y: 41, summary: "全图最东端的远海岛屿，孤悬海外、远离主战场的边陲之地。", atmosphere: "孤悬海上、人迹稀少，是世界边缘的最后落点。", factionIds: ["eu-zone"], eventIds: [] }
   ],
   arcs: [
     { id: "arc-survival-entry", title: "从待规划区进入九区", chapterRange: range(1, 80, "序章至第七十九章"), summary: "秦禹买身份进入第九特区，从底层生存者变成警务体系中的新面孔。", keyEvents: ["event-prologue", "event-qin-enters", "event-police-team"], featuredLocations: ["planning-zone", "ninth-district", "songjiang"], featuredCharacters: ["qin-yu", "qi-lin", "lao-mao"] },
@@ -213,7 +228,7 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "event-mengxi-appears", title: "孟玺进入棋局", chapterRange: range(1815, 1853, "第一八二零章至第一八五三章"), locationId: "chuanfu", characterIds: ["meng-xi", "he-dachuan", "qin-yu"], factionIds: ["chuanfu"], summary: "孟玺和何大川进入主线，匪气、谋略和军事需求结合。", impact: "川府系的谋士和野战力量得到补足。" },
     { id: "event-eu-armor", title: "欧系装甲师压力", chapterRange: range(1921, 1928, "第一九二六章至第一九二八章"), locationId: "eu-first-zone", characterIds: ["da-ya", "li-zhan"], factionIds: ["eu-zone", "chuanfu"], summary: "欧系装甲力量出现，战斗进入更高强度和更大代价的阶段。", impact: "外部军事技术差距成为秦禹一方必须面对的问题。" },
     { id: "event-eu-zone", title: "出发欧盟一区", chapterRange: range(1656, 1661, "第一六六一章前后"), locationId: "eu-first-zone", characterIds: ["qin-yu", "ke-hua"], factionIds: ["eu-zone", "military-intel"], summary: "外部力量的规则和压力进入主线，秦禹阵营需要面对不同体系。", impact: "故事视野从华区内部扩展到更复杂的外部秩序。" },
-    { id: "event-salt-island", title: "川军插旗盐岛", chapterRange: range(1997, 2004, "第二零零一章至第二零零四章"), locationId: "chuanfu", characterIds: ["qin-yu", "da-ya", "meng-xi"], factionIds: ["chuanfu"], summary: "战后川军插旗，重都门庭若市，川府系炙手可热。", impact: "秦禹的地方势力正式获得更大政治分量。" },
+    { id: "event-salt-island", title: "川军插旗盐岛", chapterRange: range(1997, 2004, "第二零零一章至第二零零四章"), locationId: "yandao", characterIds: ["qin-yu", "da-ya", "meng-xi"], factionIds: ["chuanfu"], summary: "战后川军插旗，鲸吞盐岛，川府系炙手可热。", impact: "秦禹的地方势力正式获得更大政治分量。" },
     { id: "event-songjiang-takeover", title: "一步步拿下松江", chapterRange: range(2077, 2084, "第二零八一章至第二零八四章"), locationId: "songjiang", characterIds: ["qin-yu", "feng-ji"], factionIds: ["chuanfu", "feng-line"], summary: "案件真相和匿名电话交织，松江控制权被逐步撬动。", impact: "早期起点城市被重新纳入秦禹的权力版图。" },
     { id: "event-eight-zone", title: "八区介入", chapterRange: range(2179, 2183, "第二一八三章前后"), locationId: "eight-zone", characterIds: ["gu-yan", "qin-yu"], factionIds: ["gu-line", "feng-line"], summary: "八区力量介入，使九区和川府相关博弈再度升级。", impact: "区域战争被更高层级的政治力量左右。" },
     { id: "event-mokambi", title: "再回莫甘比", chapterRange: range(2238, 2248, "第二二四三章至第二二四八章"), locationId: "old-triangle", characterIds: ["qin-yu", "he-dachuan"], factionIds: ["military-intel"], summary: "外部区域激战和谈判并行，远在四区的朋友也被卷入。", impact: "秦禹阵营的影响力扩展到更复杂的海外局面。" },
@@ -288,12 +303,12 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     character({ id: "li-fugui", name: "李富贵", aliases: [], factionIds: ["planned-zone"], firstSeen: range(2, 3, "第二章至第三章"), role: "早期身份交易相关人物", profile: "连接待规划区和九区身份生意的小人物。", story: "他帮助展示身份、钱和生存机会如何在灾变后变成商品。", traits: ["市侩", "现实"], locationIds: ["planning-zone", "ninth-district"] }),
     character({ id: "lin-nianlei", name: "林念蕾", aliases: [], factionIds: ["wu-line", "chuanfu"], firstSeen: range(1121, 1205, "第一一二六章至第一二零五章"), role: "秦禹情感线重要人物", profile: "她把秦禹从战争和权谋中拉回私人情感。", story: "林念蕾在中后期与秦禹关系加深，是乱世中少数稳定的情感牵引。", traits: ["清醒", "温柔", "有主见"], locationIds: ["fengbei", "ninth-district"] }),
     character({ id: "wu-di", name: "吴迪", aliases: [], factionIds: ["wu-line"], firstSeen: range(608, 608, "第六零八章"), role: "政治资源入口", profile: "有谋略和现实判断的上层人物。", story: "吴迪多次表态或运作，为秦禹打开更高层级的局面。", traits: ["理性", "精明", "懂权衡"], locationIds: ["fengbei", "nanhu"] }),
-    character({ id: "gu-yan", name: "顾言", aliases: [], factionIds: ["gu-line"], firstSeen: range(760, 760, "第七六零章"), role: "军政盟友", profile: "名字本身就有分量，背后牵动更大的资源。", story: "顾言在秦禹进入军政层面后成为重要盟友，影响长吉、八区和后期战局。", traits: ["有背景", "果断", "讲合作"], locationIds: ["changji", "eight-zone"] }),
+    character({ id: "gu-yan", name: "顾言", aliases: [], factionIds: ["gu-line"], firstSeen: range(760, 760, "第七六零章"), role: "军政盟友", profile: "名字本身就有分量，背后牵动更大的资源。", story: "顾言在秦禹进入军政层面后成为重要盟友，影响长吉、八区和后期战局。", traits: ["有背景", "果断", "讲合作"], locationIds: ["changji", "eight-zone", "liu-zone"] }),
     character({ id: "ke-ke", name: "可可", aliases: [], factionIds: ["chuanfu", "wu-line"], firstSeen: range(436, 436, "第四三六章"), role: "资源和布局型伙伴", profile: "善于从利益、机会和风险中找到突破口。", story: "可可在药业、川府和边境阶段多次提供关键判断，是秦禹阵营的智力支点。", traits: ["敏锐", "务实", "敢布局"], locationIds: ["fengbei", "chuanfu", "old-triangle"] }),
     character({ id: "lin-chengdong", name: "林成栋", aliases: [], factionIds: ["black-street"], firstSeen: range(649, 649, "第六四九章"), role: "交易线伙伴", profile: "中庸谨慎，但能在交易和资源网络中发挥作用。", story: "林成栋参与秦禹的货路和交易线，让松江利益网络更稳定。", traits: ["谨慎", "务实"], locationIds: ["songjiang", "jiangzhou"] }),
     character({ id: "zhan-nan", name: "展楠", aliases: [], factionIds: ["songjiang-police", "black-street"], firstSeen: range(655, 655, "第六五五章"), role: "行动人员", profile: "能在灰色事务中压住局面的人。", story: "展楠参与交易线和街面事务，承担秦禹阵营中的执行角色。", traits: ["强硬", "可靠"], locationIds: ["songjiang"] }),
     character({ id: "fu-xiaohao", name: "付小豪", aliases: [], factionIds: ["songjiang-police"], firstSeen: range(238, 239, "第二三八章"), role: "案件线人物", profile: "前期案件和利益输送线中的关键人。", story: "付小豪让秦禹接触到更深的犯罪链条，也推动奉北前后的变化。", traits: ["机灵", "现实"], locationIds: ["songjiang", "fengbei"] }),
-    character({ id: "li-zhan", name: "历战", aliases: [], factionIds: ["chuanfu", "military-intel"], firstSeen: range(555, 555, "第五五五章"), role: "战场尖刀", profile: "能打硬仗、敢接高危任务的军事骨干。", story: "历战从中期行动到最终战场不断承担高风险任务，是秦禹阵营的锋刃。", traits: ["勇猛", "直接", "抗压"], locationIds: ["seven-zone", "old-triangle", "red-dan"] }),
+    character({ id: "li-zhan", name: "历战", aliases: [], factionIds: ["chuanfu", "military-intel"], firstSeen: range(555, 555, "第五五五章"), role: "战场尖刀", profile: "能打硬仗、敢接高危任务的军事骨干。", story: "历战从中期行动到最终战场不断承担高风险任务，是秦禹阵营的锋刃。", traits: ["勇猛", "直接", "抗压"], locationIds: ["seven-zone", "old-triangle", "red-dan", "beifengkou"] }),
     character({ id: "da-ya", name: "大牙", aliases: [], factionIds: ["chuanfu"], firstSeen: range(257, 258, "第二五七章"), role: "军事指挥和骨干", profile: "从早期来电到后期军事才能被运作，是川府战场线重要人物。", story: "大牙在川府扩军和北伐阶段不断被推到前台，承担从战术到指挥的职责。", traits: ["能打", "会带兵", "忠诚"], locationIds: ["chuanfu", "bar-city", "red-dan"] }),
     character({ id: "wu-tianyin", name: "吴天胤", aliases: ["胤哥"], factionIds: ["planned-zone", "black-street"], firstSeen: range(481, 481, "第四八一章"), role: "极端乱世人物", profile: "被时代和亲情逼到极端的人物。", story: "吴天胤的线展示底层人在失去退路后的爆发，也让秦禹重新审视规则。", traits: ["狠", "孤独", "重情"], locationIds: ["songjiang", "jiangzhou"] }),
     character({ id: "feng-yunian", name: "冯玉年", aliases: ["老冯"], factionIds: ["feng-line"], firstSeen: range(383, 383, "第三八三章"), role: "奉北线人物", profile: "身处奉北权力圈，懂得用规则和人情支招。", story: "冯玉年让秦禹更深入接触奉北上层，也体现政治保护伞的重要性。", traits: ["老练", "会支招"], locationIds: ["fengbei"] }),
@@ -302,8 +317,8 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     character({ id: "meng-xi", name: "孟玺", aliases: [], factionIds: ["chuanfu"], firstSeen: range(1815, 1820, "第一八二零章"), role: "川府谋士", profile: "心黑手狠，善于把复杂局面拆成可执行的狠招。", story: "孟玺进入秦禹视野后，多次进谏和布局，帮助川府系在后期战争中占据主动。", traits: ["狠辣", "聪明", "敢赌"], locationIds: ["chuanfu", "old-triangle", "jiangzhou"] }),
     character({ id: "li-bokang", name: "李伯康", aliases: [], factionIds: ["feng-line", "military-intel"], firstSeen: range(2279, 2284, "第二二八四章"), role: "后期智谋型对手", profile: "幕后操盘能力强，计划细密，能制造持续心理压力。", story: "李伯康的蓝图、计划和后期疲态构成终局前最强的智谋对抗线。", traits: ["缜密", "阴狠", "擅长心理战"], locationIds: ["nanhu", "old-triangle"] }),
     character({ id: "xu-yan", name: "许岩", aliases: ["老许"], factionIds: ["military-intel"], firstSeen: range(2646, 2653, "第二六四六章至第二六五三章"), role: "军情线人物", profile: "后期军情和暗线行动中的重要支点。", story: "许岩在最终阶段承担情报和行动压力，他的出现让暗战代价更具体。", traits: ["沉稳", "隐忍", "可靠"], locationIds: ["old-triangle", "red-dan"] }),
-    character({ id: "ke-hua", name: "柯桦", aliases: [], factionIds: ["military-intel", "eu-zone"], firstSeen: range(2647, 2654, "第二六五四章"), role: "终局外部推手", profile: "在北伐前后提供提点并参与抢人等关键动作。", story: "柯桦推动最终阶段的外围变化，让战局在细节上出现转折。", traits: ["敏锐", "果断"], locationIds: ["bar-city", "eu-first-zone"] }),
-    character({ id: "he-dachuan", name: "何大川", aliases: [], factionIds: ["chuanfu"], firstSeen: range(1815, 1820, "第一八二零章"), role: "草莽军事力量", profile: "带有匪气的执行者，能把孟玺的想法落到行动里。", story: "何大川在川府后期与孟玺共同形成草莽和谋略结合的支线。", traits: ["粗粝", "敢打", "执行力强"], locationIds: ["chuanfu", "old-triangle"] }),
+    character({ id: "ke-hua", name: "柯桦", aliases: [], factionIds: ["military-intel", "eu-zone"], firstSeen: range(2647, 2654, "第二六五四章"), role: "终局外部推手", profile: "在北伐前后提供提点并参与抢人等关键动作。", story: "柯桦推动最终阶段的外围变化，让战局在细节上出现转折。", traits: ["敏锐", "果断"], locationIds: ["bar-city", "eu-first-zone", "xiadao"] }),
+    character({ id: "he-dachuan", name: "何大川", aliases: [], factionIds: ["chuanfu"], firstSeen: range(1815, 1820, "第一八二零章"), role: "草莽军事力量", profile: "带有匪气的执行者，能把孟玺的想法落到行动里。", story: "何大川在川府后期与孟玺共同形成草莽和谋略结合的支线。", traits: ["粗粝", "敢打", "执行力强"], locationIds: ["chuanfu", "old-triangle", "zangyuan"] }),
     character({ id: "zhou-xingli", name: "周兴礼", aliases: ["老周"], factionIds: ["feng-line"], firstSeen: range(2700, 2727, "第二七零七章至第二七二七章"), role: "终局高层对手", profile: "后期棋局中以高层政治手段落子的对手。", story: "周兴礼在最终阶段以政治手段影响战场，体现乱世高层博弈的冷酷。", traits: ["老辣", "冷静", "善落子"], locationIds: ["red-dan", "eight-zone"] }),
     character({ id: "zhen-zhen", name: "珍珍", aliases: [], tier: "supporting", factionIds: ["planned-zone", "black-street"], firstSeen: range(553, 553, "第五五三章"), role: "吴天胤身边人", profile: "最了解吴天胤的女人，在他被亲情与时代逼到绝路时始终守在身边。", story: "珍珍见证了吴天胤被亲情与时代逼到绝路的全过程，是这条悲剧线的温度。", traits: ["痴情", "隐忍"], locationIds: ["songjiang"] }),
     character({ id: "a-hong", name: "阿宏", aliases: [], tier: "supporting", factionIds: ["planned-zone", "black-street"], firstSeen: range(721, 721, "第七二一章"), role: "交易线断后者", profile: "性子仗义的底层硬汉，在一次逃亡中主动为同伴断后，最终惨死。", story: "阿宏之死是乱世吞噬底层的缩影，也让秦禹与吴天胤的线更显沉重。", traits: ["仗义", "硬气"], locationIds: ["songjiang", "jiangzhou"] }),
