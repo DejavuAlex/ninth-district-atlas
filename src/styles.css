@@ -357,7 +357,6 @@ input:focus-visible,
   line-height: 1.8;
 }
 
-.timeline-layout,
 .source-card {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
@@ -381,7 +380,7 @@ input:focus-visible,
 .detail-panel,
 .character-panel,
 .graph-card,
-.timeline-rail,
+.timeline-track,
 .timeline-detail,
 .source-card,
 .profile-card {
@@ -946,39 +945,108 @@ input:focus-visible,
   font-size: 0.92rem;
 }
 
-.timeline-layout {
-  grid-template-columns: minmax(260px, 0.36fr) minmax(0, 1fr);
+.timeline-wrap {
+  display: grid;
+  gap: 24px;
 }
 
-.timeline-rail {
-  display: grid;
-  gap: 10px;
+.timeline-track {
+  display: flex;
+  gap: 14px;
   padding: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+}
+
+.timeline-step {
+  position: relative;
+  flex: 0 0 auto;
+  width: 190px;
+  display: grid;
+  gap: 6px;
   align-content: start;
-  max-height: 820px;
-  overflow: auto;
+  text-align: left;
+  padding: 14px 16px;
+  border: 1px solid rgba(206, 226, 240, 0.14);
+  border-radius: 16px;
+  color: var(--text);
+  background: rgba(12, 18, 26, 0.5);
+  scroll-snap-align: start;
+  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.timeline-step:hover {
+  transform: translateY(-2px);
+  border-color: rgba(230, 177, 92, 0.4);
+}
+
+.timeline-step.is-selected {
+  border-color: var(--accent-strong);
+  background: rgba(196, 85, 50, 0.22);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.step-index {
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
+.step-range {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.step-title {
+  font-size: 1rem;
+  line-height: 1.35;
 }
 
 .timeline-detail {
-  min-width: 0;
+  padding: 28px clamp(20px, 3vw, 36px);
+}
+
+.timeline-detail-head {
+  max-width: 70ch;
+}
+
+.timeline-detail-head h2 {
+  margin: 6px 0 12px;
+}
+
+.timeline-detail-head > p {
+  color: var(--muted);
+  line-height: 1.85;
 }
 
 .event-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  margin-top: 28px;
 }
 
 .event-card {
-  border: 1px solid rgba(230, 177, 92, 0.16);
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  border: 1px solid rgba(206, 226, 240, 0.12);
   border-radius: var(--radius-panel);
-  padding: 18px;
-  background: rgba(15, 11, 9, 0.32);
+  padding: 20px;
+  background: rgba(12, 18, 26, 0.4);
+}
+
+.event-range {
+  justify-self: start;
+}
+
+.event-card h3 {
+  margin: 0;
 }
 
 .event-actions {
-  margin-top: 16px;
+  margin-top: 6px;
 }
 
 .source-card {

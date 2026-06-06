@@ -1,20 +1,19 @@
 import { useMemo, useState } from "react";
 import { AssetImage } from "./AssetImage";
 import { getRelationshipsForCharacter, searchNovel } from "../lib/novelFilters";
-import type { ArcId, CharacterId, FactionId, NovelDataset } from "../types/novel";
+import type { CharacterId, FactionId, NovelDataset } from "../types/novel";
 
 interface CharacterPanelProps {
   dataset: NovelDataset;
   selectedCharacterId: CharacterId;
-  selectedArcId: ArcId;
   onSelectCharacter: (id: CharacterId) => void;
 }
 
-export function CharacterPanel({ dataset, selectedCharacterId, selectedArcId, onSelectCharacter }: CharacterPanelProps) {
+export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter }: CharacterPanelProps) {
   const [query, setQuery] = useState("");
   const [factionId, setFactionId] = useState<FactionId>("all");
   const selectedCharacter = dataset.characters.find((character) => character.id === selectedCharacterId) ?? dataset.characters[0];
-  const selectedArc = dataset.arcs.find((arc) => arc.id === selectedArcId);
+  const primaryFaction = dataset.factions.find((faction) => faction.id === selectedCharacter.factionIds[0]);
   const searchResult = searchNovel(dataset, query);
 
   const visibleCharacters = useMemo(() => {
@@ -90,8 +89,8 @@ export function CharacterPanel({ dataset, selectedCharacterId, selectedArcId, on
             <dd>{selectedCharacter.firstSeen.label}</dd>
           </div>
           <div>
-            <dt>当前阶段</dt>
-            <dd>{selectedArc?.title ?? "全书"}</dd>
+            <dt>主要势力</dt>
+            <dd>{primaryFaction?.name ?? "未明"}</dd>
           </div>
         </dl>
         <div className="mini-list">

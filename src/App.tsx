@@ -86,7 +86,6 @@ export function App() {
               <CharacterPanel
                 dataset={ninthDistrict}
                 selectedCharacterId={selectedCharacterId}
-                selectedArcId={selectedArcId}
                 onSelectCharacter={setSelectedCharacterId}
               />
               <RelationshipGraph
