@@ -6,6 +6,7 @@
 - 地点场景图：生成后命名为 `<地点id>.png`，放入 `public/scenes/`。
 - 人物形象图：生成后命名为 `<人物id>.png`，放入 `public/portraits/`。
 - 前端会按 id 自动加载对应图片，缺失时显示占位。
+- 仅为**主要人物**生成形象提示词与配图；次要人物在前端不展示头像，也不生成提示词。
 
 ## 地点提示词
 - 待规划区 → `prompts/locations/planning-zone.md`（图片：`public/scenes/planning-zone.png`）
@@ -32,18 +33,17 @@
 - 盐岛·盐业站 → `prompts/locations/yandao.md`（图片：`public/scenes/yandao.png`）
 - 夏岛 → `prompts/locations/xiadao.md`（图片：`public/scenes/xiadao.png`）
 
-## 人物提示词
+## 人物提示词（主要人物）
 - 秦禹 → `prompts/characters/qin-yu.md`（图片：`public/portraits/qin-yu.png`）
 - 齐麟 → `prompts/characters/qi-lin.md`（图片：`public/portraits/qi-lin.png`）
 - 老猫 → `prompts/characters/lao-mao.md`（图片：`public/portraits/lao-mao.png`）
 - 马老二 → `prompts/characters/ma-lao-er.md`（图片：`public/portraits/ma-lao-er.png`）
 - 马老爷子 → `prompts/characters/ma-lao-ye.md`（图片：`public/portraits/ma-lao-ye.png`）
 - 袁克 → `prompts/characters/yuan-ke.md`（图片：`public/portraits/yuan-ke.png`）
-- 李富贵 → `prompts/characters/li-fugui.md`（图片：`public/portraits/li-fugui.png`）
 - 林念蕾 → `prompts/characters/lin-nianlei.md`（图片：`public/portraits/lin-nianlei.png`）
 - 吴迪 → `prompts/characters/wu-di.md`（图片：`public/portraits/wu-di.png`）
 - 顾言 → `prompts/characters/gu-yan.md`（图片：`public/portraits/gu-yan.png`）
-- 可可 → `prompts/characters/ke-ke.md`（图片：`public/portraits/ke-ke.png`）
+- 于瑾年 → `prompts/characters/ke-ke.md`（图片：`public/portraits/ke-ke.png`）
 - 林成栋 → `prompts/characters/lin-chengdong.md`（图片：`public/portraits/lin-chengdong.png`）
 - 展楠 → `prompts/characters/zhan-nan.md`（图片：`public/portraits/zhan-nan.png`）
 - 付小豪 → `prompts/characters/fu-xiaohao.md`（图片：`public/portraits/fu-xiaohao.png`）
@@ -55,21 +55,10 @@
 - 项择昊 → `prompts/characters/xiang-zehao.md`（图片：`public/portraits/xiang-zehao.png`）
 - 孟玺 → `prompts/characters/meng-xi.md`（图片：`public/portraits/meng-xi.png`）
 - 李伯康 → `prompts/characters/li-bokang.md`（图片：`public/portraits/li-bokang.png`）
-- 许岩 → `prompts/characters/xu-yan.md`（图片：`public/portraits/xu-yan.png`）
+- 徐洋 → `prompts/characters/xu-yan.md`（图片：`public/portraits/xu-yan.png`）
 - 柯桦 → `prompts/characters/ke-hua.md`（图片：`public/portraits/ke-hua.png`）
 - 何大川 → `prompts/characters/he-dachuan.md`（图片：`public/portraits/he-dachuan.png`）
 - 周兴礼 → `prompts/characters/zhou-xingli.md`（图片：`public/portraits/zhou-xingli.png`）
-- 珍珍 → `prompts/characters/zhen-zhen.md`（图片：`public/portraits/zhen-zhen.png`）
-- 阿宏 → `prompts/characters/a-hong.md`（图片：`public/portraits/a-hong.png`）
-- 阿龙 → `prompts/characters/a-long.md`（图片：`public/portraits/a-long.png`）
-- 老泥鳅 → `prompts/characters/lao-niqiu.md`（图片：`public/portraits/lao-niqiu.png`）
-- 雷子 → `prompts/characters/lei-zi.md`（图片：`public/portraits/lei-zi.png`）
-- 于瑾年 → `prompts/characters/yu-jinnian.md`（图片：`public/portraits/yu-jinnian.png`）
-- 仇伍 → `prompts/characters/qiu-wu.md`（图片：`public/portraits/qiu-wu.png`）
-- 王宗孝 → `prompts/characters/wang-zongxiao.md`（图片：`public/portraits/wang-zongxiao.png`）
-- 叶琳 → `prompts/characters/ye-lin.md`（图片：`public/portraits/ye-lin.png`）
-- 付震 → `prompts/characters/fu-zhen.md`（图片：`public/portraits/fu-zhen.png`）
-- 江小龙 → `prompts/characters/jiang-xiaolong.md`（图片：`public/portraits/jiang-xiaolong.png`）
-- 林耀宗 → `prompts/characters/lin-yaozong.md`（图片：`public/portraits/lin-yaozong.png`）
-- 陆晓峰 → `prompts/characters/lu-xiaofeng.md`（图片：`public/portraits/lu-xiaofeng.png`）
-- 老金 → `prompts/characters/lao-jin.md`（图片：`public/portraits/lao-jin.png`）
+
+## 次要人物（不出图、无提示词）
+李富贵、珍珍、阿宏、阿龙、老泥鳅、雷子、仇伍、王宗孝、叶琳、付震、江小龙、林耀宗、陆晓峰、老金

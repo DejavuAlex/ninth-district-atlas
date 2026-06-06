@@ -103,6 +103,20 @@ export interface StoryEvent {
   impact: string;
 }
 
+export type HighlightPhase = "turf" | "faction" | "war";
+
+export interface StoryHighlight {
+  id: string;
+  title: string;
+  phase: HighlightPhase;
+  chapterRange: ChapterRange;
+  hook: string;
+  description: string;
+  significance: string;
+  locationId: LocationId;
+  characterIds: CharacterId[];
+}
+
 export interface NovelDataset {
   id: NovelId;
   title: string;
@@ -114,5 +128,6 @@ export interface NovelDataset {
   characters: Character[];
   relationships: Relationship[];
   events: StoryEvent[];
+  highlights: StoryHighlight[];
   themes: NovelTheme[];
 }

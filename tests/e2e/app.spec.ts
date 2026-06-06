@@ -24,6 +24,12 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
   await expect(page).toHaveURL(/\/themes$/);
   await expect(page.getByRole("heading", { name: "向着春暖花开走" })).toBeVisible();
 
+  await page.getByRole("link", { name: "重点情节" }).click();
+  await expect(page).toHaveURL(/\/highlights$/);
+  await expect(page.getByRole("heading", { name: "那些花了笔墨的名场面" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "马踏长吉" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "无名的志愿兵·冯玉年战死北风口" })).toBeVisible();
+
   await page.getByRole("link", { name: "故事时间线" }).click();
   await expect(page).toHaveURL(/\/timeline$/);
   await page.getByRole("tab", { name: /落地川府与从龙之战/ }).click();

@@ -59,6 +59,22 @@ describe("《第九特区》结构化数据", () => {
     const scenes = ninthDistrict.locations.map((location) => location.scene);
     scenes.forEach((text, index) => expect(text.length, ninthDistrict.locations[index].id).toBeGreaterThan(20));
     expect(new Set(scenes).size, "每个地点的区域特征应当互不相同").toBe(ninthDistrict.locations.length);
+
+    const validPhases = new Set(["turf", "faction", "war"]);
+    expect(ninthDistrict.highlights.length).toBeGreaterThanOrEqual(12);
+    const highlightIds = ninthDistrict.highlights.map((item) => item.id);
+    expect(new Set(highlightIds).size, "重点情节 id 应当唯一").toBe(highlightIds.length);
+    for (const highlight of ninthDistrict.highlights) {
+      expect(validPhases.has(highlight.phase), highlight.id).toBe(true);
+      expect(locationIds.has(highlight.locationId), highlight.id).toBe(true);
+      expect(highlight.characterIds.length, highlight.id).toBeGreaterThan(0);
+      highlight.characterIds.forEach((id) => expect(characterIds.has(id), highlight.id).toBe(true));
+      expect(highlight.hook.length, highlight.id).toBeGreaterThan(8);
+      expect(highlight.description.length, highlight.id).toBeGreaterThan(40);
+      expect(highlight.significance.length, highlight.id).toBeGreaterThan(15);
+      expect(highlight.chapterRange.startOrder, highlight.id).toBeLessThanOrEqual(highlight.chapterRange.endOrder);
+    }
+    expect(validPhases.size).toBe(new Set(ninthDistrict.highlights.map((h) => h.phase)).size);
   });
 
   it("人物、地点和文案满足中文展示约束", () => {

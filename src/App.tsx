@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { CharacterPanel } from "./components/CharacterPanel";
 import { Hero } from "./components/Hero";
+import { Highlights } from "./components/Highlights";
 import { Layout } from "./components/Layout";
 import { RelationshipGraph } from "./components/RelationshipGraph";
 import { SourceCoverage } from "./components/SourceCoverage";
@@ -11,12 +12,13 @@ import { ninthDistrict } from "./data/ninthDistrict";
 import { filterByArc } from "./lib/novelFilters";
 import type { ArcId, CharacterId, LocationId } from "./types/novel";
 
-type PageId = "home" | "map" | "characters" | "timeline" | "themes" | "sources";
+type PageId = "home" | "map" | "characters" | "timeline" | "highlights" | "themes" | "sources";
 
 const pathToPage = (path: string): PageId => {
   if (path.startsWith("/map")) return "map";
   if (path.startsWith("/characters")) return "characters";
   if (path.startsWith("/timeline")) return "timeline";
+  if (path.startsWith("/highlights")) return "highlights";
   if (path.startsWith("/themes")) return "themes";
   if (path.startsWith("/sources")) return "sources";
   return "home";
@@ -27,6 +29,7 @@ const pageToPath: Record<PageId, string> = {
   map: "/map",
   characters: "/characters",
   timeline: "/timeline",
+  highlights: "/highlights",
   themes: "/themes",
   sources: "/sources"
 };
@@ -104,6 +107,16 @@ export function App() {
               onSelectArc={setSelectedArcId}
               onSelectLocation={setSelectedLocationId}
               onSelectCharacter={setSelectedCharacterId}
+            />
+          </section>
+        ) : null}
+        {page === "highlights" ? (
+          <section id="highlights" className="section-block">
+            <Highlights
+              dataset={ninthDistrict}
+              onSelectLocation={setSelectedLocationId}
+              onSelectCharacter={setSelectedCharacterId}
+              onNavigate={navigate}
             />
           </section>
         ) : null}

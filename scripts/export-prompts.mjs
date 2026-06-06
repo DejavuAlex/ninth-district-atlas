@@ -99,6 +99,7 @@ async function main() {
     );
   }
   for (const character of ninthDistrict.characters) {
+    if (character.tier === "supporting") continue;
     await writeFile(
       resolve(promptsRoot, "characters", `${character.id}.md`),
       characterPrompt(character),
@@ -106,6 +107,8 @@ async function main() {
     );
   }
 
+  const mainCharacters = ninthDistrict.characters.filter((c) => c.tier !== "supporting");
+  const supportingCharacters = ninthDistrict.characters.filter((c) => c.tier === "supporting");
   const indexLines = [
     "# 《第九特区》素材提示词",
     "",
@@ -115,18 +118,24 @@ async function main() {
     "- 地点场景图：生成后命名为 `<地点id>.png`，放入 `public/scenes/`。",
     "- 人物形象图：生成后命名为 `<人物id>.png`，放入 `public/portraits/`。",
     "- 前端会按 id 自动加载对应图片，缺失时显示占位。",
+    "- 仅为**主要人物**生成形象提示词与配图；次要人物在前端不展示头像，也不生成提示词。",
     "",
     "## 地点提示词",
     ...ninthDistrict.locations.map((l) => `- ${l.name} → \`prompts/locations/${l.id}.md\`（图片：\`public/scenes/${l.id}.png\`）`),
     "",
-    "## 人物提示词",
-    ...ninthDistrict.characters.map((c) => `- ${c.name} → \`prompts/characters/${c.id}.md\`（图片：\`public/portraits/${c.id}.png\`）`),
+    "## 人物提示词（主要人物）",
+    ...mainCharacters.map((c) => `- ${c.name} → \`prompts/characters/${c.id}.md\`（图片：\`public/portraits/${c.id}.png\`）`),
+    "",
+    "## 次要人物（不出图、无提示词）",
+    supportingCharacters.length
+      ? supportingCharacters.map((c) => c.name).join("、")
+      : "（暂无）",
     ""
   ];
   await writeFile(resolve(promptsRoot, "README.md"), indexLines.join("\n"), "utf8");
 
   console.log(
-    `已导出提示词：${ninthDistrict.locations.length} 个地点，${ninthDistrict.characters.length} 个人物 → ${promptsRoot}`
+    `已导出提示词：${ninthDistrict.locations.length} 个地点，${mainCharacters.length} 个主要人物（跳过 ${supportingCharacters.length} 个次要人物）→ ${promptsRoot}`
   );
 }
 
