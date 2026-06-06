@@ -387,7 +387,6 @@ input:focus-visible,
   gap: 22px;
 }
 
-.map-panel,
 .detail-panel,
 .character-panel,
 .graph-card,
@@ -404,177 +403,109 @@ input:focus-visible,
     0 24px 70px rgba(0, 0, 0, 0.45);
 }
 
-.map-panel {
+.map-figure {
   position: relative;
   width: 100%;
-  min-height: clamp(440px, 60vh, 720px);
-  overflow: hidden;
   border-radius: var(--radius-panel);
-  background: #0c2036;
-  box-shadow: inset 0 0 0 1px rgba(255, 248, 220, 0.12), 0 24px 70px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  background: #0a121c;
+  box-shadow: inset 0 0 0 1px rgba(255, 248, 220, 0.1), 0 24px 70px rgba(0, 0, 0, 0.45);
+  line-height: 0;
 }
 
-.globe-map {
+.map-base {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.map-markers {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  line-height: normal;
 }
 
-.globe-map .ocean { filter: saturate(108%); }
-
-.graticule line {
-  stroke: rgba(206, 226, 240, 0.09);
-  stroke-width: 1;
-  vector-effect: non-scaling-stroke;
-}
-
-.region-shelf,
-.isle-shelf {
-  fill: rgba(208, 232, 240, 0.42);
-}
-
-.region-land,
-.isle-land {
-  fill: #eef4f3;
-  stroke: rgba(60, 92, 116, 0.7);
-  stroke-width: 2.4;
-  stroke-dasharray: 12 9;
-  vector-effect: non-scaling-stroke;
-  filter: drop-shadow(0 6px 10px rgba(8, 24, 40, 0.35));
-}
-
-.isle-land {
-  stroke-dasharray: 7 6;
-  stroke-width: 2;
-}
-
-.globe-district {
-  position: absolute;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  color: rgba(54, 74, 90, 0.5);
-  font-size: clamp(1.1rem, 2.2vw, 2rem);
-  font-weight: 900;
-  letter-spacing: 0.18em;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.globe-place {
-  position: absolute;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  color: rgba(206, 226, 240, 0.66);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.map-compass {
+.map-pin {
   position: absolute;
   z-index: 2;
-  right: 16px;
-  bottom: 16px;
-  display: grid;
-  justify-items: center;
-  color: rgba(238, 244, 243, 0.78);
-  pointer-events: none;
-}
-
-.map-compass span {
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-}
-
-.map-title-plate {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  top: 14px;
-  transform: translateX(-50%);
-  padding: 6px 16px;
-  border-radius: var(--radius-pill);
-  color: #eef4f3;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  background: rgba(13, 34, 56, 0.55);
-  border: 1px solid rgba(206, 226, 240, 0.22);
-  backdrop-filter: blur(6px);
-  pointer-events: none;
-}
-
-.map-marker {
-  position: absolute;
-  z-index: 3;
   transform: translate(-50%, -50%);
   display: grid;
   justify-items: center;
-  gap: 4px;
+  gap: 5px;
   padding: 0;
   border: 0;
   background: transparent;
-  box-shadow: none;
-  transition: transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.map-marker:hover {
-  transform: translate(-50%, -50%) scale(1.08);
-  z-index: 5;
+.pin-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: rgba(247, 250, 250, 0.9);
+  border: 2px solid rgba(20, 36, 58, 0.85);
+  box-shadow: 0 0 0 4px rgba(10, 18, 28, 0.35), 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-.marker-icon {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  color: #14243a;
-  background: rgba(247, 250, 250, 0.96);
-  border: 1.5px solid rgba(20, 36, 58, 0.7);
-  box-shadow: 0 6px 14px -3px rgba(0, 0, 0, 0.6);
-}
-
-.marker-label {
+.pin-label {
   padding: 1px 8px;
   border-radius: var(--radius-pill);
   color: #f7fafa;
   font-size: 0.72rem;
   font-weight: 700;
   white-space: nowrap;
-  background: rgba(10, 22, 36, 0.82);
+  background: rgba(8, 14, 22, 0.82);
   border: 1px solid rgba(206, 226, 240, 0.24);
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity 160ms ease, transform 160ms ease;
+  pointer-events: none;
 }
 
-.map-marker.is-active .marker-icon,
-.map-marker.is-character-location .marker-icon {
-  color: #3a2a12;
+.map-pin:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+  z-index: 4;
+}
+
+.map-pin:hover .pin-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.map-pin.is-active .pin-dot,
+.map-pin.is-character-location .pin-dot {
   background: #e6b15c;
-  border-color: #7d4d25;
+  border-color: #5a3416;
+  box-shadow: 0 0 0 4px rgba(230, 177, 92, 0.25), 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
-.map-marker.is-selected {
-  z-index: 6;
-  transform: translate(-50%, -50%) scale(1.16);
+.map-pin.is-selected {
+  z-index: 5;
 }
 
-.map-marker.is-selected .marker-icon {
-  color: #fff7ea;
-  background: #c45532;
+.map-pin.is-selected .pin-dot {
+  width: 16px;
+  height: 16px;
+  background: #ff7a45;
   border-color: #2a1710;
-  box-shadow: 0 0 0 4px rgba(196, 85, 50, 0.3), 0 8px 18px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 0 5px rgba(196, 85, 50, 0.35), 0 0 14px rgba(255, 122, 69, 0.7);
+  animation: pinPulse 1.8s ease-in-out infinite;
 }
 
-.map-marker.is-selected .marker-label {
+.map-pin.is-selected .pin-label {
+  opacity: 1;
+  transform: translateY(0);
   color: #fff7ea;
   background: #8d3f25;
   border-color: #2a1710;
 }
+
+@keyframes pinPulse {
+  0%, 100% { box-shadow: 0 0 0 5px rgba(196, 85, 50, 0.35), 0 0 12px rgba(255, 122, 69, 0.6); }
+  50% { box-shadow: 0 0 0 8px rgba(196, 85, 50, 0.18), 0 0 20px rgba(255, 122, 69, 0.85); }
+}
+
 
 
 .detail-panel,
@@ -1111,19 +1042,6 @@ input:focus-visible,
     grid-template-columns: 1fr;
   }
 
-  .map-panel {
-    min-height: 520px;
-  }
-
-  .map-marker {
-    transform: translate(-50%, -50%);
-  }
-
-  .map-marker:hover,
-  .map-marker.is-selected {
-    transform: translate(-50%, -50%);
-  }
-
   .event-grid,
   .character-list,
   .profile-meta,
@@ -1180,19 +1098,15 @@ input:focus-visible,
     padding: 64px 18px;
   }
 
-  .marker-icon {
-    width: 28px;
-    height: 28px;
-    border-radius: 9px;
+  .pin-dot {
+    width: 11px;
+    height: 11px;
   }
 
-  .marker-label {
-    font-size: 0.66rem;
-    padding: 2px 6px;
-  }
-
-  .map-panel {
-    min-height: 460px;
+  .pin-label {
+    font-size: 0.62rem;
+    padding: 1px 6px;
+    opacity: 1;
   }
 
   .graph-card svg {
