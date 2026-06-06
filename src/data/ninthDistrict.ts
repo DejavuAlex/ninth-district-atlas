@@ -42,20 +42,119 @@ const relationshipPairs: Array<[string, string]> = [
   ["rel-xiang-guyan", "ally:xiang-zehao:gu-yan"]
 ];
 
-const buildMapPrompt = (location: Omit<LocationNode, "mapPrompt">) =>
-  `${location.name}区域街道风貌画面生成提示词：${location.summary}${location.atmosphere}。世界观设定为灾变之后、持续数十年的“冰封期”末世，气候极寒阴冷、资源匮乏、秩序半崩坏。画面重点表现该区域真实的街道风貌：高密度破败楼群、湿冷阴暗的街巷、积水残雪与泥泞地面、临时搭建的棚屋与集装箱、缠绕的电线、老旧霓虹与应急灯、监控杆与警戒线，远处是雾气笼罩的高楼轮廓。写实电影质感、低饱和冷色调、夜晚或阴天、地面潮湿反光，无文字、无人物特写、16:9。`;
+const buildMapPrompt = (location: Omit<LocationNode, "mapPrompt" | "scene">, scene: string) =>
+  `${location.name}区域街道风貌画面生成提示词：${location.summary}${location.atmosphere} 区域特征：${scene} 世界观为灾变后的冰封极寒末世（资源紧张、气候严寒、常年积雪），但各区域的秩序与风貌差异明显，不必一律破败：有的繁华体面、有的肃整有序、有的才真正混乱荒废。请按该区域的特征刻画其独特街区轮廓与空间层次。写实电影质感、低饱和冷色调、阴天或夜晚、地面常见积雪或潮湿反光，无文字、无人物特写、16:9。`;
 
-const buildCharacterPrompt = (character: Omit<Character, "relationshipIds" | "imagePrompt">) =>
-  `${character.name}，第九特区人物形象设定图，身份是${character.role}，气质体现${character.traits.join("、")}。世界观为灾变后的冰封末世，气候极寒、资源匮乏。采用小说角色立绘风格、半写实数字插画/概念美术，偏插画质感而非真人照片；穿着耐寒粗粝的多层旧衣物、围巾或风衣，低饱和冷色调，电影感侧光，半身像，背景是阴冷潮湿的破败城区虚化氛围，无文字、竖版。负面：真人摄影、照片写实、3D渲染真人脸、糖水色、Q版卡通。`;
+const buildCharacterPrompt = (
+  character: Omit<Character, "relationshipIds" | "imagePrompt" | "appearance">,
+  appearance: string
+) =>
+  `${character.name}，第九特区人物形象设定图，身份是${character.role}，气质体现${character.traits.join("、")}。外貌·神态·服装：${appearance} 世界观为灾变后的冰封极寒末世、资源匮乏；采用小说角色立绘风格、半写实数字插画/概念美术，偏插画质感而非真人照片；低饱和冷色调、电影感侧光、半身像、背景为阴冷潮湿的破败城区虚化氛围，无文字、竖版。负面：真人摄影、照片写实、3D渲染真人脸、糖水色、Q版卡通、与人物性格不符的干净光鲜。`;
 
-const character = (item: Omit<Character, "relationshipIds" | "imagePrompt">): Omit<Character, "imagePrompt"> => ({
+const appearances: Record<string, string> = {
+  "qin-yu":
+    "身材高大壮硕的青年，本是眉目清俊，却因常年算计与厮杀而眼神锐利沉稳、不怒自威；利落短发、下颌带风霜；身着深色耐磨长风衣、内搭高领，整体克制冷硬，嘴角偶有一丝难以察觉的笑意。",
+  "qi-lin":
+    "瘦削的年轻人，眉宇间是隐忍与倔强，眼神带着过早成熟的疲惫与警惕；乱短发，颈上厚围巾、身穿洗旧的夹克，手背有冻裂的痕迹，神态略显紧绷。",
+  "lao-mao":
+    "圆脸、面带市井圆滑笑意的中年男人，眼神活络机灵；松垮的旧皮夹克配围巾，叼着或夹着烟的随意姿态，透着一股能在街面上吃得开的油滑。",
+  "ma-lao-er":
+    "体格壮硕、面相凶悍带江湖气的男人，短须或络腮，眉眼带狠、笑起来却很张扬；黑色皮衣或厚呢大衣、戴金属配饰，姿态豪横霸道。",
+  "ma-lao-ye":
+    "年长的老江湖，花白头发、皱纹深刻，眼神老辣沉静、不动声色；身着厚实的中式棉袄或长呢衣，背手而立，神态威严稳重。",
+  "yuan-ke":
+    "衣着考究体面的反派，呢大衣配皮手套、发型整齐油亮；面相阴鸷、嘴角带轻蔑，眼神倨傲冷漠，透着资源在手的傲慢。",
+  "li-fugui":
+    "市侩现实的中年小人物，身形偏矮或瘦小，穿不合身的旧西装与棉服；脸上堆着算计的谄媚笑，搓着手，眼神滴溜乱转。",
+  "lin-nianlei":
+    "清秀沉静的年轻女性，眼神温柔却有主见；长发束起、几缕散落，身着素净保暖的针织衫或呢大衣，神态从容温和，带一点疏离。",
+  "wu-di":
+    "干练的中年男性，深色大衣或合体西装；面相精明、眼神含权衡，神态沉稳内敛，举手投足都是上层人的分寸。",
+  "gu-yan":
+    "气场强硬、带军政气质的男人，身着挺括的深色军政风大衣；面相端正冷峻、眼神果断，站姿笔直，自带压迫感。",
+  "ke-ke":
+    "聪慧干练的女性，眼神锐利、藏着算计与从容；一身利落的冷色风衣、长发利落束起，神态精明沉着，像随时在盘算棋局。",
+  "lin-chengdong":
+    "稳重低调的中年男人，穿普通的深色外套；面相温吞谨慎、眼神不张扬，神态内敛务实，不起眼却可靠。",
+  "zhan-nan":
+    "壮实硬朗的行动派，短发、面相方正；身着战术夹克与多口袋装备，眼神强硬专注，神态干脆利落。",
+  "fu-xiaohao":
+    "机灵的年轻人，眼神滑溜活络；一身街头风的旧夹克、帽衫，姿态轻佻，透着混迹案件线的精明与现实。",
+  "li-zhan":
+    "体格强健的战场尖刀，寸头、脸上带旧伤疤；穿旧军装或战术装备，眼神凶悍冷硬、神态如出鞘的刀，肌肉与杀气分明。",
+  "da-ya":
+    "壮硕憨直的军中骨干，咧嘴时露出标志性的大牙、笑容豪爽；一身军绿战术服，眼神勇猛直率，透着能打能带兵的草莽劲。",
+  "wu-tianyin":
+    "偏瘦、眼神阴郁孤狠的男人，面带疲惫与决绝；身披破旧风衣，被亲情与时代逼到极端，神态孤独而狠厉。",
+  "feng-yunian":
+    "油滑老练的中年人，体面的呢大衣；脸上挂着世故的笑，眼神精明会算，神态像随时能给你支个招的老狐狸。",
+  "feng-ji":
+    "衣着体面的中年政客，面相精明却带犹疑；眼神在利益间摇摆算计，神态谨慎，透着进退两难的处境感。",
+  "xiang-zehao":
+    "端正刚毅的军政人物，挺括的军装大衣；面相坚毅、眼神坚定担当，站姿挺拔，是肯请战、扛事的那种人。",
+  "meng-xi":
+    "清瘦、面相阴鸷而精明的谋士，眼神带着算计的笑意；一身利落的深色衣装，神态狠辣聪明，像把复杂棋局拆成狠招的人。",
+  "li-bokang":
+    "外表儒雅、内里阴狠的中年对手，考究的深色大衣；眼神深沉缜密、不露声色，神态从容却令人压抑，擅长心理战。",
+  "xu-yan":
+    "沉稳隐忍的中年军情人物，穿不起眼的旧外套；面相平静、眼神隐忍可靠，刻意低调到能融进人群里。",
+  "ke-hua":
+    "干练、带外部势力气质的人物，冷色制服或风衣；面相敏锐、眼神果断锐利，神态利落，透着终局推手的算计。",
+  "he-dachuan":
+    "粗豪壮实、满脸匪气与胡茬的草莽汉子；穿杂凑的旧军装，眼神凶悍直接、神态粗粝，是把谋士想法砸成行动的那种猛人。",
+  "zhou-xingli":
+    "年长威严的高层人物，挺括的军政大衣；面相沉静老辣、眼神深不可测，神态从容落子，气场压人。"
+};
+
+const character = (
+  item: Omit<Character, "relationshipIds" | "imagePrompt" | "appearance">
+): Omit<Character, "imagePrompt" | "appearance"> => ({
   ...item,
   relationshipIds: relationshipIdsFor(item.id, relationshipPairs)
 });
 
+const locationScenes: Record<string, string> = {
+  "planning-zone":
+    "无政府的边缘废土：残破公路、锈蚀残骸与零散棚户散落在冰封荒原上，几乎没有秩序，混乱、危险、荒凉，是最典型的灾后废墟。",
+  "ninth-district":
+    "相对成型、有秩序的特区辖区：高大壁垒、检查站与配给点环绕，街道冷硬却运转有序，灯光与岗哨规整，比区外废土体面得多。",
+  "songjiang":
+    "高密度的特区核心都市：老旧高楼与立交天桥层叠、招牌与霓虹密集、地面湿滑反光，街面繁忙而压抑，明面秩序与地下暗流并存。",
+  "black-street":
+    "松江的灰色地带：密集的旧街、饭馆、码牌赌档与窄巷交错，半明半暗，人情、交易与暴力混杂，市井气浓。",
+  "tuzha-street":
+    "低矮拥挤的棚户旧街：铁皮、集装箱与临时摊档紧贴，巷子狭窄泥泞，贫困拥挤、龙蛇混杂，是最底层的生存场。",
+  "jiangzhou":
+    "以商路与家族为底色的城市：老字号、码头与会馆林立，市井繁华，街上有生意往来与江湖规矩，并不破败，反而热闹。",
+  "fengbei":
+    "权力圈层所在地：街面规整、官味厚重，办公楼、会所与岗哨密布，秩序森严、气氛压抑，暗藏棋局。",
+  "changji":
+    "军事色彩渐重的城市：检查站、驻防营地与运输线交错，街区紧绷肃杀，从江湖城镇转向战时前沿。",
+  "nanhu":
+    "南方财阀与政治的舞台：相对体面气派，会所、写字楼与霓虹光鲜，街景现代繁华，光鲜表面下暗流涌动。",
+  "chuanfu":
+    "秦禹的后方根据地：百万亩粮仓、生活镇与军营，秩序重新落地，街镇相对安稳、有炊烟与人气，与区外废土截然不同。",
+  "five-zone":
+    "妖魔鬼怪齐聚的外部区域：势力混杂、街面鱼龙混杂，灰色繁忙，边境与外交压力下既有生意也有暗战。",
+  "seven-zone":
+    "边境驻防色彩浓重的区域：驻防团、工事与铁丝网环绕，街区紧绷，随时可能爆发冲突。",
+  "eight-zone":
+    "带高层会议与军政气息的辖区：街面相对规整肃整，权力机构与军事压力交汇，秩序中透着张力。",
+  "eu-first-zone":
+    "外部势力代表区域：规则不同、相对现代有序，建筑与街道整洁陌生，军事威慑与谈判并存，冷硬疏离。",
+  "old-triangle":
+    "潮湿混乱的边境三角地带：临时阵线、铁丝网与营地交错，泥泞紧张，是各方势力犬牙交错的灰色战区。",
+  "bar-city":
+    "北伐攻坚的城市战场：断壁残垣、弹坑与焦痕，街道被炮火犁过，围城与巷战的硝烟尚未散去。",
+  "yemen":
+    "远离故土的海外落点：异域街景与私人武装据点，陌生、戒备、临时，带着外乡的疏离感。",
+  "red-dan":
+    "最终决战的象征性战场：焦土、残骸与未熄的火光，满目疮痍，是最后冲锋与牺牲的惨烈之地。"
+};
+
 const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
-  locations: Array<Omit<LocationNode, "mapPrompt">>;
-  characters: Array<Omit<Character, "imagePrompt">>;
+  locations: Array<Omit<LocationNode, "mapPrompt" | "scene">>;
+  characters: Array<Omit<Character, "imagePrompt" | "appearance">>;
 } = {
   id: "ninth-district",
   title: "第九特区",
@@ -272,12 +371,20 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
 
 export const ninthDistrict: NovelDataset = {
   ...rawNinthDistrict,
-  locations: rawNinthDistrict.locations.map((location) => ({
-    ...location,
-    mapPrompt: buildMapPrompt(location)
-  })),
-  characters: rawNinthDistrict.characters.map((item) => ({
-    ...item,
-    imagePrompt: buildCharacterPrompt(item)
-  }))
+  locations: rawNinthDistrict.locations.map((location) => {
+    const scene = locationScenes[location.id] ?? location.summary;
+    return {
+      ...location,
+      scene,
+      mapPrompt: buildMapPrompt(location, scene)
+    };
+  }),
+  characters: rawNinthDistrict.characters.map((item) => {
+    const appearance = appearances[item.id] ?? item.profile;
+    return {
+      ...item,
+      appearance,
+      imagePrompt: buildCharacterPrompt(item, appearance)
+    };
+  })
 };

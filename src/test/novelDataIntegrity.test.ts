@@ -51,6 +51,14 @@ describe("《第九特区》结构化数据", () => {
       expect(theme.detail.length, theme.id).toBeGreaterThan(40);
       expect(arcIds.has(theme.anchor), theme.id).toBe(true);
     }
+
+    const appearances = ninthDistrict.characters.map((character) => character.appearance);
+    appearances.forEach((text, index) => expect(text.length, ninthDistrict.characters[index].id).toBeGreaterThan(20));
+    expect(new Set(appearances).size, "每个人物的外貌应当互不相同").toBe(ninthDistrict.characters.length);
+
+    const scenes = ninthDistrict.locations.map((location) => location.scene);
+    scenes.forEach((text, index) => expect(text.length, ninthDistrict.locations[index].id).toBeGreaterThan(20));
+    expect(new Set(scenes).size, "每个地点的区域特征应当互不相同").toBe(ninthDistrict.locations.length);
   });
 
   it("人物、地点和文案满足中文展示约束", () => {
