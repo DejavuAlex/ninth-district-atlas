@@ -55,7 +55,7 @@ const appearances: Record<string, string> = {
   "wu-tianyin":
     "偏瘦、眼神阴郁孤狠的男人，面带疲惫与决绝；身披破旧风衣，被亲情与时代逼到极端，神态孤独而狠厉。",
   "feng-yunian":
-    "油滑老练的中年人，体面的呢大衣；脸上挂着世故的笑，眼神精明会算，神态像随时能给你支个招的老狐狸。",
+    "沉稳持重的中年人，穿着整洁笔挺的深色呢大衣；面相端正、眉宇间带着官场历练的威严，眼神沉静温和却不失锐利，神态像一位讲规矩、有担当、值得托付的体面长者。",
   "feng-ji":
     "衣着体面的中年政客，面相精明却带犹疑；眼神在利益间摇摆算计，神态谨慎，透着进退两难的处境感。",
   "xiang-zehao":
@@ -311,7 +311,7 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     character({ id: "li-zhan", name: "历战", aliases: [], factionIds: ["chuanfu", "military-intel"], firstSeen: range(555, 555, "第五五五章"), role: "战场尖刀", profile: "能打硬仗、敢接高危任务的军事骨干。", story: "历战从中期行动到最终战场不断承担高风险任务，是秦禹阵营的锋刃。", traits: ["勇猛", "直接", "抗压"], locationIds: ["seven-zone", "old-triangle", "red-dan", "beifengkou"] }),
     character({ id: "da-ya", name: "大牙", aliases: [], factionIds: ["chuanfu"], firstSeen: range(257, 258, "第二五七章"), role: "军事指挥和骨干", profile: "从早期来电到后期军事才能被运作，是川府战场线重要人物。", story: "大牙在川府扩军和北伐阶段不断被推到前台，承担从战术到指挥的职责。", traits: ["能打", "会带兵", "忠诚"], locationIds: ["chuanfu", "bar-city", "red-dan"] }),
     character({ id: "wu-tianyin", name: "吴天胤", aliases: ["胤哥"], factionIds: ["planned-zone", "black-street"], firstSeen: range(481, 481, "第四八一章"), role: "极端乱世人物", profile: "被时代和亲情逼到极端的人物。", story: "吴天胤的线展示底层人在失去退路后的爆发，也让秦禹重新审视规则。", traits: ["狠", "孤独", "重情"], locationIds: ["songjiang", "jiangzhou"] }),
-    character({ id: "feng-yunian", name: "冯玉年", aliases: ["老冯"], factionIds: ["feng-line"], firstSeen: range(383, 383, "第三八三章"), role: "奉北线人物", profile: "身处奉北权力圈，懂得用规则和人情支招。", story: "冯玉年让秦禹更深入接触奉北上层，也体现政治保护伞的重要性。", traits: ["老练", "会支招"], locationIds: ["fengbei"] }),
+    character({ id: "feng-yunian", name: "冯玉年", aliases: ["老冯"], factionIds: ["feng-line"], firstSeen: range(383, 383, "第三八三章"), role: "奉北线人物", profile: "身处奉北权力圈，懂规则、讲分寸，后期愈发显出正派与担当。", story: "冯玉年让秦禹更深入接触奉北上层，前期是政治保护伞，后期立场渐趋正派，成为秦禹一方值得信任的助力。", traits: ["老练", "稳重", "正派"], locationIds: ["fengbei"] }),
     character({ id: "feng-ji", name: "冯济", aliases: [], factionIds: ["feng-line"], firstSeen: range(2070, 2074, "第二零七四章"), role: "后期政治对手", profile: "在后期局势中不断寻找自身处境和利益出口。", story: "冯济的选择多次影响八区、九区和最终战局，是秦禹后期必须处理的对手。", traits: ["精明", "摇摆", "重利益"], locationIds: ["eight-zone", "nanhu"] }),
     character({ id: "xiang-zehao", name: "项择昊", aliases: [], factionIds: ["chuanfu", "gu-line"], firstSeen: range(1560, 1565, "第一五六五章"), role: "川府军事政治人物", profile: "在川府和最终战局中承担重要军事角色。", story: "项择昊从面见秦禹到最终请战，体现川府系内部的担当和战场选择。", traits: ["坚定", "有担当"], locationIds: ["chuanfu", "red-dan", "yemen"] }),
     character({ id: "meng-xi", name: "孟玺", aliases: [], factionIds: ["chuanfu"], firstSeen: range(1815, 1820, "第一八二零章"), role: "川府谋士", profile: "心黑手狠，善于把复杂局面拆成可执行的狠招。", story: "孟玺进入秦禹视野后，多次进谏和布局，帮助川府系在后期战争中占据主动。", traits: ["狠辣", "聪明", "敢赌"], locationIds: ["chuanfu", "old-triangle", "jiangzhou"] }),
