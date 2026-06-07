@@ -90,6 +90,30 @@ npm run dev          # 启动开发服务器（默认 http://localhost:5173）
 - 仓库：`github.com/DejavuAlex/ninth-district-atlas`
 - Vercel：Root Directory 设为 `第九特区`，推送到 `main` 自动构建并发布。
 
+### 🇨🇳 国内免翻墙部署
+
+Vercel 的 CDN 在中国大陆访问不稳定（常需翻墙）。本项目是**纯静态站点**（`npm run build` 产出 `dist/`），可以托管到任意国内可访问的静态服务上。
+
+> 重要：应用以根路径加载素材（`/scenes/...`、`/portraits/...`），必须部署在**域名/桶的根目录**，不能放在子路径（如 `xxx.github.io/仓库名/`）下。SPA 用 History 路由，需把「找不到的路径」回退到 `index.html`。
+
+推荐三种方案（按上手难度）：
+
+1. **阿里云 OSS / 腾讯云 COS 静态网站托管**（最简单、便宜）
+   - 新建 Bucket → 开启「静态网站托管」，首页和**错误（404）页面都设为 `index.html`**（实现 SPA 回退）。
+   - 设置 Bucket 为公共读，把 `dist/` 全部上传。
+   - 用「静态网站托管 Endpoint」域名访问即可，国内可直接打开、无需备案；绑定自定义域名才需要 ICP 备案。
+
+2. **腾讯云 CloudBase（云开发）静态托管**
+   - 默认 `*.tcloudbaseapp.com` 域名国内可访问、自带 CDN，控制台上传 `dist/` 即可，支持 SPA 回退。
+
+3. **国内轻量应用服务器 + Nginx**（最稳、最灵活）
+   - 买一台国内轻量服务器，按 [`deploy/nginx.conf`](deploy/nginx.conf) 配置（已含 SPA 回退、gzip、缓存）。
+   - 把 `dist/` 上传到 `root` 指向的目录，`nginx -s reload`。直接用公网 IP（`http://你的IP`）访问无需备案。
+
+> 不推荐：GitHub Pages（子路径 + 国内不稳定）、Netlify / Cloudflare Pages（国内基本仍需翻墙）。
+
+**提速建议**：当前素材图片约 97MB（每张 PNG 2~3MB），国内首屏会偏慢。建议把场景/立绘 PNG 压成 WebP（体积可降到 1/5~1/10），无论用哪种托管都能大幅加快加载。
+
 ---
 
 数据与人物、地名均来自小说《第九特区》（作者：伪戒），本项目仅用于阅读体验与可视化展示。
