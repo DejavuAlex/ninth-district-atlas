@@ -16,7 +16,7 @@ const PORTRAITS = {
   "秦禹": "qin-yu", "马老二": "ma-lao-er", "冯济": "feng-ji", "吴天胤": "wu-tianyin",
   "徐洋": "xu-yan", "老李": "lao-li", "马老爷子": "ma-lao-ye", "冯玉年": "feng-yunian",
   "吴迪": "wu-di", "李伯康": "li-bokang", "林念蕾": "lin-nianlei", "项择昊": "xiang-zehao",
-  "齐麟": "qi-lin", "刘子叔": "liuzi-shu", "大牙": "da-ya", "老猫": "lao-mao"
+  "齐麟": "qi-lin", "刘子叔": "liuzi-shu", "大牙": "da-ya", "老猫": "lao-mao", "叶琳": "ye-lin"
 };
 
 const SCENES = {

@@ -449,17 +449,18 @@ input:focus-visible,
 }
 
 .pin-label {
-  padding: 1px 8px;
+  padding: 1px 7px;
   border-radius: var(--radius-pill);
-  color: #f7fafa;
-  font-size: 0.72rem;
+  color: #f8fbff;
+  font-size: 0.7rem;
   font-weight: 700;
   white-space: nowrap;
-  background: rgba(8, 14, 22, 0.82);
-  border: 1px solid rgba(206, 226, 240, 0.24);
-  opacity: 0;
-  transform: translateY(-2px);
-  transition: opacity 160ms ease, transform 160ms ease;
+  background: rgba(6, 11, 18, 0.78);
+  border: 1px solid rgba(206, 226, 240, 0.28);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0.95;
+  transition: opacity 160ms ease, transform 160ms ease, background 160ms ease;
   pointer-events: none;
 }
 
@@ -470,7 +471,8 @@ input:focus-visible,
 
 .map-pin:hover .pin-label {
   opacity: 1;
-  transform: translateY(0);
+  background: rgba(6, 11, 18, 0.95);
+  border-color: rgba(230, 177, 92, 0.6);
 }
 
 .map-pin.is-active .pin-dot,
