@@ -1,6 +1,6 @@
 # 八区（district）场景生成提示词
 
-> 用途：生成 八区 的场景示意图。生成后请命名为 `eight-zone.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 八区 的场景示意图。生成后命名为 `八区.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/eight-zone.webp`。
 
 ## 画面主体
 八区：八区：与七区、九区并称三大区，毗邻川府，是后期战局的关键介入者。

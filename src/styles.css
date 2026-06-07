@@ -190,7 +190,7 @@ input:focus-visible,
 .hero-cover-image {
   position: absolute;
   inset: 0;
-  background-image: url("/scenes/songjiang.png");
+  background-image: url("/scenes/songjiang.webp");
   background-size: cover;
   background-position: center 38%;
   transform: scale(1.06);

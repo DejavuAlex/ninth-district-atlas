@@ -1,6 +1,6 @@
 # 老李 人物形象生成提示词
 
-> 用途：生成 老李 的人物形象图。生成后请命名为 `lao-li.png` 放入 `public/portraits/`，前端会自动显示。
+> 用途：生成 老李 的人物形象图。生成后命名为 `老李.png` 放入 `assets/人物/`，再运行 `npm run optimize:images` 自动转成 `public/portraits/lao-li.webp`。
 
 ## 人物身份
 特区警务司长 · 秦禹的官面靠山（别称：李司、李司长）

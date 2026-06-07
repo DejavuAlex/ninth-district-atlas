@@ -1,6 +1,6 @@
 # 柯桦 人物形象生成提示词
 
-> 用途：生成 柯桦 的人物形象图。生成后请命名为 `ke-hua.png` 放入 `public/portraits/`，前端会自动显示。
+> 用途：生成 柯桦 的人物形象图。生成后命名为 `柯桦.png` 放入 `assets/人物/`，再运行 `npm run optimize:images` 自动转成 `public/portraits/ke-hua.webp`。
 
 ## 人物身份
 终局外部推手

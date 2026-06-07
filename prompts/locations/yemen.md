@@ -1,6 +1,6 @@
 # 耶门（frontier）场景生成提示词
 
-> 用途：生成 耶门 的场景示意图。生成后请命名为 `yemen.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 耶门 的场景示意图。生成后命名为 `耶门.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/yemen.webp`。
 
 ## 画面主体
 耶门：结尾阶段外部谈判和再赴战场的落点之一。

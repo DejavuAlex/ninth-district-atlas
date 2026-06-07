@@ -1,6 +1,6 @@
 # 六区·北境堡垒（frontier）场景生成提示词
 
-> 用途：生成 六区·北境堡垒 的场景示意图。生成后请命名为 `liu-zone.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 六区·北境堡垒 的场景示意图。生成后命名为 `六区·北境堡垒.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/liu-zone.webp`。
 
 ## 画面主体
 六区·北境堡垒：北方边境的堡垒辖区，是抵御外敌与控扼北线的军事重镇。

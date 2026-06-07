@@ -1,6 +1,6 @@
 # 松江（city）场景生成提示词
 
-> 用途：生成 松江 的场景示意图。生成后请命名为 `songjiang.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 松江 的场景示意图。生成后命名为 `松江.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/songjiang.webp`。
 
 ## 画面主体
 松江：九区核心城市，秦禹早期扎根之地，警务、黑街与政治利益在此交织。

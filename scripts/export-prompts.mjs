@@ -15,7 +15,7 @@ const WORLD_SHARED =
 function locationPrompt(location) {
   return `# ${location.name}（${location.kind}）场景生成提示词
 
-> 用途：生成 ${location.name} 的场景示意图。生成后请命名为 \`${location.id}.png\` 放入 \`public/scenes/\`，前端会自动显示。
+> 用途：生成 ${location.name} 的场景示意图。生成后命名为 \`${location.name}.png\` 放入 \`assets/地区/\`，再运行 \`npm run optimize:images\` 自动转成 \`public/scenes/${location.id}.webp\`。
 
 ## 画面主体
 ${location.name}：${location.summary}
@@ -53,7 +53,7 @@ ${WORLD_SHARED}
 function characterPrompt(character) {
   return `# ${character.name} 人物形象生成提示词
 
-> 用途：生成 ${character.name} 的人物形象图。生成后请命名为 \`${character.id}.png\` 放入 \`public/portraits/\`，前端会自动显示。
+> 用途：生成 ${character.name} 的人物形象图。生成后命名为 \`${character.name}.png\` 放入 \`assets/人物/\`，再运行 \`npm run optimize:images\` 自动转成 \`public/portraits/${character.id}.webp\`。
 
 ## 人物身份
 ${character.role}${character.aliases.length ? `（别称：${character.aliases.join("、")}）` : ""}
@@ -115,9 +115,10 @@ async function main() {
     "本目录存放用于生成配图的详细提示词，前端页面不再直接展示提示词，只展示城市与人物的介绍。",
     "",
     "## 生成图片投放约定",
-    "- 地点场景图：生成后命名为 `<地点id>.png`，放入 `public/scenes/`。",
-    "- 人物形象图：生成后命名为 `<人物id>.png`，放入 `public/portraits/`。",
-    "- 前端会按 id 自动加载对应图片，缺失时显示占位。",
+    "- 地点场景图：生成后命名为 `<地点中文名>.png` 放入 `assets/地区/`。",
+    "- 人物形象图：生成后命名为 `<人物中文名>.png` 放入 `assets/人物/`。",
+    "- 运行 `npm run optimize:images` 自动按 id 转成 `public/scenes/<id>.webp`、`public/portraits/<id>.webp`（体积更小、国内加载更快）。",
+    "- 前端会按 id 自动加载对应 WebP 图片，缺失时显示占位。",
     "- 仅为**主要人物**生成形象提示词与配图；次要人物在前端不展示头像，也不生成提示词。",
     "",
     "## 地点提示词",

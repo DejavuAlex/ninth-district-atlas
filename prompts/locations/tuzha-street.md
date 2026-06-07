@@ -1,6 +1,6 @@
 # 土渣街（street）场景生成提示词
 
-> 用途：生成 土渣街 的场景示意图。生成后请命名为 `tuzha-street.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 土渣街 的场景示意图。生成后命名为 `土渣街.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/tuzha-street.webp`。
 
 ## 画面主体
 土渣街：早期冲突集中爆发的街区，秦禹从这里切入地下规则。

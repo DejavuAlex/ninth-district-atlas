@@ -1,6 +1,6 @@
 # 盐岛·盐业站（frontier）场景生成提示词
 
-> 用途：生成 盐岛·盐业站 的场景示意图。生成后请命名为 `yandao.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 盐岛·盐业站 的场景示意图。生成后命名为 `盐岛·盐业站.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/yandao.webp`。
 
 ## 画面主体
 盐岛·盐业站：五区辖下盛产盐与资源的海岛据点，后期被川军一举插旗、鲸吞收编。

@@ -1,6 +1,6 @@
 # 南沪（city）场景生成提示词
 
-> 用途：生成 南沪 的场景示意图。生成后请命名为 `nanhu.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 南沪 的场景示意图。生成后命名为 `南沪.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/nanhu.webp`。
 
 ## 画面主体
 南沪：七区的政治舞台，南方巨头聚集、智囊与派系交锋频繁。

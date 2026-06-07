@@ -1,6 +1,6 @@
 # 叶子枭 人物形象生成提示词
 
-> 用途：生成 叶子枭 的人物形象图。生成后请命名为 `ye-zixiao.png` 放入 `public/portraits/`，前端会自动显示。
+> 用途：生成 叶子枭 的人物形象图。生成后命名为 `叶子枭.png` 放入 `assets/人物/`，再运行 `npm run optimize:images` 自动转成 `public/portraits/ye-zixiao.webp`。
 
 ## 人物身份
 黑道枭雄 · 秦禹的悍将（别称：枭哥）

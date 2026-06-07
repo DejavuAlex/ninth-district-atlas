@@ -1,6 +1,6 @@
 # 待规划区（wasteland）场景生成提示词
 
-> 用途：生成 待规划区 的场景示意图。生成后请命名为 `planning-zone.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 待规划区 的场景示意图。生成后命名为 `待规划区.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/planning-zone.webp`。
 
 ## 画面主体
 待规划区：秦禹出身和故事起点所在的无政府边缘地带。

@@ -1,6 +1,6 @@
 # 第九特区（district）场景生成提示词
 
-> 用途：生成 第九特区 的场景示意图。生成后请命名为 `ninth-district.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 第九特区 的场景示意图。生成后命名为 `第九特区.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/ninth-district.webp`。
 
 ## 画面主体
 第九特区：九区（第九特区）：松江、奉北、长吉等城所在的核心特区，也是身份、粮食与权力的入口，与七区、八区并称三大区。

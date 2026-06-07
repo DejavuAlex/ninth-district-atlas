@@ -1,6 +1,6 @@
 # 五区（district）场景生成提示词
 
-> 用途：生成 五区 的场景示意图。生成后请命名为 `five-zone.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 五区 的场景示意图。生成后命名为 `五区.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/five-zone.webp`。
 
 ## 画面主体
 五区：五区：盐岛所在、妖魔鬼怪齐聚的外部区域，牵动边境与外交压力。

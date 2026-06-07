@@ -113,7 +113,7 @@ export function Highlights({
               {items.map((highlight) => (
                 <article key={highlight.id} className="hl-card">
                   <div className="hl-card-media">
-                    <VideoSlot id={highlight.id} poster={`/scenes/${highlight.locationId}.png`} />
+                    <VideoSlot id={highlight.id} poster={`/scenes/${highlight.locationId}.webp`} />
                   </div>
                   <div className="hl-card-body">
                     <div className="hl-card-top">

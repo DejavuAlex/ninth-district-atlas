@@ -1,6 +1,6 @@
 # 黑街（street）场景生成提示词
 
-> 用途：生成 黑街 的场景示意图。生成后请命名为 `black-street.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 黑街 的场景示意图。生成后命名为 `黑街.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/black-street.webp`。
 
 ## 画面主体
 黑街：秦禹、老猫和马家频繁活动的灰色地带。

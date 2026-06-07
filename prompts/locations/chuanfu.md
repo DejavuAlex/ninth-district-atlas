@@ -1,6 +1,6 @@
 # 川府（frontier）场景生成提示词
 
-> 用途：生成 川府 的场景示意图。生成后请命名为 `chuanfu.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 川府 的场景示意图。生成后命名为 `川府.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/chuanfu.webp`。
 
 ## 画面主体
 川府：川府特区（川府城）：紧邻八区、九区的独立特区，秦禹后期立足、扩军、建立川府系的根据地。

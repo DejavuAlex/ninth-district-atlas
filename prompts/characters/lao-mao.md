@@ -1,6 +1,6 @@
 # 老猫 人物形象生成提示词
 
-> 用途：生成 老猫 的人物形象图。生成后请命名为 `lao-mao.png` 放入 `public/portraits/`，前端会自动显示。
+> 用途：生成 老猫 的人物形象图。生成后命名为 `老猫.png` 放入 `assets/人物/`，再运行 `npm run optimize:images` 自动转成 `public/portraits/lao-mao.webp`。
 
 ## 人物身份
 警务搭档，兄弟线核心（别称：猫哥）

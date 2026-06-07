@@ -1,6 +1,6 @@
 # 江州（city）场景生成提示词
 
-> 用途：生成 江州 的场景示意图。生成后请命名为 `jiangzhou.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 江州 的场景示意图。生成后命名为 `江州.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/jiangzhou.webp`。
 
 ## 画面主体
 江州：七区一带的重要城市，早期江湖交易与后期乱局都反复牵动于此。

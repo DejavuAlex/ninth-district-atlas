@@ -33,8 +33,8 @@
 │   ├── lib/novelFilters.ts       # 搜索与筛选逻辑
 │   └── styles.css                # 全站样式
 ├── public/
-│   ├── scenes/<地点id>.png        # 地点场景图 + world-map.png（地图底图）
-│   └── portraits/<人物id>.png     # 人物立绘
+│   ├── scenes/<地点id>.webp       # 地点场景图 + world-map.webp（地图底图）
+│   └── portraits/<人物id>.webp    # 人物立绘
 ├── assets/                       # 原始出图素材（中文命名），人工放置后同步到 public/
 │   ├── 人物/<中文名>.png
 │   └── 地区/<中文名>.png
@@ -64,16 +64,18 @@ npm run dev          # 启动开发服务器（默认 http://localhost:5173）
 | `npm run test:e2e` | 运行端到端测试（Playwright） |
 | `npm run validate:data` | 校验数据完整性（引用是否存在、坐标是否越界等） |
 | `npm run export:prompts` | 由数据导出配图提示词到 `prompts/`（仅为主要人物出图） |
+| `npm run optimize:images` | 把 `assets/` 下的 PNG 素材转成 `public/` 下的 WebP（体积更小、国内更快） |
 
 ## 🖼️ 配图与素材工作流
 
 1. 用 `prompts/` 下对应的提示词在出图工具中生成图片。
-2. 把成图放入 `assets/人物/<中文名>.png` 或 `assets/地区/<中文名>.png`。
-3. 按「中文名 → 英文 id」复制到前端实际读取的路径：
-   - 人物：`public/portraits/<人物id>.png`
-   - 场景：`public/scenes/<地点id>.png`
-   - 地图底图：`public/scenes/world-map.png`
+2. 把成图（PNG）放入 `assets/人物/<中文名>.png` 或 `assets/地区/<中文名>.png`。
+3. 运行 `npm run optimize:images`：按「中文名 → 英文 id」自动转成前端读取的 WebP：
+   - 人物：`public/portraits/<人物id>.webp`
+   - 场景：`public/scenes/<地点id>.webp`（地图底图为 `public/scenes/world-map.webp`）
 4. 前端按 id 自动加载，缺图时显示占位。**次要人物不出图、不生成提示词。**
+
+> WebP 体积约为 PNG 的 1/10（整套素材 96MB → 7MB），首屏与图片加载明显更快，对国内访问尤其重要。
 
 ## ✏️ 内容如何修改
 
@@ -112,7 +114,7 @@ Vercel 的 CDN 在中国大陆访问不稳定（常需翻墙）。本项目是**
 
 > 不推荐：GitHub Pages（子路径 + 国内不稳定）、Netlify / Cloudflare Pages（国内基本仍需翻墙）。
 
-**提速建议**：当前素材图片约 97MB（每张 PNG 2~3MB），国内首屏会偏慢。建议把场景/立绘 PNG 压成 WebP（体积可降到 1/5~1/10），无论用哪种托管都能大幅加快加载。
+**提速建议**：素材图片已统一转为 WebP（整套约 7MB，`npm run optimize:images` 生成），构建产物 `dist/` 约 9~10MB，国内加载已较快。新增图片后记得重新运行该命令。
 
 ---
 

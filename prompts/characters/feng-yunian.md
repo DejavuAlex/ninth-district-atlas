@@ -1,6 +1,6 @@
 # 冯玉年 人物形象生成提示词
 
-> 用途：生成 冯玉年 的人物形象图。生成后请命名为 `feng-yunian.png` 放入 `public/portraits/`，前端会自动显示。
+> 用途：生成 冯玉年 的人物形象图。生成后命名为 `冯玉年.png` 放入 `assets/人物/`，再运行 `npm run optimize:images` 自动转成 `public/portraits/feng-yunian.webp`。
 
 ## 人物身份
 九区警务署长 · 秦禹的引路人（别称：老冯、冯喷子、冯署长）

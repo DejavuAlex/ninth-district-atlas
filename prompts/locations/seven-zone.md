@@ -1,6 +1,6 @@
 # 七区（district）场景生成提示词
 
-> 用途：生成 七区 的场景示意图。生成后请命名为 `seven-zone.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 七区 的场景示意图。生成后命名为 `七区.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/seven-zone.webp`。
 
 ## 画面主体
 七区：七区：南沪、江州所在的特区，与八区、九区并称三大区，后期奔袭与驻防团冲突频发。

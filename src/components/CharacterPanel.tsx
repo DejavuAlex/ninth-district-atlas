@@ -100,7 +100,7 @@ export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter
         {selectedCharacter.tier === "main" ? (
           <div className="portrait-layout">
             <AssetImage
-              src={`/portraits/${selectedCharacter.id}.png`}
+              src={`/portraits/${selectedCharacter.id}.webp`}
               alt={`${selectedCharacter.name}形象`}
               placeholder="形象图待生成"
               variant="portrait"

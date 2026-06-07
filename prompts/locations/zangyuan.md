@@ -1,6 +1,6 @@
 # 藏源·垒山要塞（frontier）场景生成提示词
 
-> 用途：生成 藏源·垒山要塞 的场景示意图。生成后请命名为 `zangyuan.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 藏源·垒山要塞 的场景示意图。生成后命名为 `藏源·垒山要塞.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/zangyuan.webp`。
 
 ## 画面主体
 藏源·垒山要塞：依山而建的要塞与物资枢纽，扼守内陆通道，是后方的屯粮聚兵之地。

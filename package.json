@@ -8,7 +8,8 @@
     "test:e2e": "playwright test",
     "analyze:novel": "node scripts/extract-chapters.mjs",
     "validate:data": "tsx scripts/validate-novel-data.mjs",
-    "export:prompts": "tsx scripts/export-prompts.mjs"
+    "export:prompts": "tsx scripts/export-prompts.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@phosphor-icons/react": "latest",

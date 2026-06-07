@@ -105,7 +105,7 @@ export function WorldMap({
       </div>
 
       <div className="map-figure" aria-label="第九特区全球地图">
-        <img className="map-base" src="/scenes/world-map.png" alt="第九特区全球地图" />
+        <img className="map-base" src="/scenes/world-map.webp" alt="第九特区全球地图" />
         {routeActive ? (
           <svg className="map-route is-on" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <path
@@ -143,7 +143,7 @@ export function WorldMap({
         </div>
         {current ? (
           <div className="route-traveler" style={{ left: `${current.x}%`, top: `${current.y}%` }}>
-            <img className="route-traveler-img" src="/portraits/qin-yu.png" alt="" onError={(event) => ((event.target as HTMLImageElement).style.display = "none")} />
+            <img className="route-traveler-img" src="/portraits/qin-yu.webp" alt="" onError={(event) => ((event.target as HTMLImageElement).style.display = "none")} />
           </div>
         ) : null}
       </div>
@@ -158,7 +158,7 @@ export function WorldMap({
           </h3>
           <div className="scene-block">
             <AssetImage
-              src={`/scenes/${selectedLocation.id}.png`}
+              src={`/scenes/${selectedLocation.id}.webp`}
               alt={`${selectedLocation.name}场景示意`}
               caption={`${selectedLocation.name} · 场景示意`}
               placeholder="场景图待生成"

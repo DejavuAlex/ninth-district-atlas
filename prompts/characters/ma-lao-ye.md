@@ -1,6 +1,6 @@
 # 马老爷子 人物形象生成提示词
 
-> 用途：生成 马老爷子 的人物形象图。生成后请命名为 `ma-lao-ye.png` 放入 `public/portraits/`，前端会自动显示。
+> 用途：生成 马老爷子 的人物形象图。生成后命名为 `马老爷子.png` 放入 `assets/人物/`，再运行 `npm run optimize:images` 自动转成 `public/portraits/ma-lao-ye.webp`。
 
 ## 人物身份
 老江湖（别称：马老）

@@ -1,6 +1,6 @@
 # 周兴礼 人物形象生成提示词
 
-> 用途：生成 周兴礼 的人物形象图。生成后请命名为 `zhou-xingli.png` 放入 `public/portraits/`，前端会自动显示。
+> 用途：生成 周兴礼 的人物形象图。生成后命名为 `周兴礼.png` 放入 `assets/人物/`，再运行 `npm run optimize:images` 自动转成 `public/portraits/zhou-xingli.webp`。
 
 ## 人物身份
 终局高层对手（别称：老周）

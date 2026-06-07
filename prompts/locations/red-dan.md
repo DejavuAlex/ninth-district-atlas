@@ -1,6 +1,6 @@
 # 红丹战场（battlefield）场景生成提示词
 
-> 用途：生成 红丹战场 的场景示意图。生成后请命名为 `red-dan.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 红丹战场 的场景示意图。生成后命名为 `红丹战场.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/red-dan.webp`。
 
 ## 画面主体
 红丹战场：最终决战附近的象征性战场，承接北伐后的最后冲锋。

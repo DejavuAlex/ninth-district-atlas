@@ -1,6 +1,6 @@
 # 奉北（city）场景生成提示词
 
-> 用途：生成 奉北 的场景示意图。生成后请命名为 `fengbei.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 奉北 的场景示意图。生成后命名为 `奉北.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/fengbei.webp`。
 
 ## 画面主体
 奉北：九区的权力圈层与警务政治重镇，秦禹多次被卷入上层棋局。

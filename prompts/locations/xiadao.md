@@ -1,6 +1,6 @@
 # 夏岛（frontier）场景生成提示词
 
-> 用途：生成 夏岛 的场景示意图。生成后请命名为 `xiadao.png` 放入 `public/scenes/`，前端会自动显示。
+> 用途：生成 夏岛 的场景示意图。生成后命名为 `夏岛.png` 放入 `assets/地区/`，再运行 `npm run optimize:images` 自动转成 `public/scenes/xiadao.webp`。
 
 ## 画面主体
 夏岛：全图最东端的远海岛屿，孤悬海外、远离主战场的边陲之地。
