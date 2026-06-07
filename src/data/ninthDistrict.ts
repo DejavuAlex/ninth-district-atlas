@@ -178,14 +178,14 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "seven-zone", name: "七区", kind: "district", x: 77, y: 31, summary: "七区：南沪、江州所在的特区，与八区、九区并称三大区，后期奔袭与驻防团冲突频发。", atmosphere: "边境紧绷，局部冲突随时升级。", factionIds: ["military-intel"], eventIds: ["event-seven-zone-raid"] },
     { id: "eight-zone", name: "八区", kind: "district", x: 65, y: 30, summary: "八区：与七区、九区并称三大区，毗邻川府，是后期战局的关键介入者。", atmosphere: "高层会议和军事压力共同落子。", factionIds: ["gu-line", "feng-line"], eventIds: ["event-eight-zone"] },
     { id: "eu-first-zone", name: "欧盟一区", kind: "frontier", x: 16, y: 29, summary: "外部势力代表区域，推动故事进入更大尺度的冲突。", atmosphere: "规则不同，谈判和军事威慑并行。", factionIds: ["eu-zone"], eventIds: ["event-eu-zone"] },
-    { id: "old-triangle", name: "老三角", kind: "frontier", x: 60, y: 43, summary: "后期目光聚集的边境地带，军情和战场压力交织。", atmosphere: "潮湿、混乱、到处是临时阵线。", factionIds: ["military-intel", "chuanfu"], eventIds: ["event-old-triangle"] },
+    { id: "old-triangle", name: "老三角", kind: "frontier", x: 61, y: 52, summary: "后期目光聚集的边境地带，军情和战场压力交织。", atmosphere: "潮湿、混乱、到处是临时阵线。", factionIds: ["military-intel", "chuanfu"], eventIds: ["event-old-triangle"] },
     { id: "bar-city", name: "巴尔城", kind: "battlefield", x: 61, y: 60, summary: "北伐阶段的重要攻坚目标，城市攻防成为大结局前的焦点。", atmosphere: "炮火、围城和心理战压到极限。", factionIds: ["eu-zone", "chuanfu"], eventIds: ["event-bar-city"] },
     { id: "yemen", name: "耶门", kind: "frontier", x: 67, y: 85, summary: "结尾阶段外部谈判和再赴战场的落点之一。", atmosphere: "远离故土，却仍被华区战局牵动。", factionIds: ["military-intel", "eu-zone"], eventIds: ["event-yemen"] },
     { id: "red-dan", name: "红丹战场", kind: "battlefield", x: 29, y: 58, summary: "最终决战附近的象征性战场，承接北伐后的最后冲锋。", atmosphere: "疲惫、牺牲和最后的国仇家恨集中爆发。", factionIds: ["chuanfu", "military-intel"], eventIds: ["event-final-charge"] },
     { id: "liu-zone", name: "六区·北境堡垒", kind: "frontier", x: 49, y: 15, summary: "北方边境的堡垒辖区，是抵御外敌与控扼北线的军事重镇。", atmosphere: "高墙、哨塔与驻军，肃整而戒备森严。", factionIds: ["gu-line", "military-intel"], eventIds: [] },
     { id: "beifengkou", name: "北风口·莆汾哨站", kind: "battlefield", x: 60, y: 22, summary: "北风口一带的前沿哨站，炮声阵阵、小队往来，是反复拉锯的火线。", atmosphere: "寒风呼啸、炮火不断，前沿小队在此出生入死。", factionIds: ["chuanfu", "military-intel"], eventIds: [] },
     { id: "zangyuan", name: "藏源·垒山要塞", kind: "frontier", x: 41, y: 51, summary: "依山而建的要塞与物资枢纽，扼守内陆通道，是后方的屯粮聚兵之地。", atmosphere: "依山而立、壁垒森严，囤积着粮秣与军械。", factionIds: ["chuanfu"], eventIds: [] },
-    { id: "yandao", name: "盐岛·盐业站", kind: "frontier", x: 44, y: 68, summary: "五区辖下盛产盐与资源的海岛据点，后期被川军一举插旗、鲸吞收编。", atmosphere: "盐场、码头与守军，海风咸冷、资源是这里的命脉。", factionIds: ["chuanfu", "chen-line"], eventIds: ["event-salt-island"] },
+    { id: "yandao", name: "盐岛·盐业站", kind: "frontier", x: 54, y: 78, summary: "五区辖下盛产盐与资源的海岛据点，后期被川军一举插旗、鲸吞收编。", atmosphere: "盐场、码头与守军，海风咸冷、资源是这里的命脉。", factionIds: ["chuanfu", "chen-line"], eventIds: ["event-salt-island"] },
     { id: "xiadao", name: "夏岛", kind: "frontier", x: 93, y: 20, summary: "全图最东端的远海岛屿，孤悬海外、远离主战场的边陲之地。", atmosphere: "孤悬海上、人迹稀少，是世界边缘的最后落点。", factionIds: ["eu-zone"], eventIds: [] }
   ],
   arcs: [
