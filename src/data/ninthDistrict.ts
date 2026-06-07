@@ -97,7 +97,7 @@ const locationScenes: Record<string, string> = {
   "ninth-district":
     "九区·东城，相对成型、有秩序的特区门户：高大壁垒、检查站与配给点环绕，凭身份和粮票才能立足；街道冷硬却运转有序、岗哨规整，比区外废土体面太多，是无数人挤破头想进来的‘里面’。",
   "songjiang":
-    "一区·松江，秦禹扎根的特区核心都市：老旧高楼与立交天桥层叠、招牌与霓虹密集、地面终年湿滑反光；警务、黑街与政治利益在同一条街上交织，明面秩序之下是码牌、交易与枪声的地下暗流。",
+    "九区·松江，秦禹扎根的特区核心都市：老旧高楼与立交天桥层叠、招牌与霓虹密集、地面终年湿滑反光；警务、黑街与政治利益在同一条街上交织，明面秩序之下是码牌、交易与枪声的地下暗流。",
   "black-street":
     "松江的黑街灰色地带，秦禹、老猫与马家厮混之处：密集的旧街、饭馆、码牌赌档与窄巷半明半暗交错，饭局上谈生意、桌底下见血，人情、义气与暴力在这里混作一团，市井气最浓。",
   "tuzha-street":
@@ -107,9 +107,9 @@ const locationScenes: Record<string, string> = {
   "fengbei":
     "奉北，权力圈层云集之地：街面规整、官味厚重，办公楼、会所与岗哨密布；表面规矩森严，背地里却是圈子、人情与棋局密织，秦禹屡屡被卷入其中的上层博弈场。",
   "changji":
-    "四区·川北一线的长吉，军事色彩渐重的城市：检查站、驻防营地与运输线交错，‘马踏长吉’的硝烟未远；街区紧绷肃杀，是故事从江湖斗争转入成建制战争的拐点。",
+    "九区·长吉，军事色彩渐重的城市：检查站、驻防营地与运输线交错，‘马踏长吉’的硝烟未远；街区紧绷肃杀，是故事从江湖斗争转入成建制战争的拐点。",
   "nanhu":
-    "二区·南沪，南方财阀与政治的光鲜舞台：会所、写字楼与霓虹气派现代，巨头、智囊与派系在此云集；街景繁华体面，光鲜表面下却是智谋暗战与炮火随时引爆的暗流。",
+    "七区·南沪，南方财阀与政治的光鲜舞台，也是一座沿海港口都市：临海而建，海港码头、货轮与远洋商路连通内外；会所、写字楼与霓虹气派现代，巨头、智囊与派系在此云集；光鲜表面下却是智谋暗战与炮火随时引爆的暗流。",
   "chuanfu":
     "川府·川府城，秦禹真正立足的后方根据地：百万亩粮仓、生活镇与连片军营，秩序在这里重新落地；街镇相对安稳、有炊烟与人气，是与区外废土截然不同的‘家底’所在。",
   "five-zone":
@@ -172,7 +172,7 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { id: "jiangzhou", name: "江州", kind: "city", x: 52, y: 68, summary: "七区一带的重要城市，早期江湖交易与后期乱局都反复牵动于此。", atmosphere: "商路、家族和江湖人情交错。", factionIds: ["ma-family", "black-street"], eventIds: ["event-jiangzhou", "event-jiangzhou-chaos"] },
     { id: "fengbei", name: "奉北", kind: "city", x: 75, y: 30, summary: "九区的权力圈层与警务政治重镇，秦禹多次被卷入上层棋局。", atmosphere: "表面规矩森严，背后棋局密集。", factionIds: ["wu-line", "feng-line"], eventIds: ["event-fengbei", "event-pharma"] },
     { id: "changji", name: "长吉", kind: "city", x: 66, y: 23, summary: "九区的关键城市，故事在此由江湖斗争转向军事行动。", atmosphere: "道路、驻防和突袭成为新的语言。", factionIds: ["gu-line", "chuanfu"], eventIds: ["event-changji", "event-sword-changji"] },
-    { id: "nanhu", name: "南沪", kind: "city", x: 46, y: 64, summary: "七区的政治舞台，南方巨头聚集、智囊与派系交锋频繁。", atmosphere: "会所、会议和暗线共同推动局势。", factionIds: ["chen-line", "military-intel"], eventIds: ["event-nanhu", "event-nanhu-fire"] },
+    { id: "nanhu", name: "南沪", kind: "city", x: 46, y: 64, summary: "七区的沿海港口都市，设有海港码头与远洋贸易，是南方巨头聚集、智囊与派系交锋的政治舞台。", atmosphere: "码头、货轮与远洋商路连通内外，会所、会议和暗线共同推动局势。", factionIds: ["chen-line", "military-intel"], eventIds: ["event-nanhu", "event-nanhu-fire"] },
     { id: "chuanfu", name: "川府", kind: "frontier", x: 54, y: 41, summary: "川府特区（川府城）：紧邻八区、九区的独立特区，秦禹后期立足、扩军、建立川府系的根据地。", atmosphere: "粮仓、生活镇和军队让秩序重新落地。", factionIds: ["chuanfu"], eventIds: ["event-chuanfu-entry", "event-chuanfu-war"] },
     { id: "five-zone", name: "五区", kind: "district", x: 65, y: 82, summary: "五区：盐岛所在、妖魔鬼怪齐聚的外部区域，牵动边境与外交压力。", atmosphere: "利益更复杂，合作和背叛更快切换。", factionIds: ["eu-zone", "chen-line"], eventIds: ["event-five-zone"] },
     { id: "seven-zone", name: "七区", kind: "district", x: 56, y: 59, summary: "七区：南沪、江州所在的特区，与八区、九区并称三大区，后期奔袭与驻防团冲突频发。", atmosphere: "边境紧绷，局部冲突随时升级。", factionIds: ["military-intel"], eventIds: ["event-seven-zone-raid"] },
