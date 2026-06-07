@@ -577,6 +577,15 @@ input:focus-visible,
   line-height: 1.4;
 }
 
+.route-legend {
+  display: block;
+  margin-top: 4px;
+  font-style: normal;
+  font-size: 0.74rem;
+  color: #ffcf7a;
+  opacity: 0.85;
+}
+
 .route-clear {
   flex: none;
   margin-left: auto;
@@ -618,13 +627,7 @@ input:focus-visible,
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
   filter: drop-shadow(0 0 4px rgba(255, 160, 70, 0.9));
-  animation-name: routeDraw;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-@keyframes routeDraw {
-  to { stroke-dashoffset: 0; }
+  transition: stroke-dashoffset 1.2s linear;
 }
 
 .route-traveler {

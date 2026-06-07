@@ -50,7 +50,6 @@ export function WorldMap({
 
   const [step, setStep] = useState(-1);
   const [playing, setPlaying] = useState(false);
-  const [runId, setRunId] = useState(0);
 
   useEffect(() => {
     if (!playing) return;
@@ -63,7 +62,6 @@ export function WorldMap({
   }, [playing, step, routePoints.length]);
 
   const startJourney = () => {
-    setRunId((value) => value + 1);
     setStep(0);
     setPlaying(true);
   };
@@ -77,7 +75,8 @@ export function WorldMap({
   const current = routeActive ? routePoints[clampedStep] : null;
   const journeyLocationIds = new Set(routePoints.map((point) => point.locationId));
   const pathD = routePoints.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
-  const drawSeconds = Math.max(1, (routePoints.length - 1) * (STEP_MS / 1000));
+  const totalSegments = Math.max(1, routePoints.length - 1);
+  const traveledPercent = routeActive ? (clampedStep / totalSegments) * 100 : 0;
 
   return (
     <div className="world-map-layout">
@@ -94,6 +93,7 @@ export function WorldMap({
             <div>
               <strong>{current?.title}</strong>
               <small>{current?.caption}</small>
+              <em className="route-legend">金色轨迹 = 秦禹一路走过的路线</em>
             </div>
             <button type="button" className="route-clear" onClick={clearJourney} aria-label="关闭路线">
               <X size={14} weight="bold" />
@@ -109,12 +109,11 @@ export function WorldMap({
         {routeActive ? (
           <svg className="map-route is-on" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <path
-              key={runId}
               className="route-line"
               d={pathD}
               pathLength={100}
               vectorEffect="non-scaling-stroke"
-              style={{ animationDuration: `${drawSeconds}s` }}
+              style={{ strokeDashoffset: 100 - traveledPercent }}
             />
           </svg>
         ) : null}
