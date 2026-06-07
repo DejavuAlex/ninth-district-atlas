@@ -15,7 +15,7 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
 
   await page.getByRole("button", { name: /播放秦禹的崛起之路/ }).click();
   await expect(page.locator(".route-caption")).toBeVisible();
-  await expect(page.locator(".map-route .route-line")).toBeVisible();
+  await expect(page.locator(".route-traveler")).toBeVisible();
 
   await page.getByRole("link", { name: "人物关系" }).click();
   await expect(page).toHaveURL(/\/characters$/);

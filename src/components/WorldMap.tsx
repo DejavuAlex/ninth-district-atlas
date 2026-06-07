@@ -22,7 +22,7 @@ const kindLabel: Record<LocationNode["kind"], string> = {
   battlefield: "战场"
 };
 
-const STEP_MS = 1400;
+const STEP_MS = 2400;
 
 export function WorldMap({
   dataset,
@@ -74,9 +74,6 @@ export function WorldMap({
   const clampedStep = Math.min(step, routePoints.length - 1);
   const current = routeActive ? routePoints[clampedStep] : null;
   const journeyLocationIds = new Set(routePoints.map((point) => point.locationId));
-  const pathD = routePoints.map((point, index) => `${index === 0 ? "M" : "L"} ${point.x} ${point.y}`).join(" ");
-  const totalSegments = Math.max(1, routePoints.length - 1);
-  const traveledPercent = routeActive ? (clampedStep / totalSegments) * 100 : 0;
 
   return (
     <div className="world-map-layout">
@@ -93,7 +90,7 @@ export function WorldMap({
             <div>
               <strong>{current?.title}</strong>
               <small>{current?.caption}</small>
-              <em className="route-legend">金色轨迹 = 秦禹一路走过的路线</em>
+              <em className="route-legend">跟随秦禹的头像，依次抵达崛起途中的每一站</em>
             </div>
             <button type="button" className="route-clear" onClick={clearJourney} aria-label="关闭路线">
               <X size={14} weight="bold" />
@@ -106,17 +103,6 @@ export function WorldMap({
 
       <div className="map-figure" aria-label="第九特区全球地图">
         <img className="map-base" src="/scenes/world-map.webp" alt="第九特区全球地图" />
-        {routeActive ? (
-          <svg className="map-route is-on" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <path
-              className="route-line"
-              d={pathD}
-              pathLength={100}
-              vectorEffect="non-scaling-stroke"
-              style={{ strokeDashoffset: 100 - traveledPercent }}
-            />
-          </svg>
-        ) : null}
         <div className="map-markers">
           {dataset.locations.map((location) => {
             const isSelected = location.id === selectedLocation.id;
