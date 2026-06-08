@@ -25,7 +25,8 @@ const SCENES = {
   "土渣街": "tuzha-street", "夏岛": "xiadao", "奉北": "fengbei", "川府": "chuanfu",
   "待规划区": "planning-zone", "松江": "songjiang", "欧盟一区": "eu-first-zone", "盐岛": "yandao",
   "第九特区": "ninth-district", "第九特区地图": "world-map", "红丹战场": "red-dan",
-  "耶门": "yemen", "藏源": "zangyuan", "长吉": "changji", "黑街": "black-street"
+  "耶门": "yemen", "藏源": "zangyuan", "长吉": "changji", "黑街": "black-street",
+  "老三角": "old-triangle", "巴尔城": "bar-city"
 };
 
 const QUALITY = "82";
