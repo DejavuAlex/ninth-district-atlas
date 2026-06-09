@@ -1474,8 +1474,8 @@ input:focus-visible,
 /* Character portrait + intro layout */
 .portrait-layout {
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: 248px minmax(0, 1fr);
+  gap: 20px;
   align-items: start;
   margin: 16px 0;
 }
