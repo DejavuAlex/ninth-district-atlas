@@ -43,6 +43,8 @@ export interface NovelTheme {
   insight: string;
   detail: string;
   anchor: string;
+  quote?: string;
+  quoteContext?: string;
 }
 
 export interface Faction {
@@ -61,6 +63,8 @@ export interface Character {
   role: string;
   profile: string;
   story: string;
+  quote?: string;
+  quoteContext?: string;
   appearance: string;
   imagePrompt: string;
   traits: string[];

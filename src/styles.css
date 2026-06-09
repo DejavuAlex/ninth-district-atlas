@@ -1346,6 +1346,78 @@ input:focus-visible,
   color: var(--gold);
 }
 
+.theme-quote {
+  position: relative;
+  margin: 0;
+  padding: 16px 18px 14px 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(230, 177, 92, 0.22);
+  background: linear-gradient(160deg, rgba(141, 63, 37, 0.16), rgba(8, 6, 4, 0.34));
+}
+
+.theme-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: 12px;
+  top: 2px;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: rgba(230, 177, 92, 0.5);
+  font-family: Georgia, "Songti SC", serif;
+}
+
+.theme-quote p {
+  margin: 0;
+  color: #f3e6cf;
+  font-size: 1.06rem;
+  line-height: 1.85;
+  font-style: italic;
+}
+
+.theme-quote cite {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+
+.character-quote {
+  position: relative;
+  margin: 4px 0 0;
+  padding: 13px 16px 12px 36px;
+  border-radius: 13px;
+  border: 1px solid rgba(230, 177, 92, 0.2);
+  background: linear-gradient(160deg, rgba(141, 63, 37, 0.14), rgba(8, 6, 4, 0.3));
+}
+
+.character-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: rgba(230, 177, 92, 0.48);
+  font-family: Georgia, "Songti SC", serif;
+}
+
+.character-quote p {
+  margin: 0;
+  color: #f1e3ca;
+  line-height: 1.8;
+  font-style: italic;
+}
+
+.character-quote cite {
+  display: block;
+  margin-top: 6px;
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
 .theme-card h3 {
   margin: 0;
   font-size: 1.4rem;

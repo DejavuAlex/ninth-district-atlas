@@ -22,6 +22,12 @@ export function Themes({ dataset, onOpenArc }: ThemesProps) {
           return (
             <article key={theme.id} className="theme-card">
               <span className="theme-index">{String(index + 1).padStart(2, "0")}</span>
+              {theme.quote ? (
+                <blockquote className="theme-quote">
+                  <p>{theme.quote}</p>
+                  {theme.quoteContext ? <cite>{theme.quoteContext}</cite> : null}
+                </blockquote>
+              ) : null}
               <h3>{theme.title}</h3>
               <p className="theme-insight">{theme.insight}</p>
               <p className="theme-detail">{theme.detail}</p>

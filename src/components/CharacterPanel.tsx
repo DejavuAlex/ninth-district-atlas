@@ -126,6 +126,12 @@ export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter
           </div>
         )}
         <p>{selectedCharacter.story}</p>
+        {selectedCharacter.quote ? (
+          <blockquote className="character-quote">
+            <p>{selectedCharacter.quote}</p>
+            {selectedCharacter.quoteContext ? <cite>{selectedCharacter.quoteContext}</cite> : null}
+          </blockquote>
+        ) : null}
         <dl className="profile-meta">
           <div>
             <dt>首次出现</dt>
