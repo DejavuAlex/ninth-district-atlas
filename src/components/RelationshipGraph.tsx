@@ -120,7 +120,7 @@ function FocusView({ dataset, selectedCharacterId, onSelectCharacter }: Relation
 
   const placed = neighbors.map((item, index) => {
     const angle = (Math.PI * 2 * index) / Math.max(neighbors.length, 1) - Math.PI / 2;
-    return { ...item, x: 50 + Math.cos(angle) * 36, y: 50 + Math.sin(angle) * 34 };
+    return { ...item, x: 50 + Math.cos(angle) * 39, y: 50 + Math.sin(angle) * 37 };
   });
 
   return (
