@@ -17,7 +17,8 @@ const PORTRAITS = {
   "徐洋": "xu-yan", "老李": "lao-li", "马老爷子": "ma-lao-ye", "冯玉年": "feng-yunian",
   "吴迪": "wu-di", "李伯康": "li-bokang", "林念蕾": "lin-nianlei", "项择昊": "xiang-zehao",
   "齐麟": "qi-lin", "刘子叔": "liuzi-shu", "大牙": "da-ya", "老猫": "lao-mao", "叶琳": "ye-lin",
-  "叶子枭": "ye-zixiao", "周兴礼": "zhou-xingli"
+  "叶子枭": "ye-zixiao", "周兴礼": "zhou-xingli",
+  "袁克": "yuan-ke", "柯桦": "ke-hua", "小祁": "xiao-qi"
 };
 
 const SCENES = {
