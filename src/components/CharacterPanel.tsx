@@ -104,6 +104,7 @@ export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter
               alt={`${selectedCharacter.name}形象`}
               placeholder="形象图待生成"
               variant="portrait"
+              zoomable
             />
             <div className="portrait-text">
               <p>{selectedCharacter.profile}</p>

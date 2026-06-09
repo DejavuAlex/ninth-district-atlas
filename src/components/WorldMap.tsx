@@ -148,6 +148,7 @@ export function WorldMap({
               caption={`${selectedLocation.name} · 场景示意`}
               placeholder="场景图待生成"
               variant="scene"
+              zoomable
             />
           </div>
           <p>{selectedLocation.summary}</p>

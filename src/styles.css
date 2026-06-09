@@ -1447,6 +1447,115 @@ input:focus-visible,
   object-fit: cover;
 }
 
+.asset-zoom-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  position: relative;
+}
+
+.asset-zoom-trigger img {
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.asset-zoom-trigger:hover img,
+.asset-zoom-trigger:focus-visible img {
+  transform: scale(1.04);
+}
+
+.asset-zoom-hint {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 2px 9px;
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff7ea;
+  background: rgba(8, 6, 4, 0.72);
+  border: 1px solid rgba(230, 177, 92, 0.32);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 200ms ease, transform 200ms ease;
+  pointer-events: none;
+}
+
+.asset-zoom-trigger:hover .asset-zoom-hint,
+.asset-zoom-trigger:focus-visible .asset-zoom-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.asset-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 5vh 4vw;
+  background: rgba(6, 4, 3, 0.88);
+  backdrop-filter: blur(10px) saturate(120%);
+  cursor: zoom-out;
+  animation: lightboxFade 180ms ease;
+}
+
+.asset-lightbox img {
+  max-width: min(92vw, 1100px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  border: 1px solid rgba(230, 177, 92, 0.3);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  cursor: default;
+}
+
+.asset-lightbox-close {
+  position: fixed;
+  top: 22px;
+  right: 26px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: #fff7ea;
+  border: 1px solid rgba(230, 177, 92, 0.32);
+  border-radius: 50%;
+  background: rgba(20, 14, 10, 0.82);
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.asset-lightbox-close:hover {
+  transform: scale(1.08);
+  background: rgba(141, 63, 37, 0.9);
+}
+
+.asset-lightbox-caption {
+  position: fixed;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  color: rgba(255, 247, 234, 0.9);
+  background: rgba(8, 6, 4, 0.72);
+  border: 1px solid rgba(230, 177, 92, 0.24);
+}
+
+@keyframes lightboxFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 .asset-image.scene img {
   aspect-ratio: 16 / 9;
 }

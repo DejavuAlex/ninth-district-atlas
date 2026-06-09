@@ -24,6 +24,11 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
   await expect(page.locator(".profile-card").getByRole("heading", { name: "秦禹" })).toBeVisible();
   await expect(page.locator(".relationship-summary").getByText("生死兄弟").first()).toBeVisible();
 
+  await page.locator(".profile-card .asset-zoom-trigger").click();
+  await expect(page.locator(".asset-lightbox")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".asset-lightbox")).toHaveCount(0);
+
   await page.getByRole("link", { name: "小说立意" }).click();
   await expect(page).toHaveURL(/\/themes$/);
   await expect(page.getByRole("heading", { name: "向着春暖花开走" })).toBeVisible();
