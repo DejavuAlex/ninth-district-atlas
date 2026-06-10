@@ -45,6 +45,10 @@ export interface NovelTheme {
   anchor: string;
   quote?: string;
   quoteContext?: string;
+  extraQuotes?: Array<{
+    quote: string;
+    context: string;
+  }>;
 }
 
 export interface Faction {
@@ -127,6 +131,14 @@ export interface JourneyStop {
   caption: string;
 }
 
+export interface CharacterJourney {
+  id: string;
+  characterId: CharacterId;
+  label: string;
+  description: string;
+  stops: JourneyStop[];
+}
+
 export interface NovelDataset {
   id: NovelId;
   title: string;
@@ -140,5 +152,6 @@ export interface NovelDataset {
   events: StoryEvent[];
   highlights: StoryHighlight[];
   journey: JourneyStop[];
+  journeys?: CharacterJourney[];
   themes: NovelTheme[];
 }

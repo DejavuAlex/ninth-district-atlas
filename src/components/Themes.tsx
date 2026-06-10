@@ -30,6 +30,16 @@ export function Themes({ dataset, onOpenArc }: ThemesProps) {
               ) : null}
               <h3>{theme.title}</h3>
               <p className="theme-insight">{theme.insight}</p>
+              {theme.extraQuotes?.length ? (
+                <div className="theme-extra-quotes" aria-label={`${theme.title}补充原文`}>
+                  {theme.extraQuotes.map((item) => (
+                    <blockquote key={item.quote}>
+                      <p>{item.quote}</p>
+                      <cite>{item.context}</cite>
+                    </blockquote>
+                  ))}
+                </div>
+              ) : null}
               <p className="theme-detail">{theme.detail}</p>
               {arc ? (
                 <button type="button" className="theme-link" onClick={() => onOpenArc(arc.id)}>

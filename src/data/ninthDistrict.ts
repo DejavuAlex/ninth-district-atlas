@@ -385,6 +385,85 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
     { locationId: "changji", title: "马踏长吉", caption: "突袭小队一击易手，故事从江湖斗争转向军事行动。" },
     { locationId: "chuanfu", title: "落地川府", caption: "从远山生活镇到百万亩粮仓，建起根据地、扩军成势。" }
   ],
+  journeys: [
+    {
+      id: "qin-yu-rise",
+      characterId: "qin-yu",
+      label: "秦禹 · 崛起之路",
+      description: "从待规划区流民，到松江警务、黑街资源、川府军政核心。",
+      stops: [
+        { locationId: "planning-zone", title: "待规划区·起点", caption: "从无人区的流民开始挣命，买命求生、丛林法则中活下来。" },
+        { locationId: "ninth-district", title: "踏入第九特区", caption: "用一颗钻石的‘礼节’入了李司的眼，挤进九区警务系统。" },
+        { locationId: "songjiang", title: "扎根松江", caption: "在警务与黑街之间求生，街面的拳头与人情成了第一课。" },
+        { locationId: "black-street", title: "黑街立足", caption: "结盟马家、火并对手，在黑街这片灰色地带站稳脚跟。" },
+        { locationId: "jiangzhou", title: "江州周旋", caption: "江湖买卖与家族博弈交错，人脉与货源一步步铺开。" },
+        { locationId: "fengbei", title: "奉北棋局", caption: "从松江街面走进奉北会客厅，第一次踏入上层权力圈。" },
+        { locationId: "nanhu", title: "南沪博弈", caption: "南方巨头与智囊交锋，江湖买卖升级为政治博弈。" },
+        { locationId: "changji", title: "马踏长吉", caption: "突袭小队一击易手，故事从江湖斗争转向军事行动。" },
+        { locationId: "chuanfu", title: "落地川府", caption: "从远山生活镇到百万亩粮仓，建起根据地、扩军成势。" }
+      ]
+    },
+    {
+      id: "wu-tianyin-fate",
+      characterId: "wu-tianyin",
+      label: "吴天胤 · 绝路与救赎",
+      description: "从出狱后的普通求生，到被亲情和时代逼上极端，最后守在北风口。",
+      stops: [
+        { locationId: "planning-zone", title: "无身份的旧伤", caption: "出狱后只想谋一条活路，却发现脏点一辈子洗不掉。" },
+        { locationId: "songjiang", title: "松江追索", caption: "黑白两道都在寻找他的踪迹，个人悲剧变成权力洗牌的导火索。" },
+        { locationId: "jiangzhou", title: "逃亡与断线", caption: "交易线临检突至，逃亡、断后与失散把他推向更沉的黑暗。" },
+        { locationId: "old-triangle", title: "佣兵集团", caption: "以军费为条件加入同盟，把被世界抛弃的人重新聚成力量。" },
+        { locationId: "beifengkou", title: "北风口守线", caption: "宁可自己战死，也要让兄弟们的老婆孩子撤出去，完成最后的救赎。" }
+      ]
+    },
+    {
+      id: "qi-lin-rebirth",
+      characterId: "qi-lin",
+      label: "齐麟 · 从尊严破碎到八万军",
+      description: "早期警务小卒被逼到绝境，又在战火中重新长出骨头。",
+      stops: [
+        { locationId: "songjiang", title: "警务初识", caption: "第一个认真带秦禹熟悉警司规矩的人，两盒中华烟换来最初互信。" },
+        { locationId: "ninth-district", title: "尊严破碎", caption: "家庭、工作、尊严同时崩塌，他被迫逃离松江，命运跌到谷底。" },
+        { locationId: "fengbei", title: "重新入局", caption: "经历失去之后，他逐渐进入更高层面的军政体系。" },
+        { locationId: "red-dan", title: "八万人的归来", caption: "后期在鲁区拉来八万部队，曾经的小警员成为秦禹阵营的战场臂膀。" }
+      ]
+    },
+    {
+      id: "ke-ke-capital",
+      characterId: "ke-ke",
+      label: "于瑾年 · 从走货商到经营核心",
+      description: "她不是附庸，而是把人情、资本、产业拧成一股绳的经营者。",
+      stops: [
+        { locationId: "songjiang", title: "药品走货", caption: "一句于瑾年三个字就是质量保证，写出她最早的锋芒。" },
+        { locationId: "fengbei", title: "药业落子", caption: "药业集团成为新利益承载物，她把供货、人情与资本都算进棋盘。" },
+        { locationId: "chuanfu", title: "经营川府", caption: "从走货商做到集团核心，替秦禹阵营补上资源与产业能力。" },
+        { locationId: "old-triangle", title: "边境契机", caption: "在血腥边境风波里看出新机会，她的判断不输战场谋士。" }
+      ]
+    },
+    {
+      id: "ma-lao-er-rivers",
+      characterId: "ma-lao-er",
+      label: "马老二 · 黑街义气",
+      description: "从横冲直撞的马家少当家，到秦禹最早的地下盟友之一。",
+      stops: [
+        { locationId: "tuzha-street", title: "土渣街初碰", caption: "被秦禹硬抓硬审，两颗门牙换来第一次真正服气。" },
+        { locationId: "black-street", title: "马家结盟", caption: "黑街不是只有斗狠，也有人情、脸面和家族根基。" },
+        { locationId: "jiangzhou", title: "商路外扩", caption: "跟秦禹从松江走到江州，地下江湖开始连接外部商路。" },
+        { locationId: "songjiang", title: "旧兄弟未散", caption: "哪怕局势越走越大，马老二仍是秦禹冰冷算计之外的江湖温度。" }
+      ]
+    },
+    {
+      id: "feng-yunian-principle",
+      characterId: "feng-yunian",
+      label: "冯玉年 · 底线与无名老兵",
+      description: "从九区警务署长到北风口无名志愿兵，冯喷子把原则守到最后。",
+      stops: [
+        { locationId: "ninth-district", title: "九区引路", caption: "他给秦禹打开警务体系的门，也把底线和责任教给这个学生。" },
+        { locationId: "fengbei", title: "夹在恩义与家族之间", caption: "冯系利益、徒弟立场、家族崩塌，让他每一步都难。" },
+        { locationId: "beifengkou", title: "无名志愿兵", caption: "他拿起捡来的步枪，战死时没人认出这就是当年的冯署长。" }
+      ]
+    }
+  ],
   themes: [
     {
       id: "theme-order",
@@ -392,6 +471,9 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
       insight: "灾变没收了文明，却没有取消人对秩序的渴望。",
       quote: "无数次事件证明，在这里必须抱团才能活下去，活得好。",
       quoteContext: "原文旁白",
+      extraQuotes: [
+        { quote: "再牛B的理想，也干不过现实。环境恶劣，秩序漏洞百出。", context: "老李看透现实" }
+      ],
       detail: "从待规划区的丛林法则到第九特区的身份与配给，秩序不是天降的恩赐，而是被一群普通人用交易、规则和暴力一点点重新立起来的。它脆弱、肮脏、充满妥协，却是乱世里唯一能让人喘口气的东西。它提醒我们：稳定从来不是理所当然，而是有人在替你扛着。",
       anchor: "arc-survival-entry"
     },
@@ -401,6 +483,9 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
       insight: "时代给的是处境，命运由一次次选择写成。",
       quote: "兄弟，这每个人走的路，都是自己选择的，那出现什么结果，也都得自己承担。",
       quoteContext: "秦禹劝慰齐麟",
+      extraQuotes: [
+        { quote: "我是不想玩命，可我有的选择吗？啊，我有吗？", context: "绝境中的反问" }
+      ],
       detail: "秦禹没有主角光环，他只是比别人更早想清楚：要什么、肯付什么代价。同样的乱世，有人沦为人口贩子，有人成了护着兄弟的刀。小说反复把人推到岔路口，告诉你环境会限制选项，但按下哪一个，始终是你自己的手。",
       anchor: "arc-black-street"
     },
@@ -410,6 +495,10 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
       insight: "每一个微不足道的人，都有自己要拼命守住的东西。",
       quote: "为什么我在医院救人的时候，钱没赚到，尊严也丢了。那为什么我开始杀人了，反而我却赚到了钱，甚至得到了社会的认可。",
       quoteContext: "裴德勇的诘问",
+      extraQuotes: [
+        { quote: "我们是锄头，是筐，是采参的棒子，但就不是人，呵呵。", context: "大牙说起矿场编号" },
+        { quote: "我赚钱养活你……你他妈却剥夺了我最后一点尊严……", context: "齐麟尊严崩塌的一刻" }
+      ],
       detail: "卖身求活的女人、断后惨死的阿宏、被亲情逼到极端的吴天胤，他们不是推动情节的工具，而是这个世界真实的重量。作者让我们看见：当资源稀缺到极限，尊严会变得昂贵，但仍有人愿意为它付账。读懂他们，才读懂这部书的悲悯。",
       anchor: "arc-wu-tianyin"
     },
@@ -419,6 +508,10 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
       insight: "每一份向上爬的力量，都在背面记着要还的账。",
       quote: "枪打出头鸟，你做事如果太过独断专行，那就一定有。",
       quoteContext: "周兴礼的告诫",
+      extraQuotes: [
+        { quote: "最高军事长官这把椅子不好坐啊，既要照顾你们的情绪，也要多少给其他人争取到一定权益。", context: "周兴礼的高层权衡" },
+        { quote: "这个年代，讲吃喝的有，讲生存的有，但我还没听到谁讲什么原则呢。", context: "马老爷子的老江湖判断" }
+      ],
       detail: "从黑街码牌到川府十万军，秦禹的每一次壮大都伴随责任、敌人和无法回头的代价。权力让他能保护更多人，也让他离最初那个只想带兄弟吃口饱饭的少年越来越远。小说没有美化权力，而是冷静地算清它的利息：你掌控得越多，能自由选择的就越少。",
       anchor: "arc-chuanfu-rising"
     },
@@ -428,6 +521,10 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
       insight: "信任比金钱更稀缺，也比金钱更值钱。",
       quote: "哥几个，好好活着，替我活着！",
       quoteContext: "老魏被废墟压住，自尽前的嘶吼",
+      extraQuotes: [
+        { quote: "这不是在拿钱办事儿，给金主干活，而是我要替我弟弟报仇。", context: "小祁的复仇与义气" },
+        { quote: "咱俩要是普通人也就拉倒了，可身上穿着这身皮，碰见了就不能不管啊。", context: "老猫的朴素职责感" }
+      ],
       detail: "齐麟、老猫、马老二，这些名字撑起了秦禹冰冷算计之外的体温。在一个人人自保的世界里，愿意替你守夜、替你断后的人，才是真正的资产。但小说也不天真：义气会被利益考验，会被背叛刺穿，正因如此，那些始终没散的关系才格外动人。",
       anchor: "arc-trade-routes"
     },
@@ -437,6 +534,9 @@ const rawNinthDistrict: Omit<NovelDataset, "locations" | "characters"> & {
       insight: "所有的厮杀，最终都是为了有人能好好活着。",
       quote: "在我有生之年，希望能看到咱们的家乡春暖花开，阳光普照吧。",
       quoteContext: "周司令的心愿",
+      extraQuotes: [
+        { quote: "诸位，请保我华夏未来百年无战事！进攻！！", context: "秦禹北伐总攻令" }
+      ],
       detail: "故事以血与火铺路，却以春暖花开收束。打了近四十年的仗，赢来的不是更大的权力，而是让普通人重新过上能种花、能等天亮的日子。它留给读者的启发或许是：宏大的胜利只有落回一个个具体的人身上，才算真正有意义。",
       anchor: "arc-spring"
     },

@@ -13,7 +13,7 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "川府" })).toBeVisible();
   await expect(page.locator(".detail-panel").getByText("紧邻八区、九区的独立特区", { exact: false })).toBeVisible();
 
-  await page.getByRole("button", { name: /播放秦禹的崛起之路/ }).click();
+  await page.getByRole("button", { name: /播放秦禹的路线/ }).click();
   await expect(page.locator(".route-caption")).toBeVisible();
   await expect(page.locator(".route-traveler")).toBeVisible();
 
@@ -44,4 +44,18 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
   await page.getByRole("tab", { name: /落地川府与从龙之战/ }).click();
   await expect(page.getByRole("heading", { name: "落地川府与从龙之战" })).toBeVisible();
   await expect(page.getByText("百万亩粮仓和军队规模成为川府系向上攀登的基础。")).toBeVisible();
+});
+
+test("手机端地图可点按横屏全屏查看", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/map");
+
+  const map = page.locator(".map-figure").first();
+  await map.scrollIntoViewIfNeeded();
+  await map.click({ position: { x: 160, y: 90 } });
+
+  await expect(page.locator(".map-fullscreen")).toBeVisible();
+  await expect(page.getByLabel("关闭横屏地图")).toBeVisible();
+  await page.getByLabel("关闭横屏地图").click();
+  await expect(page.locator(".map-fullscreen")).toHaveCount(0);
 });
