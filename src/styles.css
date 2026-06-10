@@ -1199,6 +1199,16 @@ input:focus-visible,
   line-height: 1.85;
 }
 
+.timeline-note {
+  margin-top: 10px;
+  padding: 9px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(230, 177, 92, 0.16);
+  background: rgba(8, 6, 4, 0.24);
+  color: #e8c384 !important;
+  font-size: 0.92rem;
+}
+
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -1222,6 +1232,42 @@ input:focus-visible,
 
 .event-card h3 {
   margin: 0;
+}
+
+.event-quote {
+  position: relative;
+  margin: 2px 0 0;
+  padding: 12px 14px 11px 34px;
+  border: 1px solid rgba(230, 177, 92, 0.2);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(141, 63, 37, 0.13), rgba(8, 6, 4, 0.26));
+}
+
+.event-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  color: rgba(230, 177, 92, 0.48);
+  font-family: Georgia, "Songti SC", serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.event-quote p {
+  margin: 0;
+  color: #f1e3ca;
+  line-height: 1.7;
+  font-style: italic;
+  font-size: 0.94rem;
+}
+
+.event-quote cite {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-style: normal;
+  font-size: 0.76rem;
 }
 
 .event-actions {

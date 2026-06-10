@@ -41,6 +41,7 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
 
   await page.getByRole("link", { name: "故事时间线" }).click();
   await expect(page).toHaveURL(/\/timeline$/);
+  await expect(page.locator(".event-quote").first()).toBeVisible();
   await page.getByRole("tab", { name: /落地川府与从龙之战/ }).click();
   await expect(page.getByRole("heading", { name: "落地川府与从龙之战" })).toBeVisible();
   await expect(page.getByText("百万亩粮仓和军队规模成为川府系向上攀登的基础。")).toBeVisible();

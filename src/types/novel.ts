@@ -109,6 +109,8 @@ export interface StoryEvent {
   factionIds: FactionId[];
   summary: string;
   impact: string;
+  quote?: string;
+  quoteContext?: string;
 }
 
 export type HighlightPhase = "turf" | "faction" | "war";

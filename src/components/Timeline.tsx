@@ -11,7 +11,16 @@ interface TimelineProps {
 export function Timeline({ dataset, selectedArcId, onSelectArc, onSelectLocation, onSelectCharacter }: TimelineProps) {
   const selectedIndex = Math.max(0, dataset.arcs.findIndex((arc) => arc.id === selectedArcId));
   const selectedArc = dataset.arcs[selectedIndex] ?? dataset.arcs[0];
-  const events = dataset.events.filter((event) => selectedArc.keyEvents.includes(event.id));
+  const eventIds = new Set(selectedArc.keyEvents);
+  dataset.events.forEach((event) => {
+    const isInsideArc =
+      event.chapterRange.startOrder >= selectedArc.chapterRange.startOrder &&
+      event.chapterRange.startOrder <= selectedArc.chapterRange.endOrder;
+    if (event.quote && isInsideArc) eventIds.add(event.id);
+  });
+  const events = dataset.events
+    .filter((event) => eventIds.has(event.id))
+    .sort((a, b) => a.chapterRange.startOrder - b.chapterRange.startOrder);
 
   return (
     <div className="timeline-wrap">
@@ -39,6 +48,7 @@ export function Timeline({ dataset, selectedArcId, onSelectArc, onSelectLocation
           </p>
           <h2>{selectedArc.title}</h2>
           <p>{selectedArc.summary}</p>
+          <p className="timeline-note">已补入本阶段可核验的原文摘录节点，让时间线不只看剧情转折，也能看到原文最有力量的句子。</p>
         </div>
         <div className="event-grid">
           {events.map((event) => {
@@ -48,6 +58,12 @@ export function Timeline({ dataset, selectedArcId, onSelectArc, onSelectLocation
                 <span className="event-range">{event.chapterRange.label}</span>
                 <h3>{event.title}</h3>
                 <p>{event.summary}</p>
+                {event.quote ? (
+                  <blockquote className="event-quote">
+                    <p>{event.quote}</p>
+                    {event.quoteContext ? <cite>{event.quoteContext}</cite> : null}
+                  </blockquote>
+                ) : null}
                 <p className="impact">{event.impact}</p>
                 <div className="event-actions">
                   {location ? (
