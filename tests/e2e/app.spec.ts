@@ -23,6 +23,8 @@ test("首页、地图、人物和时间线可以交互", async ({ page }) => {
   await page.getByRole("button", { name: /秦禹/ }).first().click();
   await expect(page.locator(".profile-card").getByRole("heading", { name: "秦禹" })).toBeVisible();
   await expect(page.locator(".relationship-summary").getByText("生死兄弟").first()).toBeVisible();
+  await page.getByRole("button", { name: "播放动态立绘" }).click();
+  await expect(page.locator(".profile-card video.motion-portrait-video")).toBeVisible();
 
   await page.locator(".profile-card .asset-zoom-trigger").click();
   await expect(page.locator(".asset-lightbox")).toBeVisible();

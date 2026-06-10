@@ -105,6 +105,8 @@ export function CharacterPanel({ dataset, selectedCharacterId, onSelectCharacter
               placeholder="形象图待生成"
               variant="portrait"
               zoomable
+              motionSrc={selectedCharacter.id === "qin-yu" ? "/portraits-motion/qin-yu.webm" : undefined}
+              motionFallbackSrc={selectedCharacter.id === "qin-yu" ? "/portraits-motion/qin-yu.mp4" : undefined}
             />
             <div className="portrait-text">
               <p>{selectedCharacter.profile}</p>

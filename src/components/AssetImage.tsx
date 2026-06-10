@@ -8,20 +8,33 @@ interface AssetImageProps {
   placeholder: string;
   variant?: "scene" | "portrait";
   zoomable?: boolean;
+  motionSrc?: string;
+  motionFallbackSrc?: string;
 }
 
 const MAX_RETRIES = 2;
 
-export function AssetImage({ src, alt, caption, placeholder, variant = "scene", zoomable = false }: AssetImageProps) {
+export function AssetImage({
+  src,
+  alt,
+  caption,
+  placeholder,
+  variant = "scene",
+  zoomable = false,
+  motionSrc,
+  motionFallbackSrc
+}: AssetImageProps) {
   const [attempt, setAttempt] = useState(0);
   const [failed, setFailed] = useState(false);
   const [zoomed, setZoomed] = useState(false);
+  const [motionPlaying, setMotionPlaying] = useState(false);
 
   useEffect(() => {
     setAttempt(0);
     setFailed(false);
     setZoomed(false);
-  }, [src]);
+    setMotionPlaying(false);
+  }, [src, motionSrc]);
 
   useEffect(() => {
     if (!zoomed) return;
@@ -55,6 +68,7 @@ export function AssetImage({ src, alt, caption, placeholder, variant = "scene", 
 
   const retrySrc = attempt > 0 ? `${src}${src.includes("?") ? "&" : "?"}retry=${attempt}` : src;
   const canZoom = zoomable && !failed;
+  const canPlayMotion = variant === "portrait" && Boolean(motionSrc);
 
   const imageEl = (
     <img
@@ -68,6 +82,15 @@ export function AssetImage({ src, alt, caption, placeholder, variant = "scene", 
 
   return (
     <div className={`asset-image ${variant}`}>
+      {canPlayMotion ? (
+        <button
+          type="button"
+          className={`motion-portrait-toggle ${motionPlaying ? "is-playing" : ""}`}
+          onClick={() => setMotionPlaying((value) => !value)}
+        >
+          {motionPlaying ? "显示静态立绘" : "播放动态立绘"}
+        </button>
+      ) : null}
       {canZoom ? (
         <button
           type="button"
@@ -81,6 +104,20 @@ export function AssetImage({ src, alt, caption, placeholder, variant = "scene", 
       ) : (
         imageEl
       )}
+      {canPlayMotion && motionPlaying ? (
+        <video
+          className="motion-portrait-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={retrySrc}
+          aria-label={`${alt}动态立绘`}
+        >
+          <source src={motionSrc} type="video/webm" />
+          {motionFallbackSrc ? <source src={motionFallbackSrc} type="video/mp4" /> : null}
+        </video>
+      ) : null}
       {caption ? <span className="asset-caption">{caption}</span> : null}
       {canZoom && zoomed
         ? createPortal(
