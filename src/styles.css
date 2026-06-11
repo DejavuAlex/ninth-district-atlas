@@ -897,6 +897,12 @@ input:focus-visible,
   padding: 18px;
 }
 
+.mobile-character-picker-trigger,
+.mobile-featured-strip,
+.mobile-character-drawer-backdrop {
+  display: none;
+}
+
 .field-group {
   display: grid;
   gap: 8px;
@@ -1437,6 +1443,187 @@ input:focus-visible,
 
   .graph-card svg {
     min-height: 420px;
+  }
+
+  .character-panel {
+    display: grid;
+    gap: 14px;
+  }
+
+  .mobile-character-picker-trigger {
+    display: flex;
+    position: sticky;
+    top: 74px;
+    z-index: 20;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid rgba(230, 177, 92, 0.34);
+    border-radius: 16px;
+    color: #fff7ea;
+    background: linear-gradient(120deg, rgba(141, 63, 37, 0.92), rgba(43, 25, 18, 0.94));
+    font-weight: 900;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
+  }
+
+  .mobile-character-picker-trigger span {
+    color: #ffcf7a;
+    font-size: 0.86rem;
+  }
+
+  .mobile-featured-strip {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 0 0 4px;
+    scroll-snap-type: x proximity;
+  }
+
+  .mobile-featured-strip button {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 8px 11px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(230, 177, 92, 0.22);
+    color: var(--muted);
+    background: rgba(8, 6, 4, 0.24);
+    font-weight: 800;
+  }
+
+  .mobile-featured-strip button.is-selected {
+    color: #fff7ea;
+    background: rgba(141, 63, 37, 0.78);
+    border-color: rgba(230, 177, 92, 0.5);
+  }
+
+  .character-picker-content {
+    display: none;
+  }
+
+  .mobile-character-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: block;
+    background: rgba(2, 4, 7, 0.62);
+    backdrop-filter: blur(6px);
+  }
+
+  .mobile-character-drawer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 82vh;
+    display: grid;
+    grid-template-rows: auto auto auto minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+    border-radius: 24px 24px 0 0;
+    border: 1px solid rgba(230, 177, 92, 0.24);
+    background: rgba(10, 14, 18, 0.98);
+    box-shadow: 0 -24px 70px rgba(0, 0, 0, 0.62);
+  }
+
+  .mobile-drawer-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #fff7ea;
+  }
+
+  .mobile-drawer-head button {
+    padding: 7px 11px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(230, 177, 92, 0.28);
+    color: #ffcf7a;
+    background: rgba(8, 6, 4, 0.34);
+  }
+
+  .mobile-drawer-search {
+    display: grid;
+    gap: 7px;
+  }
+
+  .mobile-drawer-search span {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .mobile-drawer-search input {
+    width: 100%;
+    padding: 11px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(206, 226, 240, 0.18);
+    color: var(--text);
+    background: rgba(8, 6, 4, 0.42);
+  }
+
+  .mobile-drawer-featured {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 3px;
+  }
+
+  .mobile-drawer-featured button {
+    flex: 0 0 72px;
+    display: grid;
+    justify-items: center;
+    gap: 6px;
+    padding: 8px 6px;
+    border-radius: 14px;
+    border: 1px solid rgba(230, 177, 92, 0.16);
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.03);
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .mobile-drawer-featured button.is-selected {
+    color: #fff7ea;
+    border-color: rgba(230, 177, 92, 0.48);
+    background: rgba(141, 63, 37, 0.56);
+  }
+
+  .drawer-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: top center;
+    border: 1px solid rgba(230, 177, 92, 0.36);
+  }
+
+  .mobile-drawer-list {
+    overflow-y: auto;
+    display: grid;
+    gap: 8px;
+    padding-right: 2px;
+  }
+
+  .mobile-drawer-list button {
+    display: grid;
+    gap: 3px;
+    text-align: left;
+    padding: 11px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(206, 226, 240, 0.12);
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .mobile-drawer-list button.is-selected {
+    border-color: rgba(230, 177, 92, 0.5);
+    background: rgba(141, 63, 37, 0.5);
+  }
+
+  .mobile-drawer-list small {
+    color: var(--muted);
+    line-height: 1.35;
   }
 }
 

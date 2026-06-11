@@ -62,3 +62,19 @@ test("手机端地图可点按横屏全屏查看", async ({ page }) => {
   await page.getByLabel("关闭横屏地图").click();
   await expect(page.locator(".map-fullscreen")).toHaveCount(0);
 });
+
+test("手机端人物页可通过底部抽屉快速换人物", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/characters");
+
+  await expect(page.locator(".profile-card").getByRole("heading", { name: "秦禹" })).toBeVisible();
+  await page.getByRole("button", { name: "换人物" }).click();
+  const drawer = page.getByRole("dialog", { name: "选择人物" });
+  await expect(drawer).toBeVisible();
+
+  await drawer.getByLabel("抽屉内搜索人物").fill("吴天胤");
+  await drawer.getByRole("button", { name: "吴天胤 极端乱世人物" }).click();
+
+  await expect(drawer).toHaveCount(0);
+  await expect(page.locator(".profile-card").getByRole("heading", { name: "吴天胤" })).toBeVisible();
+});
