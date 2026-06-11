@@ -104,4 +104,12 @@ describe("《第九特区》结构化数据", () => {
     const allVisibleText = collectStrings(ninthDistrict);
     expect(allVisibleText.filter((text) => forbiddenDash.test(text))).toEqual([]);
   });
+
+  it("老猫与李富贵不应被拆成两个人物", () => {
+    const laoMao = ninthDistrict.characters.find((character) => character.id === "lao-mao");
+
+    expect(laoMao?.aliases).toContain("李富贵");
+    expect(ninthDistrict.characters.some((character) => character.id === "li-fugui")).toBe(false);
+    expect(ninthDistrict.events.some((event) => event.characterIds.includes("li-fugui"))).toBe(false);
+  });
 });
