@@ -8,3 +8,7 @@ test-results/
 *.tsbuildinfo
 第九特区.txt
 assets/
+prompts/README.md
+prompts/characters/
+prompts/locations/
+prompts/world-map.md
